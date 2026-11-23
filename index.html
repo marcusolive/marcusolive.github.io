@@ -54,7 +54,8 @@ nav.solid{background:rgba(5,6,15,.82);backdrop-filter:blur(12px);height:62px;bor
 .logo .br{color:var(--cyan)}
 .logo .nm{transition:letter-spacing .3s}
 .logo:hover .nm{letter-spacing:.06em}
-.links{display:flex;gap:30px;counter-reset:nv}
+.links{display:flex;gap:clamp(12px,1.6vw,30px);counter-reset:nv}
+@media (min-width:1281px) and (max-width:1440px){.links a{font-size:12px}.links a:before{margin-right:3px}.navr{gap:14px}}
 .links a{counter-increment:nv;font:500 13px var(--mono);color:#b7c1e3;position:relative;padding:6px 0;transition:color .2s}
 .links a:before{content:"0" counter(nv) ".";color:var(--cyan);margin-right:6px}
 .links a:after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--cyan);transition:width .3s}
@@ -77,7 +78,7 @@ nav.solid{background:rgba(5,6,15,.82);backdrop-filter:blur(12px);height:62px;bor
 body.menu .burger:before{top:16px;transform:rotate(45deg)}
 body.menu .burger i{opacity:0}
 body.menu .burger:after{top:16px;left:5px;transform:rotate(-45deg)}
-@media (max-width:1000px){
+@media (max-width:1280px){
   .burger{display:block}
   .links{display:flex!important;position:fixed;inset:0;z-index:-1;background:#05060f;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;pointer-events:none;transition:opacity .3s}
   .links a{font-size:18px}
@@ -244,6 +245,23 @@ section h2{font-size:clamp(32px,5vw,56px);margin-bottom:16px;max-width:820px}
 .more:hover{gap:14px}
 .wide{grid-column:1/-1}
 
+/* systems */
+.sys{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.scard{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:var(--panel);overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
+.scard:hover{transform:translateY(-6px);border-color:rgba(0,240,255,.45);box-shadow:0 20px 50px -20px rgba(0,240,255,.35)}
+.scard .shot{display:block;aspect-ratio:16/10;overflow:hidden;background:#0c1024;border-bottom:1px solid var(--line)}
+.scard .shot img{width:100%;height:100%;object-fit:cover;object-position:top left;transition:transform .6s}
+.scard:hover .shot img{transform:scale(1.04)}
+.scard .body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.scard .k{font:600 11.5px var(--mono);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.scard .k i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.scard h3{font-size:20px;margin-bottom:8px}
+.scard p{color:var(--muted);font-size:14.5px;margin-bottom:14px;flex:1}
+.scard .slinks{display:flex;gap:18px;flex-wrap:wrap}
+.scard .slinks .more{margin-top:4px;font-size:14px}
+@media (max-width:1000px){.sys{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.sys{grid-template-columns:1fr}}
+
 /* trust */
 .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .tcard{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--panel)}
@@ -382,6 +400,7 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
     <a href="#services"><span class="en">Services</span><span class="pt">Serviços</span><span class="es">Servicios</span></a>
     <a href="#demos"><span class="en">Demos</span><span class="pt">Demos</span><span class="es">Demos</span></a>
     <a href="#work"><span class="en">Work</span><span class="pt">Projetos</span><span class="es">Proyectos</span></a>
+    <a href="#systems"><span class="en">Systems</span><span class="pt">Sistemas</span><span class="es">Sistemas</span></a>
     <a href="#industries"><span class="en">Industries</span><span class="pt">Setores</span><span class="es">Sectores</span></a>
     <a href="#about"><span class="en">About</span><span class="pt">Sobre</span><span class="es">Sobre mí</span></a>
     <a href="#pricing"><span class="en">Pricing</span><span class="pt">Preços</span><span class="es">Precios</span></a>
@@ -584,14 +603,14 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
         <h3 class="en">Vendora marketplace</h3><h3 class="pt">Marketplace Vendora</h3><h3 class="es">Marketplace Vendora</h3>
         <p class="en">A big-marketplace style store: search with live suggestions, departments, hero carousel, today's deals with countdown, filters by rating, price and free delivery, product page with buy box, cart with free-shipping progress and 3-step checkout with card, PIX or PayPal.</p><p class="pt">Uma loja no estilo dos grandes marketplaces: busca com sugestões, departamentos, carrossel de ofertas, ofertas do dia com cronômetro, filtros por avaliação, preço e frete grátis, página de produto, carrinho com barra de frete grátis e checkout em 3 etapas com cartão, PIX ou PayPal.</p><p class="es">Una tienda al estilo de los grandes marketplaces: búsqueda con sugerencias, departamentos, carrusel de ofertas, ofertas del día con cuenta regresiva, filtros por valoración, precio y envío gratis, página de producto, carrito con barra de envío gratis y checkout en 3 pasos con tarjeta, PIX o PayPal.</p>
         <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Checkout UX</span></div>
-        <a class="more" href="samples/store/" target="_blank" rel="noopener"><span class="en">Open live demo</span><span class="pt">Abrir demo ao vivo</span><span class="es">Abrir demo en vivo</span> →</a>
+        <a class="more" href="https://marcusolive.github.io/vendora-marketplace/" target="_blank" rel="noopener"><span class="en">Open live demo</span><span class="pt">Abrir demo ao vivo</span><span class="es">Abrir demo en vivo</span> →</a> &nbsp; <a class="more" href="https://github.com/marcusolive/vendora-marketplace" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span><span class="es">Ver código</span> →</a>
       </div></div>
       <div class="pcard tilt reveal d2"><div class="in">
         <div class="k">LANDING PAGE · DEMO</div>
         <h3 class="en">Lumen Dental landing page</h3><h3 class="pt">Landing page Lumen Dental</h3><h3 class="es">Landing page Lumen Dental</h3>
         <p class="en">A conversion-focused page for a clinic: booking form, WhatsApp button, treatments, animated numbers, FAQ and strong calls to action.</p><p class="pt">Uma página focada em conversão para uma clínica: formulário de agendamento, botão de WhatsApp, tratamentos, números animados, FAQ e chamadas fortes.</p><p class="es">Una página enfocada en conversión para una clínica: formulario de reservas, botón de WhatsApp, tratamientos, números animados, FAQ y llamados a la acción.</p>
         <div class="chips"><span class="chip">Landing page</span><span class="chip">Lead capture</span><span class="chip">Responsive</span></div>
-        <a class="more" href="samples/landing/" target="_blank" rel="noopener"><span class="en">Open live demo</span><span class="pt">Abrir demo ao vivo</span><span class="es">Abrir demo en vivo</span> →</a>
+        <a class="more" href="https://marcusolive.github.io/lumen-dental-landing/" target="_blank" rel="noopener"><span class="en">Open live demo</span><span class="pt">Abrir demo ao vivo</span><span class="es">Abrir demo en vivo</span> →</a> &nbsp; <a class="more" href="https://github.com/marcusolive/lumen-dental-landing" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span><span class="es">Ver código</span> →</a>
       </div></div>
       <div class="pcard tilt reveal wide"><div class="in">
         <div class="k">CLIENT PROJECT · FISCAL INTEGRATION</div>
@@ -600,6 +619,90 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
         <p class="pt">Serviço que captura NF-e e NFS-e dos webservices do governo com certificado A1, mantém tudo sincronizado e entrega ao ERP via OAuth2 client credentials, com filas para resiliência.</p><p class="es">Un servicio que captura NF-e y NFS-e de los servicios web del gobierno brasileño con certificado digital A1, las mantiene sincronizadas y las entrega al ERP vía OAuth2 client credentials, con colas para resiliencia.</p>
         <div class="chips"><span class="chip">.NET</span><span class="chip">SEFAZ</span><span class="chip">NFS-e</span><span class="chip">Azure Service Bus</span><span class="chip">OAuth2</span></div>
       </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="systems">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="en">Live systems</span><span class="pt">Sistemas no ar</span><span class="es">Sistemas en línea</span></div>
+    <h2 class="reveal en">Click around. They work.</h2><h2 class="reveal pt">Pode clicar. Eles funcionam.</h2><h2 class="reveal es">Haz clic. Funcionan.</h2>
+    <p class="sub reveal en">Product-grade consoles for AI, finance, healthcare, agribusiness, banking and retail. Each one is a public repository with README, functional spec (requirements, user stories, acceptance criteria) and MIT license. Companies and data are fictional.</p>
+    <p class="sub reveal pt">Consoles com cara de produto para IA, finanças, saúde, agronegócio, bancos e varejo. Cada um é um repositório público com README, especificação funcional (requisitos, histórias de usuário, critérios de aceite) e licença MIT. Empresas e dados são fictícios.</p>
+    <p class="sub reveal es">Consolas con calidad de producto para IA, finanzas, salud, agronegocio, banca y retail. Cada una es un repositorio público con README, especificación funcional (requisitos, historias de usuario, criterios de aceptación) y licencia MIT. Empresas y datos son ficticios.</p>
+    <div class="sys">
+      <article class="scard reveal d1">
+        <a class="shot" href="https://marcusolive.github.io/nexa-ai-studio/" target="_blank" rel="noopener"><img src="https://marcusolive.github.io/nexa-ai-studio/docs/screenshot.png" alt="Nexa AI Studio screenshot" loading="lazy" width="1600" height="1000"></a>
+        <div class="body">
+          <div class="k" style="color:#6d4aff"><i style="background:#6d4aff"></i>AI PLATFORM</div>
+          <h3>Nexa AI Studio</h3>
+          <p class="en">A console for AI teams: chat playground, prompt library, RAG knowledge bases, agents, usage and cost per model, API keys.</p><p class="pt">Console para times de IA: playground de chat, biblioteca de prompts, bases de conhecimento RAG, agentes, uso e custo por modelo, chaves de API.</p><p class="es">Consola para equipos de IA: playground de chat, biblioteca de prompts, bases de conocimiento RAG, agentes, uso y costo por modelo, claves de API.</p>
+          <div class="slinks">
+            <a class="more" href="https://marcusolive.github.io/nexa-ai-studio/" target="_blank" rel="noopener"><span class="en">Open system</span><span class="pt">Abrir sistema</span><span class="es">Abrir sistema</span> →</a>
+            <a class="more" href="https://github.com/marcusolive/nexa-ai-studio" target="_blank" rel="noopener"><span class="en">Code &amp; spec</span><span class="pt">Código e especificação</span><span class="es">Código y especificación</span> →</a>
+          </div>
+        </div>
+      </article>
+      <article class="scard reveal d2">
+        <a class="shot" href="https://marcusolive.github.io/ledgerly-finance/" target="_blank" rel="noopener"><img src="https://marcusolive.github.io/ledgerly-finance/docs/screenshot.png" alt="Ledgerly Finance screenshot" loading="lazy" width="1600" height="1000"></a>
+        <div class="body">
+          <div class="k" style="color:#0f9d58"><i style="background:#0f9d58"></i>FINANCE · ERP</div>
+          <h3>Ledgerly Finance</h3>
+          <p class="en">Finance management: cash flow and forecast, accounts receivable and payable, budgets by department and reports.</p><p class="pt">Gestão financeira: fluxo de caixa e projeção, contas a receber e a pagar, orçamento por departamento e relatórios.</p><p class="es">Gestión financiera: flujo de caja y proyección, cuentas por cobrar y por pagar, presupuesto por departamento e informes.</p>
+          <div class="slinks">
+            <a class="more" href="https://marcusolive.github.io/ledgerly-finance/" target="_blank" rel="noopener"><span class="en">Open system</span><span class="pt">Abrir sistema</span><span class="es">Abrir sistema</span> →</a>
+            <a class="more" href="https://github.com/marcusolive/ledgerly-finance" target="_blank" rel="noopener"><span class="en">Code &amp; spec</span><span class="pt">Código e especificação</span><span class="es">Código y especificación</span> →</a>
+          </div>
+        </div>
+      </article>
+      <article class="scard reveal d1">
+        <a class="shot" href="https://marcusolive.github.io/medcore-hospital/" target="_blank" rel="noopener"><img src="https://marcusolive.github.io/medcore-hospital/docs/screenshot.png" alt="MedCore HIS screenshot" loading="lazy" width="1600" height="1000"></a>
+        <div class="body">
+          <div class="k" style="color:#0b7bdc"><i style="background:#0b7bdc"></i>HEALTHCARE · HIS</div>
+          <h3>MedCore HIS</h3>
+          <p class="en">Hospital operations: live bed board, ER triage queue by priority, patient records, appointments, pharmacy and stock.</p><p class="pt">Operação hospitalar: mapa de leitos ao vivo, fila de triagem do pronto-socorro por prioridade, prontuário, agenda, farmácia e estoque.</p><p class="es">Operación hospitalaria: mapa de camas en vivo, cola de triaje de urgencias por prioridad, historia clínica, agenda, farmacia e inventario.</p>
+          <div class="slinks">
+            <a class="more" href="https://marcusolive.github.io/medcore-hospital/" target="_blank" rel="noopener"><span class="en">Open system</span><span class="pt">Abrir sistema</span><span class="es">Abrir sistema</span> →</a>
+            <a class="more" href="https://github.com/marcusolive/medcore-hospital" target="_blank" rel="noopener"><span class="en">Code &amp; spec</span><span class="pt">Código e especificação</span><span class="es">Código y especificación</span> →</a>
+          </div>
+        </div>
+      </article>
+      <article class="scard reveal d2">
+        <a class="shot" href="https://marcusolive.github.io/agrosense-farm/" target="_blank" rel="noopener"><img src="https://marcusolive.github.io/agrosense-farm/docs/screenshot.png" alt="AgroSense screenshot" loading="lazy" width="1600" height="1000"></a>
+        <div class="body">
+          <div class="k" style="color:#2e7d32"><i style="background:#2e7d32"></i>AGRITECH · IOT</div>
+          <h3>AgroSense</h3>
+          <p class="en">Farm monitoring: fields map, soil and weather sensors, irrigation scheduling, harvest and yield, input inventory.</p><p class="pt">Monitoramento de fazendas: mapa de talhões, sensores de solo e clima, agenda de irrigação, colheita e produtividade, estoque de insumos.</p><p class="es">Monitoreo agrícola: mapa de lotes, sensores de suelo y clima, programación de riego, cosecha y rendimiento, inventario de insumos.</p>
+          <div class="slinks">
+            <a class="more" href="https://marcusolive.github.io/agrosense-farm/" target="_blank" rel="noopener"><span class="en">Open system</span><span class="pt">Abrir sistema</span><span class="es">Abrir sistema</span> →</a>
+            <a class="more" href="https://github.com/marcusolive/agrosense-farm" target="_blank" rel="noopener"><span class="en">Code &amp; spec</span><span class="pt">Código e especificação</span><span class="es">Código y especificación</span> →</a>
+          </div>
+        </div>
+      </article>
+      <article class="scard reveal d1">
+        <a class="shot" href="https://marcusolive.github.io/bankora-backoffice/" target="_blank" rel="noopener"><img src="https://marcusolive.github.io/bankora-backoffice/docs/screenshot.png" alt="Bankora Backoffice screenshot" loading="lazy" width="1600" height="1000"></a>
+        <div class="body">
+          <div class="k" style="color:#3949ab"><i style="background:#3949ab"></i>BANKING · BACKOFFICE</div>
+          <h3>Bankora Backoffice</h3>
+          <p class="en">Digital bank operations: customers and KYC, PIX and card transactions, fraud and AML alerts, cards, maker-checker approvals and audit.</p><p class="pt">Operação de banco digital: clientes e KYC, transações PIX e cartão, alertas de fraude e PLD, cartões, aprovações em dupla checagem e auditoria.</p><p class="es">Operación de banco digital: clientes y KYC, transacciones PIX y tarjeta, alertas de fraude y AML, tarjetas, aprobaciones con doble control y auditoría.</p>
+          <div class="slinks">
+            <a class="more" href="https://marcusolive.github.io/bankora-backoffice/" target="_blank" rel="noopener"><span class="en">Open system</span><span class="pt">Abrir sistema</span><span class="es">Abrir sistema</span> →</a>
+            <a class="more" href="https://github.com/marcusolive/bankora-backoffice" target="_blank" rel="noopener"><span class="en">Code &amp; spec</span><span class="pt">Código e especificação</span><span class="es">Código y especificación</span> →</a>
+          </div>
+        </div>
+      </article>
+      <article class="scard reveal d2">
+        <a class="shot" href="https://marcusolive.github.io/vendora-marketplace/" target="_blank" rel="noopener"><img src="https://marcusolive.github.io/vendora-marketplace/docs/screenshot.png" alt="Vendora Marketplace screenshot" loading="lazy" width="1600" height="1000"></a>
+        <div class="body">
+          <div class="k" style="color:#ff9900"><i style="background:#ff9900"></i>E-COMMERCE</div>
+          <h3>Vendora Marketplace</h3>
+          <p class="en">Big-marketplace style store: live search, deals with countdown, filters, product page, cart and 3-step checkout.</p><p class="pt">Loja no estilo dos grandes marketplaces: busca ao vivo, ofertas com cronômetro, filtros, página de produto, carrinho e checkout em 3 etapas.</p><p class="es">Tienda al estilo de los grandes marketplaces: búsqueda en vivo, ofertas con cuenta regresiva, filtros, página de producto, carrito y checkout en 3 pasos.</p>
+          <div class="slinks">
+            <a class="more" href="https://marcusolive.github.io/vendora-marketplace/" target="_blank" rel="noopener"><span class="en">Open system</span><span class="pt">Abrir sistema</span><span class="es">Abrir sistema</span> →</a>
+            <a class="more" href="https://github.com/marcusolive/vendora-marketplace" target="_blank" rel="noopener"><span class="en">Code &amp; spec</span><span class="pt">Código e especificação</span><span class="es">Código y especificación</span> →</a>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
