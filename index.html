@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marcus Oliveira | Full-Stack Developer & AI Engineer</title>
+<meta name="description" content="Full-stack developer and Tech Lead. C# .NET, React, Angular, Python and AI (LLMs, RAG, agents). About 10 years building software for healthcare, tax and finance.">
+<meta property="og:title" content="Marcus Oliveira | Full-Stack Developer & AI Engineer">
+<meta property="og:description" content="C# .NET, React, Angular, Python and AI. I build, fix and document software, from idea to production.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b1020; --bg2:#111832; --card:#151d3b; --line:#26305a;
+  --text:#e8ecf8; --muted:#9aa6c8; --accent:#5eead4; --accent2:#818cf8;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.15;letter-spacing:-.01em}
+.pt{display:none}
+body.lang-pt .en{display:none}
+body.lang-pt .pt{display:revert}
+
+nav{position:sticky;top:0;z-index:10;background:rgba(11,16,32,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.logo{font-family:"Space Grotesk";font-weight:700;font-size:18px}
+.logo span{color:var(--accent)}
+.links{display:flex;gap:22px;font-size:14px;color:var(--muted)}
+.links a:hover{color:var(--text)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:12px;font-weight:600}
+.lang button{background:none;border:0;color:var(--muted);padding:6px 12px;cursor:pointer;font:inherit}
+.lang button.on{background:var(--accent);color:#06221e}
+
+header{padding:96px 0 72px;position:relative;overflow:hidden}
+header:before{content:"";position:absolute;inset:-40% -10% auto auto;width:620px;height:620px;background:radial-gradient(circle,rgba(129,140,248,.28),transparent 65%);pointer-events:none}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--accent);border:1px solid rgba(94,234,212,.35);padding:6px 12px;border-radius:999px;margin-bottom:22px}
+.tag i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+header h1{font-size:clamp(36px,6vw,64px);max-width:820px}
+header h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p.lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:680px;margin:22px 0 34px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:15px;border:1px solid var(--line);transition:.2s}
+.btn.primary{background:var(--accent);color:#06221e;border-color:var(--accent)}
+.btn:hover{transform:translateY(-2px)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.stat b{display:block;font-family:"Space Grotesk";font-size:26px}
+.stat span{font-size:13px;color:var(--muted)}
+
+section{padding:76px 0;border-top:1px solid var(--line)}
+.eyebrow{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
+section h2{font-size:clamp(28px,4vw,40px);margin-bottom:14px}
+.sub{color:var(--muted);max-width:640px;margin-bottom:40px}
+
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:.2s}
+.card:hover{border-color:#3a4785}
+.card h3{font-size:19px;margin:10px 0 8px}
+.card p{color:var(--muted);font-size:15px}
+.ico{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:rgba(94,234,212,.1);color:var(--accent);font-size:20px}
+
+.case{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;margin-bottom:20px}
+.case h3{font-size:24px;margin-bottom:10px}
+.case .kicker{font-size:13px;color:var(--accent2);font-weight:600;margin-bottom:6px}
+.case p{color:var(--muted);margin-bottom:14px}
+.case ul{list-style:none;display:grid;gap:8px;margin-bottom:18px}
+.case li{padding-left:22px;position:relative;font-size:15px}
+.case li:before{content:"";position:absolute;left:0;top:10px;width:10px;height:2px;background:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:12.5px;padding:5px 10px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);color:#c7cff0}
+.diagram{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;justify-content:center;font-size:13.5px}
+.node{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card)}
+.node b{color:var(--accent)}
+.arrow{text-align:center;color:var(--muted);font-size:12px}
+.case .more{font-weight:600;color:var(--accent);font-size:15px}
+
+.stack{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.stack h4{font-size:14px;color:var(--muted);font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em}
+
+.timeline{display:grid;gap:14px}
+.job{display:grid;grid-template-columns:170px 1fr;gap:18px;padding:18px 0;border-bottom:1px dashed var(--line)}
+.job .when{color:var(--muted);font-size:14px}
+.job h3{font-size:18px}
+.job p{color:var(--muted);font-size:15px;margin-top:4px}
+
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.step{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.step:before{content:"0" counter(s);font-family:"Space Grotesk";font-weight:700;color:var(--accent);font-size:22px}
+.step h3{font-size:17px;margin:8px 0 6px}
+.step p{color:var(--muted);font-size:14.5px}
+
+.contact{text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));}
+.contact h2{max-width:700px;margin:0 auto 14px}
+.contact .sub{margin:0 auto 30px}
+.contact .ctas{justify-content:center}
+footer{padding:28px 0;color:var(--muted);font-size:13px;text-align:center;border-top:1px solid var(--line)}
+
+@media (max-width:900px){
+  .g3,.stack,.steps{grid-template-columns:1fr 1fr}
+  .case{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .links{display:none}
+}
+@media (max-width:560px){
+  .g3,.g2,.stack,.steps{grid-template-columns:1fr}
+  .job{grid-template-columns:1fr;gap:4px}
+  header{padding:64px 0 48px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#">marcus<span>.</span>dev</a>
+    <div class="links">
+      <a href="#services"><span class="en">Services</span><span class="pt">Serviços</span></a>
+      <a href="#work"><span class="en">Work</span><span class="pt">Projetos</span></a>
+      <a href="#experience"><span class="en">Experience</span><span class="pt">Experiência</span></a>
+      <a href="#contact"><span class="en">Contact</span><span class="pt">Contato</span></a>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+      <button id="btn-pt" onclick="setLang('pt')">PT</button>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="tag"><i></i><span class="en">Available for freelance projects</span><span class="pt">Disponível para projetos freelance</span></div>
+    <h1 class="en">I build, fix and ship software. <em>With AI inside.</em></h1>
+    <h1 class="pt">Eu crio, corrijo e entrego software. <em>Com IA dentro.</em></h1>
+    <p class="lead en">Full-stack developer and Tech Lead with about 10 years in software. C# .NET, React, Angular and Python, plus LLMs, RAG and AI agents running in production for healthcare, tax and finance companies.</p>
+    <p class="lead pt">Desenvolvedor full-stack e Tech Lead, com cerca de 10 anos em software. C# .NET, React, Angular e Python, além de LLMs, RAG e agentes de IA rodando em produção para empresas de saúde, fiscal e finanças.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#contact"><span class="en">Start a project</span><span class="pt">Começar um projeto</span> →</a>
+      <a class="btn" href="#work"><span class="en">See my work</span><span class="pt">Ver projetos</span></a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>~10</b><span class="en">years in software</span><span class="pt">anos em software</span></div>
+      <div class="stat"><b>3</b><span class="en">industries: health, tax, finance</span><span class="pt">setores: saúde, fiscal, finanças</span></div>
+      <div class="stat"><b>LLM</b><span class="en">RAG, agents, MCP and A2A in production</span><span class="pt">RAG, agentes, MCP e A2A em produção</span></div>
+      <div class="stat"><b>EN · ES · PT</b><span class="en">written English, fluent Spanish</span><span class="pt">inglês escrito, espanhol fluente</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow"><span class="en">Services</span><span class="pt">Serviços</span></div>
+    <h2 class="en">What I can do for you</h2>
+    <h2 class="pt">O que posso fazer por você</h2>
+    <p class="sub en">From a single bug to a full product. Clear scope before starting, small milestones you can test, and documentation in every delivery.</p>
+    <p class="sub pt">De um bug isolado a um produto completo. Escopo claro antes de começar, entregas pequenas que você testa e documentação em toda entrega.</p>
+    <div class="grid g3">
+      <div class="card"><div class="ico">✦</div><h3 class="en">AI & automation</h3><h3 class="pt">IA e automação</h3>
+        <p class="en">Chatbots trained on your data, PDF and invoice reading, classification and summaries, AI agents, OpenAI and Claude integrations, Python and n8n automations.</p>
+        <p class="pt">Chatbot com os dados da sua empresa, leitura de PDF e notas, classificação e resumo, agentes de IA, integração com OpenAI e Claude, automações em Python e n8n.</p></div>
+      <div class="card"><div class="ico">⌘</div><h3 class="en">Back-end & APIs</h3><h3 class="pt">Back-end e APIs</h3>
+        <p class="en">C# .NET, ASP.NET Core and Python. REST APIs and integrations with ERPs, payment providers, government services and any third-party API.</p>
+        <p class="pt">C# .NET, ASP.NET Core e Python. APIs REST e integrações com ERP, meios de pagamento, serviços do governo e qualquer API de terceiros.</p></div>
+      <div class="card"><div class="ico">◧</div><h3 class="en">Front-end</h3><h3 class="pt">Front-end</h3>
+        <p class="en">React, Angular and TypeScript. Dashboards, admin panels, web apps and landing pages, responsive and clean.</p>
+        <p class="pt">React, Angular e TypeScript. Painéis, sistemas administrativos, aplicações web e landing pages, responsivos e limpos.</p></div>
+      <div class="card"><div class="ico">⛁</div><h3 class="en">Data & cloud</h3><h3 class="pt">Dados e nuvem</h3>
+        <p class="en">SQL Server, PostgreSQL (pgvector), MongoDB, Redis, Azure, Docker, messaging and CI/CD pipelines.</p>
+        <p class="pt">SQL Server, PostgreSQL (pgvector), MongoDB, Redis, Azure, Docker, mensageria e pipelines de CI/CD.</p></div>
+      <div class="card"><div class="ico">⚑</div><h3 class="en">Rescue & upgrades</h3><h3 class="pt">Resgate e evolução</h3>
+        <p class="en">Production bugs, slow systems, projects left by another developer and upgrades to modern .NET and Angular.</p>
+        <p class="pt">Bugs em produção, sistemas lentos, projetos largados por outro dev e migração para .NET e Angular atuais.</p></div>
+      <div class="card"><div class="ico">▤</div><h3 class="en">Technical documentation</h3><h3 class="pt">Documentação técnica</h3>
+        <p class="en">Architecture docs, API docs, README, functional specs and project handover, so your team can keep going without me.</p>
+        <p class="pt">Arquitetura, documentação de API, README, especificação funcional e passagem de projeto, para o seu time seguir sem depender de mim.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="eyebrow"><span class="en">Selected work</span><span class="pt">Projetos em destaque</span></div>
+    <h2 class="en">Real systems, not tutorials</h2>
+    <h2 class="pt">Sistemas reais, não tutoriais</h2>
+    <p class="sub en">Some projects are client work, so I describe the problem and the solution without confidential details.</p>
+    <p class="sub pt">Alguns projetos são de clientes, então descrevo o problema e a solução sem detalhes confidenciais.</p>
+
+    <article class="case">
+      <div>
+        <div class="kicker">AI agent · RAG · MCP · A2A</div>
+        <h3 class="en">AI tax classification agent</h3>
+        <h3 class="pt">Agente de IA para classificação fiscal</h3>
+        <p class="en">An agent that suggests and audits the tax classification of products (Brazilian NCM code and tax treatment) from descriptions, invoices, spreadsheets and technical documents. Every answer is structured and traceable to its source, and the agent can block an invoice when the declared classification does not hold.</p>
+        <p class="pt">Agente que sugere e audita a classificação fiscal de produtos (NCM e tratamento tributário) a partir de descrições, notas, planilhas e documentos técnicos. Toda resposta é estruturada e rastreável até a fonte, e o agente pode bloquear uma nota quando a classificação declarada não se sustenta.</p>
+        <ul>
+          <li class="en">Two independent services: the agent API and a RAG API that owns the knowledge base</li>
+          <li class="pt">Dois serviços independentes: a API do agente e uma API de RAG dona da base de conhecimento</li>
+          <li class="en">Vector search with PostgreSQL + pgvector, accessed only through an MCP tool</li>
+          <li class="pt">Busca vetorial com PostgreSQL + pgvector, acessada só por uma ferramenta MCP</li>
+          <li class="en">Exposed to other agents and orchestrators through the A2A protocol</li>
+          <li class="pt">Exposto para outros agentes e orquestradores pelo protocolo A2A</li>
+        </ul>
+        <div class="chips"><span class="chip">.NET</span><span class="chip">Semantic Kernel</span><span class="chip">OpenAI</span><span class="chip">PostgreSQL</span><span class="chip">pgvector</span><span class="chip">MCP</span><span class="chip">A2A</span></div>
+        <p style="margin-top:18px"><a class="more" href="https://github.com/marcusolive/agente-classificacao-fiscal-produtos" target="_blank" rel="noopener"><span class="en">View code on GitHub</span><span class="pt">Ver código no GitHub</span> →</a></p>
+      </div>
+      <div class="diagram">
+        <div class="node"><b>Client / other agents</b><br>REST · A2A JSON-RPC</div>
+        <div class="arrow">↓</div>
+        <div class="node"><b>Agent API</b><br>orchestration · LLM · validation</div>
+        <div class="arrow">↓ MCP</div>
+        <div class="node"><b>RAG API</b><br>embeddings · pgvector · cosine search</div>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <div class="kicker">AI agent · .NET 10 · A2A</div>
+        <h3 class="en">Cash-flow AI agent</h3>
+        <h3 class="pt">Agente de IA de fluxo de caixa</h3>
+        <p class="en">A financial agent that answers cash-flow questions over a demo company dataset and talks to an orchestrator through A2A. Built spec-first, with an automated test suite that runs without an OpenAI key and secrets kept out of the repository.</p>
+        <p class="pt">Agente financeiro que responde perguntas de fluxo de caixa sobre uma base demonstrativa e conversa com um orquestrador via A2A. Feito a partir de especificação, com suíte de testes automatizados que roda sem chave da OpenAI e segredos fora do repositório.</p>
+        <div class="chips"><span class="chip">.NET 10</span><span class="chip">C#</span><span class="chip">OpenAI</span><span class="chip">A2A</span><span class="chip">xUnit</span><span class="chip">Spec-driven</span></div>
+        <p style="margin-top:18px"><a class="more" href="https://github.com/marcusolive/AgenteFinanceira" target="_blank" rel="noopener"><span class="en">View code on GitHub</span><span class="pt">Ver código no GitHub</span> →</a></p>
+      </div>
+      <div class="diagram">
+        <div class="node"><b>Orchestrator / simulator</b></div>
+        <div class="arrow">↓ A2A</div>
+        <div class="node"><b>Agent API</b><br>tools · cash-flow rules · LLM</div>
+        <div class="arrow">↓</div>
+        <div class="node"><b>Demo dataset</b><br>no database needed</div>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <div class="kicker">React · TypeScript · Product</div>
+        <h3 class="en">SPECMP: technical spec generator</h3>
+        <h3 class="pt">SPECMP: gerador de especificações técnicas</h3>
+        <p class="en">A web app that turns vague task, bug or feature descriptions into clear technical specs (context, acceptance criteria, risks and tests), with more than 30 templates and export to Jira, Azure DevOps, GitHub Issues, Notion, ClickUp and others.</p>
+        <p class="pt">Aplicação web que transforma descrições vagas de tarefas, bugs ou features em especificações técnicas claras (contexto, critérios de aceite, riscos e testes), com mais de 30 modelos e exportação para Jira, Azure DevOps, GitHub Issues, Notion, ClickUp e outros.</p>
+        <div class="chips"><span class="chip">React 18</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span><span class="chip">Framer Motion</span><span class="chip">jsPDF</span></div>
+        <p style="margin-top:18px"><a class="more" href="https://github.com/marcusolive/specmp" target="_blank" rel="noopener"><span class="en">View code on GitHub</span><span class="pt">Ver código no GitHub</span> →</a></p>
+      </div>
+      <div class="diagram">
+        <div class="node"><b>Input</b><br>title · description · type · priority</div>
+        <div class="arrow">↓</div>
+        <div class="node"><b>Template engine</b><br>30+ templates</div>
+        <div class="arrow">↓</div>
+        <div class="node"><b>Export</b><br>Markdown · PDF · Jira · Azure DevOps</div>
+      </div>
+    </article>
+
+    <div class="grid g2">
+      <div class="card">
+        <div class="ico">◎</div>
+        <h3 class="en">IRIS Software (my own product)</h3><h3 class="pt">ÍRIS Software (produto próprio)</h3>
+        <p class="en">Static analysis for the software companies build in-house: spreadsheet macros, scripts, automations and AI-generated code. It flags security and data-privacy (LGPD) risks without running anything.</p>
+        <p class="pt">Análise estática do software criado dentro das empresas: planilhas com macro, scripts, automações e código gerado por IA. Aponta riscos de segurança e LGPD sem executar nada.</p>
+        <div class="chips" style="margin-top:14px"><span class="chip">Static analysis</span><span class="chip">Security</span><span class="chip">LGPD</span></div>
+      </div>
+      <div class="card">
+        <div class="ico">⇄</div>
+        <h3 class="en">Electronic invoice capture API</h3><h3 class="pt">API de captura de notas fiscais</h3>
+        <p class="en">Client project. A service that captures NF-e and NFS-e from Brazilian government web services with A1 digital certificates, keeps them in sync and delivers them to an ERP through OAuth2 client credentials.</p>
+        <p class="pt">Projeto de cliente. Serviço que captura NF-e e NFS-e dos webservices do governo com certificado A1, mantém tudo sincronizado e entrega ao ERP via OAuth2 client credentials.</p>
+        <div class="chips" style="margin-top:14px"><span class="chip">.NET</span><span class="chip">SEFAZ</span><span class="chip">NFS-e</span><span class="chip">Azure Service Bus</span><span class="chip">OAuth2</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="en">Stack</span><span class="pt">Tecnologias</span></div>
+    <h2 class="en">Tools I use every day</h2>
+    <h2 class="pt">Ferramentas do dia a dia</h2>
+    <div class="stack" style="margin-top:30px">
+      <div><h4>Back-end</h4><div class="chips"><span class="chip">C#</span><span class="chip">.NET</span><span class="chip">ASP.NET Core</span><span class="chip">Python</span><span class="chip">REST</span><span class="chip">Microservices</span></div></div>
+      <div><h4>Front-end</h4><div class="chips"><span class="chip">React</span><span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">HTML/CSS</span><span class="chip">Tailwind</span></div></div>
+      <div><h4>AI</h4><div class="chips"><span class="chip">OpenAI</span><span class="chip">Claude</span><span class="chip">Semantic Kernel</span><span class="chip">RAG</span><span class="chip">MCP</span><span class="chip">A2A</span><span class="chip">n8n</span></div></div>
+      <div><h4>Data & DevOps</h4><div class="chips"><span class="chip">SQL Server</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">Azure</span><span class="chip">Docker</span><span class="chip">Kubernetes</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow"><span class="en">Experience</span><span class="pt">Experiência</span></div>
+    <h2 class="en">Where I have worked</h2>
+    <h2 class="pt">Onde já trabalhei</h2>
+    <div class="timeline" style="margin-top:28px">
+      <div class="job"><div class="when">2022 – <span class="en">now</span><span class="pt">hoje</span></div><div><h3>Tech Lead & Dev Lead (.NET)</h3>
+        <p class="en">Architecture, hands-on development, code review and mentoring. Generative AI inside enterprise systems.</p>
+        <p class="pt">Arquitetura, desenvolvimento, code review e mentoria. IA generativa dentro de sistemas corporativos.</p></div></div>
+      <div class="job"><div class="when">2021 – 2022</div><div><h3>Tech Lead · <span class="en">tax and accounting software</span><span class="pt">software fiscal e contábil</span></h3>
+        <p class="en">Tax diagnosis platform that cross-checks Brazilian tax filings (EFD, DCTF, NF-e, Reinf and others) to find inconsistencies.</p>
+        <p class="pt">Plataforma de diagnóstico fiscal que cruza obrigações acessórias (EFD, DCTF, NF-e, Reinf e outras) para achar inconsistências.</p></div></div>
+      <div class="job"><div class="when"><span class="en">Earlier</span><span class="pt">Antes</span></div><div><h3><span class="en">Systems Analyst & Developer</span><span class="pt">Analista de sistemas e desenvolvedor</span></h3>
+        <p class="en">Investment banking platforms and a video call product; contractor for Eletrobras / Furnas; ERP development in C# and Delphi at MXM; healthcare systems for a hospital network.</p>
+        <p class="pt">Plataformas para bancos de investimento e produto de videochamada; prestador de serviço para Eletrobras / Furnas; desenvolvimento de ERP em C# e Delphi na MXM; sistemas de saúde para rede hospitalar.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="en">How I work</span><span class="pt">Como trabalho</span></div>
+    <h2 class="en">Simple, predictable process</h2>
+    <h2 class="pt">Processo simples e previsível</h2>
+    <div class="steps" style="margin-top:30px">
+      <div class="step"><h3 class="en">Scope</h3><h3 class="pt">Escopo</h3><p class="en">I write what will be delivered, what is out, the price and the timeline.</p><p class="pt">Escrevo o que será entregue, o que fica de fora, o preço e o prazo.</p></div>
+      <div class="step"><h3 class="en">Milestones</h3><h3 class="pt">Etapas</h3><p class="en">Small deliveries you can test, instead of one big surprise at the end.</p><p class="pt">Entregas pequenas que você testa, em vez de uma surpresa grande no fim.</p></div>
+      <div class="step"><h3 class="en">Quality</h3><h3 class="pt">Qualidade</h3><p class="en">Clean code, automated tests and code review standards from enterprise teams.</p><p class="pt">Código limpo, testes automatizados e padrão de revisão de times corporativos.</p></div>
+      <div class="step"><h3 class="en">Handover</h3><h3 class="pt">Entrega</h3><p class="en">Documentation and a walkthrough, so the project is yours, not mine.</p><p class="pt">Documentação e apresentação final, para o projeto ser seu, não meu.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2 class="en">Have a project, a bug or an idea with AI?</h2>
+    <h2 class="pt">Tem um projeto, um bug ou uma ideia com IA?</h2>
+    <p class="sub en">Send me a short description. I reply within one business day with questions or a proposal.</p>
+    <p class="sub pt">Me mande uma descrição curta. Respondo em até um dia útil com perguntas ou uma proposta.</p>
+    <div class="ctas">
+      <a class="btn primary" href="https://www.linkedin.com/in/marcus-paulo-oliveira" target="_blank" rel="noopener">LinkedIn →</a>
+      <a class="btn" href="https://www.upwork.com/freelancers/~011a03eec914c15aa8" target="_blank" rel="noopener">Upwork</a>
+      <a class="btn" href="https://www.workana.com/freelancer/4ee4d04f539e13555c70fedec86e7cb0" target="_blank" rel="noopener">Workana</a>
+      <a class="btn" href="https://github.com/marcusolive" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>© <span id="y"></span> Marcus Oliveira · Rio de Janeiro, Brazil · <span class="en">Working remotely worldwide</span><span class="pt">Atendo remoto no mundo todo</span></footer>
+
+<script>
+function setLang(l){
+  document.body.classList.toggle('lang-pt', l==='pt');
+  document.documentElement.lang = l==='pt' ? 'pt-BR' : 'en';
+  document.getElementById('btn-en').classList.toggle('on', l==='en');
+  document.getElementById('btn-pt').classList.toggle('on', l==='pt');
+  try{localStorage.setItem('lang',l)}catch(e){}
+}
+(function(){
+  var l=null;
+  try{l=localStorage.getItem('lang')}catch(e){}
+  if(!l){l=(navigator.language||'').toLowerCase().startsWith('pt')?'pt':'en'}
+  if(location.hash==='#pt')l='pt';
+  setLang(l);
+  document.getElementById('y').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
