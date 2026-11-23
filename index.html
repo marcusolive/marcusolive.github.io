@@ -6,351 +6,726 @@
 <title>Marcus Oliveira | Full-Stack Developer & AI Engineer</title>
 <meta name="description" content="Full-stack developer and Tech Lead. C# .NET, React, Angular, Python and AI (LLMs, RAG, agents). About 10 years building software for healthcare, tax and finance.">
 <meta property="og:title" content="Marcus Oliveira | Full-Stack Developer & AI Engineer">
-<meta property="og:description" content="C# .NET, React, Angular, Python and AI. I build, fix and document software, from idea to production.">
+<meta property="og:description" content="I build, fix and ship software. With AI inside. C# .NET, React, Angular, Python, LLMs, RAG and agents.">
+<meta name="theme-color" content="#05060f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305060f'/%3E%3Cpath d='M14 46V18l18 18 18-18v28' fill='none' stroke='%2300f0ff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0b1020; --bg2:#111832; --card:#151d3b; --line:#26305a;
-  --text:#e8ecf8; --muted:#9aa6c8; --accent:#5eead4; --accent2:#818cf8;
-  --radius:16px;
+  --bg:#05060f; --bg2:#0a0d1f; --panel:rgba(16,20,44,.72); --line:rgba(120,140,255,.16);
+  --text:#eaf0ff; --muted:#93a0c8; --cyan:#00f0ff; --violet:#8b5cf6; --pink:#ff3ecf; --green:#3dffa8;
+  --r:18px; --mono:"JetBrains Mono",ui-monospace,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.15;letter-spacing:-.01em}
+button{font:inherit}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.1;letter-spacing:-.02em}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
 .pt{display:none}
 body.lang-pt .en{display:none}
 body.lang-pt .pt{display:revert}
+::selection{background:var(--cyan);color:#000}
 
-nav{position:sticky;top:0;z-index:10;background:rgba(11,16,32,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
-.logo{font-family:"Space Grotesk";font-weight:700;font-size:18px}
-.logo span{color:var(--accent)}
-.links{display:flex;gap:22px;font-size:14px;color:var(--muted)}
-.links a:hover{color:var(--text)}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:12px;font-weight:600}
-.lang button{background:none;border:0;color:var(--muted);padding:6px 12px;cursor:pointer;font:inherit}
-.lang button.on{background:var(--accent);color:#06221e}
+/* boot */
+#boot{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-items:center;transition:opacity .6s,visibility .6s}
+#boot.done{opacity:0;visibility:hidden}
+#boot pre{font:13px/1.8 var(--mono);color:var(--cyan);min-width:300px}
+#boot .bar{height:2px;background:linear-gradient(90deg,var(--cyan),var(--violet));width:0;margin-top:14px;transition:width .9s ease}
 
-header{padding:96px 0 72px;position:relative;overflow:hidden}
-header:before{content:"";position:absolute;inset:-40% -10% auto auto;width:620px;height:620px;background:radial-gradient(circle,rgba(129,140,248,.28),transparent 65%);pointer-events:none}
-.tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--accent);border:1px solid rgba(94,234,212,.35);padding:6px 12px;border-radius:999px;margin-bottom:22px}
-.tag i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
-header h1{font-size:clamp(36px,6vw,64px);max-width:820px}
-header h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-header p.lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:680px;margin:22px 0 34px}
-.ctas{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:15px;border:1px solid var(--line);transition:.2s}
-.btn.primary{background:var(--accent);color:#06221e;border-color:var(--accent)}
-.btn:hover{transform:translateY(-2px)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
-.stat{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
-.stat b{display:block;font-family:"Space Grotesk";font-size:26px}
+/* backgrounds */
+#net{position:fixed;inset:0;z-index:0;pointer-events:none}
+.grid-floor{position:fixed;left:-50%;right:-50%;bottom:-10vh;height:60vh;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,240,255,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.14) 1px,transparent 1px);
+  background-size:60px 60px;transform:perspective(500px) rotateX(70deg);transform-origin:bottom;mask-image:linear-gradient(to top,#000 10%,transparent 80%);animation:floor 6s linear infinite;opacity:.55}
+@keyframes floor{to{background-position:0 60px}}
+.noise{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(0,240,255,.12),transparent 60%);transform:translate(-50%,-50%);left:-999px;top:-999px;transition:left .15s ease-out,top .15s ease-out}
+#cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--cyan);z-index:99;pointer-events:none;transform:translate(-50%,-50%);box-shadow:0 0 18px var(--cyan);left:-99px;top:-99px;mix-blend-mode:screen}
+#ring{position:fixed;width:38px;height:38px;border-radius:50%;border:1px solid rgba(0,240,255,.6);z-index:99;pointer-events:none;transform:translate(-50%,-50%);left:-99px;top:-99px;transition:width .25s,height .25s,border-color .25s}
+#ring.hover{width:64px;height:64px;border-color:var(--pink)}
+#progress{position:fixed;top:0;left:0;height:2px;z-index:60;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));width:0}
+
+/* nav */
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;width:min(1100px,calc(100% - 24px));
+  background:rgba(8,10,24,.6);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;display:flex;align-items:center;justify-content:space-between;padding:8px 10px 8px 20px}
+.logo{font:700 17px "Space Grotesk";display:flex;align-items:center;gap:8px}
+.logo b{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#05060f;font-size:15px}
+.links{display:flex;gap:4px}
+.links a{font-size:14px;color:var(--muted);padding:8px 14px;border-radius:999px;transition:.2s}
+.links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.navr{display:flex;gap:8px;align-items:center}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font:600 12px var(--mono)}
+.lang button{background:none;border:0;color:var(--muted);padding:7px 11px;cursor:pointer}
+.lang button.on{background:var(--cyan);color:#001014}
+.hire{font-size:13px;font-weight:600;padding:9px 16px;border-radius:999px;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#05060f}
+
+/* hero */
+header{min-height:100vh;display:flex;align-items:center;padding:120px 0 60px;position:relative}
+.status{display:inline-flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--green);border:1px solid rgba(61,255,168,.3);background:rgba(61,255,168,.06);padding:7px 14px;border-radius:999px;margin-bottom:26px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.hero h1{font-size:clamp(40px,6.4vw,78px);max-width:980px}
+.hero h1 .grad{background:linear-gradient(90deg,var(--cyan),var(--violet) 50%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:200% 0}}
+.typed{font:600 clamp(18px,2.4vw,26px) var(--mono);color:var(--cyan);margin:22px 0 10px;min-height:1.4em}
+.typed:after{content:"▌";animation:pulse 1s infinite;margin-left:2px}
+.hero p.lead{font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:680px;margin-bottom:36px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:14px;font-weight:600;font-size:15px;border:1px solid var(--line);background:rgba(255,255,255,.03);transition:background .3s,border-color .3s;overflow:hidden}
+.btn.primary{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#05060f;border:0;box-shadow:0 10px 40px -10px rgba(0,240,255,.6)}
+.btn.primary:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:sweep 3.2s infinite}
+@keyframes sweep{60%,100%{left:130%}}
+.btn:hover{border-color:var(--cyan)}
+.hero-side{position:absolute;right:max(20px,calc(50% - 560px));top:50%;transform:translateY(-40%);width:330px;z-index:2}
+.orb{width:330px;height:330px;position:relative}
+.orb .core{position:absolute;inset:80px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--cyan) 22%,var(--violet) 60%,transparent 72%);filter:blur(1px);box-shadow:0 0 80px rgba(0,240,255,.5),0 0 160px rgba(139,92,246,.35);animation:breathe 5s ease-in-out infinite}
+.orb .ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(0,240,255,.35);animation:spin 18s linear infinite}
+.orb .ring:nth-child(2){inset:28px;border-color:rgba(139,92,246,.45);border-style:dashed;animation-duration:12s;animation-direction:reverse}
+.orb .ring:nth-child(3){inset:54px;border-color:rgba(255,62,207,.3);animation-duration:24s}
+.orb .ring:before{content:"";position:absolute;top:-4px;left:50%;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{50%{transform:scale(1.06)}}
+.chipfloat{position:absolute;font:600 12px var(--mono);padding:7px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(8px);animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:64px;max-width:900px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;backdrop-filter:blur(10px)}
+.stat b{display:block;font:700 30px "Space Grotesk";background:linear-gradient(90deg,var(--text),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat span{font-size:13px;color:var(--muted)}
+.stat span.count{font-size:inherit;color:inherit}
+@media (min-width:1001px){.hero h1,.hero .lead,.hero .typed{max-width:calc(100% - 380px)}}
+.scrollhint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font:12px var(--mono);color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px}
+.scrollhint i{width:22px;height:36px;border:1px solid var(--muted);border-radius:12px;position:relative}
+.scrollhint i:after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;background:var(--cyan);border-radius:2px;transform:translateX(-50%);animation:wheel 1.6s infinite}
+@keyframes wheel{to{transform:translate(-50%,12px);opacity:0}}
 
-section{padding:76px 0;border-top:1px solid var(--line)}
-.eyebrow{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
-section h2{font-size:clamp(28px,4vw,40px);margin-bottom:14px}
-.sub{color:var(--muted);max-width:640px;margin-bottom:40px}
+/* marquee */
+.marquee{border-block:1px solid var(--line);background:rgba(8,10,24,.6);overflow:hidden;position:relative;z-index:2}
+.track{display:flex;gap:46px;padding:20px 0;width:max-content;animation:marq 38s linear infinite}
+.track span{font:600 15px var(--mono);color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:46px}
+.track span:after{content:"◆";color:var(--cyan);font-size:10px}
+@keyframes marq{to{transform:translateX(-50%)}}
 
+/* sections */
+section{padding:110px 0;position:relative}
+.eyebrow{font:600 13px var(--mono);color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow:before{content:"";width:28px;height:1px;background:var(--cyan)}
+section h2{font-size:clamp(32px,5vw,56px);margin-bottom:16px;max-width:820px}
+.sub{color:var(--muted);max-width:660px;margin-bottom:48px;font-size:17px}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+
+/* cards w/ spotlight + tilt */
 .grid{display:grid;gap:18px}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g2{grid-template-columns:repeat(2,1fr)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:.2s}
-.card:hover{border-color:#3a4785}
-.card h3{font-size:19px;margin:10px 0 8px}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px;backdrop-filter:blur(10px);transform-style:preserve-3d;transition:transform .2s ease,border-color .3s;overflow:hidden}
+.card:before{content:"";position:absolute;inset:0;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(0,240,255,.14),transparent 45%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover:before{opacity:1}
+.card:hover{border-color:rgba(0,240,255,.4)}
+.card h3{font-size:20px;margin:14px 0 8px}
 .card p{color:var(--muted);font-size:15px}
-.ico{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:rgba(94,234,212,.1);color:var(--accent);font-size:20px}
-
-.case{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;margin-bottom:20px}
-.case h3{font-size:24px;margin-bottom:10px}
-.case .kicker{font-size:13px;color:var(--accent2);font-weight:600;margin-bottom:6px}
-.case p{color:var(--muted);margin-bottom:14px}
-.case ul{list-style:none;display:grid;gap:8px;margin-bottom:18px}
-.case li{padding-left:22px;position:relative;font-size:15px}
-.case li:before{content:"";position:absolute;left:0;top:10px;width:10px;height:2px;background:var(--accent)}
+.ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(0,240,255,.18),rgba(139,92,246,.18));border:1px solid var(--line);font-size:20px;color:var(--cyan)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-size:12.5px;padding:5px 10px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);color:#c7cff0}
-.diagram{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;justify-content:center;font-size:13.5px}
-.node{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card)}
-.node b{color:var(--accent)}
-.arrow{text-align:center;color:var(--muted);font-size:12px}
-.case .more{font-weight:600;color:var(--accent);font-size:15px}
+.chip{font:500 12px var(--mono);padding:5px 10px;border-radius:8px;background:rgba(0,240,255,.06);border:1px solid rgba(0,240,255,.18);color:#bdeffd}
 
-.stack{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.stack h4{font-size:14px;color:var(--muted);font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em}
+/* demos (video-like) */
+.demo-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.demo-tabs button{cursor:pointer;background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:10px 16px;border-radius:12px;font-size:14px;font-weight:600;transition:.2s}
+.demo-tabs button.on{color:#05060f;background:linear-gradient(135deg,var(--cyan),var(--violet));border-color:transparent}
+.screen{position:relative;border-radius:20px;border:1px solid var(--line);background:#070918;overflow:hidden;box-shadow:0 40px 120px -40px rgba(0,240,255,.35),0 0 0 1px rgba(255,255,255,.02) inset}
+.screen .top{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.screen .top i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.screen .top i:nth-child(2){background:#febc2e}.screen .top i:nth-child(3){background:#28c840}
+.screen .top .url{margin-left:14px;font:12px var(--mono);color:var(--muted);background:rgba(255,255,255,.04);padding:5px 12px;border-radius:8px;flex:1;max-width:420px;overflow:hidden;white-space:nowrap}
+.live{margin-left:auto;font:600 11px var(--mono);color:#ff4d6d;display:flex;align-items:center;gap:6px}
+.live:before{content:"";width:7px;height:7px;border-radius:50%;background:#ff4d6d;animation:pulse 1s infinite}
+.stage{height:440px;position:relative;font:13.5px/1.75 var(--mono);padding:22px 24px;overflow:hidden}
+.scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px)}
+.controls{display:flex;align-items:center;gap:14px;padding:12px 16px;border-top:1px solid var(--line);background:rgba(255,255,255,.02)}
+.controls button{cursor:pointer;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--text);display:grid;place-items:center;font-size:12px}
+.pbar{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet))}
+.time{font:12px var(--mono);color:var(--muted);min-width:80px;text-align:right}
+.caption{margin-top:14px;color:var(--muted);font-size:14.5px}
+/* demo content styles */
+.ln{white-space:pre-wrap;opacity:0;transform:translateX(-6px);transition:.35s}
+.ln.show{opacity:1;transform:none}
+.c-c{color:var(--cyan)}.c-g{color:var(--green)}.c-v{color:#b69cff}.c-p{color:var(--pink)}.c-m{color:var(--muted)}.c-y{color:#ffd166}
+.chat{display:flex;flex-direction:column;gap:12px;font-family:Inter,sans-serif;font-size:14.5px}
+.msg{max-width:78%;padding:12px 15px;border-radius:14px;opacity:0;transform:translateY(10px);transition:.4s}
+.msg.show{opacity:1;transform:none}
+.msg.u{align-self:flex-end;background:linear-gradient(135deg,rgba(0,240,255,.22),rgba(139,92,246,.22));border:1px solid rgba(0,240,255,.3)}
+.msg.b{align-self:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.msg .src{display:block;margin-top:8px;font:11.5px var(--mono);color:var(--green)}
+.spec{display:grid;grid-template-columns:1fr 1.2fr;gap:18px;height:100%;font-family:Inter,sans-serif}
+.spec .f{display:flex;flex-direction:column;gap:10px}
+.spec label{font:11px var(--mono);color:var(--muted)}
+.spec .in{border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:rgba(255,255,255,.03);font-size:13.5px;min-height:38px}
+.spec .gen{border:1px dashed rgba(0,240,255,.35);border-radius:14px;padding:14px 16px;font-size:13.5px;overflow:hidden}
+.spec .gen h4{font:600 12px var(--mono);color:var(--cyan);margin:8px 0 4px}
+.spec .gen div{opacity:0;transition:.4s}.spec .gen div.show{opacity:1}
+.genbtn{align-self:flex-start;padding:9px 16px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#05060f;font-weight:600;font-size:13px;transition:.2s}
+.genbtn.press{transform:scale(.94);box-shadow:0 0 30px var(--cyan)}
+.exp{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.exp span{font:11px var(--mono);padding:4px 8px;border-radius:6px;border:1px solid var(--line);color:var(--muted);transition:.3s}
+.exp span.hit{color:#05060f;background:var(--green);border-color:var(--green)}
+.dash{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;font-family:Inter,sans-serif}
+.kpi{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.03)}
+.kpi small{font:11px var(--mono);color:var(--muted)}
+.kpi b{display:block;font:700 22px "Space Grotesk"}
+.chart{grid-column:1/-1;height:220px;border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;align-items:flex-end;gap:10px;position:relative}
+.bar{flex:1;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,var(--cyan),rgba(139,92,246,.6));height:0;transition:height 1s cubic-bezier(.2,.7,.2,1);position:relative}
+.bar.neg{background:linear-gradient(180deg,var(--pink),rgba(255,62,207,.3))}
+.agentbox{grid-column:1/-1;border:1px solid rgba(61,255,168,.3);background:rgba(61,255,168,.05);border-radius:12px;padding:10px 14px;font-size:13.5px;opacity:0;transition:.5s}
+.agentbox.show{opacity:1}
 
-.timeline{display:grid;gap:14px}
-.job{display:grid;grid-template-columns:170px 1fr;gap:18px;padding:18px 0;border-bottom:1px dashed var(--line)}
-.job .when{color:var(--muted);font-size:14px}
-.job h3{font-size:18px}
-.job p{color:var(--muted);font-size:15px;margin-top:4px}
+/* architecture svg */
+.arch{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:20px;backdrop-filter:blur(10px)}
+.arch svg{width:100%;height:auto;display:block}
+.flow{stroke-dasharray:6 10;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-32}}
+.nd rect{transition:.4s}
+.nd.lit rect{stroke:var(--cyan);filter:drop-shadow(0 0 10px rgba(0,240,255,.7))}
 
-.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.step{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-.step:before{content:"0" counter(s);font-family:"Space Grotesk";font-weight:700;color:var(--accent);font-size:22px}
-.step h3{font-size:17px;margin:8px 0 6px}
+/* projects */
+.proj{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pcard{position:relative;border-radius:20px;padding:1px;background:linear-gradient(135deg,rgba(0,240,255,.5),rgba(139,92,246,.2),rgba(255,62,207,.4));overflow:hidden}
+.pcard .in{background:#080b1d;border-radius:19px;padding:28px;height:100%;position:relative;z-index:1}
+.pcard .k{font:600 12px var(--mono);color:var(--violet);margin-bottom:8px}
+.pcard h3{font-size:24px;margin-bottom:10px}
+.pcard p{color:var(--muted);font-size:15px;margin-bottom:16px}
+.pcard ul{list-style:none;display:grid;gap:7px;margin-bottom:18px;font-size:14.5px}
+.pcard li{padding-left:20px;position:relative}
+.pcard li:before{content:"›";position:absolute;left:0;color:var(--cyan);font-weight:700}
+.more{display:inline-flex;gap:8px;align-items:center;font-weight:600;color:var(--cyan);margin-top:16px;font-size:15px}
+.more:hover{gap:14px}
+.wide{grid-column:1/-1}
+
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tcard{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--panel)}
+.tcard b{font-family:"Space Grotesk";font-size:17px;display:block;margin:10px 0 6px}
+.tcard p{color:var(--muted);font-size:14px}
+.tcard .ico{width:40px;height:40px;font-size:17px}
+.clients{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.clients span{font:600 14px "Space Grotesk";padding:12px 20px;border:1px solid var(--line);border-radius:12px;color:#c9d2f2;background:rgba(255,255,255,.02)}
+
+/* timeline */
+.tl{position:relative;padding-left:34px}
+.tl:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl .fill{position:absolute;left:8px;top:6px;width:2px;height:0;background:linear-gradient(var(--cyan),var(--violet));box-shadow:0 0 12px var(--cyan)}
+.job{position:relative;padding:0 0 38px}
+.job:before{content:"";position:absolute;left:-31px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.job .when{font:12.5px var(--mono);color:var(--cyan)}
+.job h3{font-size:21px;margin:4px 0 6px}
+.job p{color:var(--muted);font-size:15px;max-width:760px}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.step{counter-increment:s;padding:24px;border-radius:var(--r);border:1px solid var(--line);background:var(--panel);position:relative}
+.step:before{content:"0" counter(s);font:700 34px "Space Grotesk";background:linear-gradient(135deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.step h3{font-size:18px;margin:6px 0}
 .step p{color:var(--muted);font-size:14.5px}
 
-.contact{text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));}
-.contact h2{max-width:700px;margin:0 auto 14px}
-.contact .sub{margin:0 auto 30px}
+/* contact */
+.contact{text-align:center;padding:140px 0}
+.contact h2{margin:0 auto 16px;font-size:clamp(36px,6vw,70px)}
+.contact .sub{margin:0 auto 36px}
 .contact .ctas{justify-content:center}
-footer{padding:28px 0;color:var(--muted);font-size:13px;text-align:center;border-top:1px solid var(--line)}
+.bigorb{position:absolute;left:50%;top:50%;width:620px;height:620px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.25),rgba(0,240,255,.08) 40%,transparent 70%);filter:blur(20px);z-index:0;animation:breathe 7s ease-in-out infinite}
+footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center;border-top:1px solid var(--line);position:relative;z-index:2}
 
-@media (max-width:900px){
-  .g3,.stack,.steps{grid-template-columns:1fr 1fr}
-  .case{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr 1fr}
+@media (max-width:1000px){
+  .hero-side{display:none}
+  .g3,.trust,.steps{grid-template-columns:1fr 1fr}
+  .proj{grid-template-columns:1fr}
   .links{display:none}
+  .stats{grid-template-columns:1fr 1fr}
+  .spec{grid-template-columns:1fr}
+  .spec .f .in:nth-child(n+5){display:none}
 }
-@media (max-width:560px){
-  .g3,.g2,.stack,.steps{grid-template-columns:1fr}
-  .job{grid-template-columns:1fr;gap:4px}
-  header{padding:64px 0 48px}
+@media (max-width:600px){
+  .g3,.g2,.trust,.steps{grid-template-columns:1fr}
+  .stage{height:460px;font-size:12px;padding:16px}
+  .dash{grid-template-columns:1fr 1fr}
+  .hire{display:none}
+  #cursor,#ring,#glow{display:none}
+  section{padding:80px 0}
+}
+@media (hover:none){#cursor,#ring,#glow{display:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  #net{display:none}
 }
 </style>
 </head>
 <body>
 
+<div id="boot"><div><pre id="bootlog"></pre><div class="bar" id="bootbar"></div></div></div>
+<canvas id="net"></canvas>
+<div class="grid-floor"></div>
+<div class="noise"></div>
+<div id="glow"></div><div id="cursor"></div><div id="ring"></div>
+<div id="progress"></div>
+
 <nav>
-  <div class="wrap">
-    <a class="logo" href="#">marcus<span>.</span>dev</a>
-    <div class="links">
-      <a href="#services"><span class="en">Services</span><span class="pt">Serviços</span></a>
-      <a href="#work"><span class="en">Work</span><span class="pt">Projetos</span></a>
-      <a href="#experience"><span class="en">Experience</span><span class="pt">Experiência</span></a>
-      <a href="#contact"><span class="en">Contact</span><span class="pt">Contato</span></a>
-    </div>
+  <a class="logo" href="#top"><b>M</b>marcus.dev</a>
+  <div class="links">
+    <a href="#services"><span class="en">Services</span><span class="pt">Serviços</span></a>
+    <a href="#demos"><span class="en">Live demos</span><span class="pt">Demos ao vivo</span></a>
+    <a href="#work"><span class="en">Work</span><span class="pt">Projetos</span></a>
+    <a href="#trust"><span class="en">Why me</span><span class="pt">Por que eu</span></a>
+    <a href="#experience"><span class="en">Experience</span><span class="pt">Experiência</span></a>
+  </div>
+  <div class="navr">
     <div class="lang" role="group" aria-label="Language">
       <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
       <button id="btn-pt" onclick="setLang('pt')">PT</button>
     </div>
+    <a class="hire mag" href="#contact"><span class="en">Hire me</span><span class="pt">Contratar</span></a>
   </div>
 </nav>
 
-<header>
-  <div class="wrap">
-    <div class="tag"><i></i><span class="en">Available for freelance projects</span><span class="pt">Disponível para projetos freelance</span></div>
-    <h1 class="en">I build, fix and ship software. <em>With AI inside.</em></h1>
-    <h1 class="pt">Eu crio, corrijo e entrego software. <em>Com IA dentro.</em></h1>
+<header id="top">
+  <div class="wrap hero">
+    <div class="status"><i></i><span class="en">Available for new projects</span><span class="pt">Disponível para novos projetos</span></div>
+    <h1 class="en">I build, fix and ship software. <span class="grad">With AI inside.</span></h1>
+    <h1 class="pt">Eu crio, corrijo e entrego software. <span class="grad">Com IA dentro.</span></h1>
+    <div class="typed" id="typed"></div>
     <p class="lead en">Full-stack developer and Tech Lead with about 10 years in software. C# .NET, React, Angular and Python, plus LLMs, RAG and AI agents running in production for healthcare, tax and finance companies.</p>
     <p class="lead pt">Desenvolvedor full-stack e Tech Lead, com cerca de 10 anos em software. C# .NET, React, Angular e Python, além de LLMs, RAG e agentes de IA rodando em produção para empresas de saúde, fiscal e finanças.</p>
     <div class="ctas">
-      <a class="btn primary" href="#contact"><span class="en">Start a project</span><span class="pt">Começar um projeto</span> →</a>
-      <a class="btn" href="#work"><span class="en">See my work</span><span class="pt">Ver projetos</span></a>
+      <a class="btn primary mag" href="#contact"><span class="en">Start a project</span><span class="pt">Começar um projeto</span> →</a>
+      <a class="btn mag" href="#demos">▶ <span class="en">Watch live demos</span><span class="pt">Ver demos ao vivo</span></a>
     </div>
     <div class="stats">
-      <div class="stat"><b>~10</b><span class="en">years in software</span><span class="pt">anos em software</span></div>
-      <div class="stat"><b>3</b><span class="en">industries: health, tax, finance</span><span class="pt">setores: saúde, fiscal, finanças</span></div>
-      <div class="stat"><b>LLM</b><span class="en">RAG, agents, MCP and A2A in production</span><span class="pt">RAG, agentes, MCP e A2A em produção</span></div>
-      <div class="stat"><b>EN · ES · PT</b><span class="en">written English, fluent Spanish</span><span class="pt">inglês escrito, espanhol fluente</span></div>
+      <div class="stat"><b><span class="count" data-to="10">0</span>+</b><span class="en">years in software</span><span class="pt">anos em software</span></div>
+      <div class="stat"><b><span class="count" data-to="8">0</span></b><span class="en">companies and teams</span><span class="pt">empresas e times</span></div>
+      <div class="stat"><b><span class="count" data-to="3">0</span></b><span class="en">industries: health, tax, finance</span><span class="pt">setores: saúde, fiscal, finanças</span></div>
+      <div class="stat"><b>24h</b><span class="en">reply time on business days</span><span class="pt">para responder em dias úteis</span></div>
     </div>
   </div>
+  <div class="hero-side" aria-hidden="true">
+    <div class="orb"><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="core"></div></div>
+    <div class="chipfloat" style="top:-10px;left:-40px">C# .NET</div>
+    <div class="chipfloat" style="top:60px;right:-30px;animation-delay:-2s">LLM · RAG</div>
+    <div class="chipfloat" style="bottom:40px;left:-60px;animation-delay:-4s">React · Angular</div>
+    <div class="chipfloat" style="bottom:-10px;right:0;animation-delay:-1s">Python</div>
+  </div>
+  <div class="scrollhint"><i></i>scroll</div>
 </header>
+
+<div class="marquee"><div class="track" id="track"></div></div>
 
 <section id="services">
   <div class="wrap">
-    <div class="eyebrow"><span class="en">Services</span><span class="pt">Serviços</span></div>
-    <h2 class="en">What I can do for you</h2>
-    <h2 class="pt">O que posso fazer por você</h2>
-    <p class="sub en">From a single bug to a full product. Clear scope before starting, small milestones you can test, and documentation in every delivery.</p>
-    <p class="sub pt">De um bug isolado a um produto completo. Escopo claro antes de começar, entregas pequenas que você testa e documentação em toda entrega.</p>
+    <div class="eyebrow reveal"><span class="en">Services</span><span class="pt">Serviços</span></div>
+    <h2 class="reveal en">One developer. The whole stack.</h2>
+    <h2 class="reveal pt">Um desenvolvedor. A stack inteira.</h2>
+    <p class="sub reveal en">From a single bug to a full product. Clear scope before starting, small milestones you can test, and documentation in every delivery.</p>
+    <p class="sub reveal pt">De um bug isolado a um produto completo. Escopo claro antes de começar, entregas pequenas que você testa e documentação em toda entrega.</p>
     <div class="grid g3">
-      <div class="card"><div class="ico">✦</div><h3 class="en">AI & automation</h3><h3 class="pt">IA e automação</h3>
+      <div class="card tilt reveal d1"><div class="ico">✦</div><h3 class="en">AI & automation</h3><h3 class="pt">IA e automação</h3>
         <p class="en">Chatbots trained on your data, PDF and invoice reading, classification and summaries, AI agents, OpenAI and Claude integrations, Python and n8n automations.</p>
         <p class="pt">Chatbot com os dados da sua empresa, leitura de PDF e notas, classificação e resumo, agentes de IA, integração com OpenAI e Claude, automações em Python e n8n.</p></div>
-      <div class="card"><div class="ico">⌘</div><h3 class="en">Back-end & APIs</h3><h3 class="pt">Back-end e APIs</h3>
+      <div class="card tilt reveal d2"><div class="ico">⌘</div><h3 class="en">Back-end & APIs</h3><h3 class="pt">Back-end e APIs</h3>
         <p class="en">C# .NET, ASP.NET Core and Python. REST APIs and integrations with ERPs, payment providers, government services and any third-party API.</p>
         <p class="pt">C# .NET, ASP.NET Core e Python. APIs REST e integrações com ERP, meios de pagamento, serviços do governo e qualquer API de terceiros.</p></div>
-      <div class="card"><div class="ico">◧</div><h3 class="en">Front-end</h3><h3 class="pt">Front-end</h3>
-        <p class="en">React, Angular and TypeScript. Dashboards, admin panels, web apps and landing pages, responsive and clean.</p>
-        <p class="pt">React, Angular e TypeScript. Painéis, sistemas administrativos, aplicações web e landing pages, responsivos e limpos.</p></div>
-      <div class="card"><div class="ico">⛁</div><h3 class="en">Data & cloud</h3><h3 class="pt">Dados e nuvem</h3>
+      <div class="card tilt reveal d3"><div class="ico">◧</div><h3 class="en">Front-end</h3><h3 class="pt">Front-end</h3>
+        <p class="en">React, Angular and TypeScript. Dashboards, admin panels, web apps and landing pages, responsive, fast and clean.</p>
+        <p class="pt">React, Angular e TypeScript. Painéis, sistemas administrativos, aplicações web e landing pages, responsivos, rápidos e limpos.</p></div>
+      <div class="card tilt reveal d1"><div class="ico">⛁</div><h3 class="en">Data & cloud</h3><h3 class="pt">Dados e nuvem</h3>
         <p class="en">SQL Server, PostgreSQL (pgvector), MongoDB, Redis, Azure, Docker, messaging and CI/CD pipelines.</p>
         <p class="pt">SQL Server, PostgreSQL (pgvector), MongoDB, Redis, Azure, Docker, mensageria e pipelines de CI/CD.</p></div>
-      <div class="card"><div class="ico">⚑</div><h3 class="en">Rescue & upgrades</h3><h3 class="pt">Resgate e evolução</h3>
+      <div class="card tilt reveal d2"><div class="ico">⚑</div><h3 class="en">Rescue & upgrades</h3><h3 class="pt">Resgate e evolução</h3>
         <p class="en">Production bugs, slow systems, projects left by another developer and upgrades to modern .NET and Angular.</p>
         <p class="pt">Bugs em produção, sistemas lentos, projetos largados por outro dev e migração para .NET e Angular atuais.</p></div>
-      <div class="card"><div class="ico">▤</div><h3 class="en">Technical documentation</h3><h3 class="pt">Documentação técnica</h3>
-        <p class="en">Architecture docs, API docs, README, functional specs and project handover, so your team can keep going without me.</p>
+      <div class="card tilt reveal d3"><div class="ico">▤</div><h3 class="en">Technical documentation</h3><h3 class="pt">Documentação técnica</h3>
+        <p class="en">Architecture, API docs, README, functional specs and project handover, so your team can keep going without me.</p>
         <p class="pt">Arquitetura, documentação de API, README, especificação funcional e passagem de projeto, para o seu time seguir sem depender de mim.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="demos">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="en">Live demos</span><span class="pt">Demos ao vivo</span></div>
+    <h2 class="reveal en">See it running, not just described.</h2>
+    <h2 class="reveal pt">Veja rodando, não só descrito.</h2>
+    <p class="sub reveal en">Recreated walkthroughs of systems I have built. Press play, pause or switch between them.</p>
+    <p class="sub reveal pt">Reconstituições de sistemas que eu construí. Dê play, pause ou troque entre eles.</p>
+    <div class="demo-tabs reveal" id="tabs">
+      <button class="on" data-d="0"><span class="en">AI tax agent</span><span class="pt">Agente fiscal IA</span></button>
+      <button data-d="1"><span class="en">RAG chatbot</span><span class="pt">Chatbot RAG</span></button>
+      <button data-d="2"><span class="en">Spec generator</span><span class="pt">Gerador de specs</span></button>
+      <button data-d="3"><span class="en">Cash-flow agent</span><span class="pt">Agente financeiro</span></button>
+    </div>
+    <div class="screen reveal">
+      <div class="top"><i></i><i></i><i></i><div class="url" id="durl">agent.api/v1/analysis</div><div class="live">LIVE</div></div>
+      <div class="stage" id="stage"></div>
+      <div class="scan"></div>
+      <div class="controls"><button id="play" aria-label="Play or pause">❚❚</button><button id="restart" aria-label="Restart">↺</button><div class="pbar"><i id="pfill"></i></div><div class="time" id="ptime">00:00</div></div>
+    </div>
+    <p class="caption" id="dcap"></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="en">Architecture</span><span class="pt">Arquitetura</span></div>
+    <h2 class="reveal en">Built to be reliable, not just to demo.</h2>
+    <h2 class="reveal pt">Feito para ser confiável, não só para demo.</h2>
+    <p class="sub reveal en">How the AI tax agent is wired: each service owns its data, every call is traceable and nothing reaches the model without validation.</p>
+    <p class="sub reveal pt">Como o agente fiscal com IA é montado: cada serviço é dono dos seus dados, toda chamada é rastreável e nada chega ao modelo sem validação.</p>
+    <div class="arch reveal">
+      <svg viewBox="0 0 1000 300" role="img" aria-label="Architecture diagram">
+        <defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#00f0ff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+        <g fill="none" stroke="url(#lg)" stroke-width="2" class="flow">
+          <path d="M180 150 H300"/><path d="M500 150 H620"/><path d="M820 150 H880 V60"/><path d="M400 200 V250 H700 V200"/>
+        </g>
+        <g font-family="JetBrains Mono, monospace" font-size="13" fill="#eaf0ff">
+          <g class="nd" id="n0"><rect x="20" y="105" width="160" height="90" rx="14" fill="#0a0d1f" stroke="#26305a"/><text x="100" y="142" text-anchor="middle" fill="#00f0ff">Client / Agents</text><text x="100" y="166" text-anchor="middle" fill="#93a0c8">REST · A2A</text></g>
+          <g class="nd" id="n1"><rect x="300" y="100" width="200" height="100" rx="14" fill="#0a0d1f" stroke="#26305a"/><text x="400" y="138" text-anchor="middle" fill="#00f0ff">Agent API</text><text x="400" y="162" text-anchor="middle" fill="#93a0c8">orchestration · LLM</text><text x="400" y="182" text-anchor="middle" fill="#93a0c8">validation</text></g>
+          <g class="nd" id="n2"><rect x="620" y="100" width="200" height="100" rx="14" fill="#0a0d1f" stroke="#26305a"/><text x="720" y="138" text-anchor="middle" fill="#00f0ff">RAG API</text><text x="720" y="162" text-anchor="middle" fill="#93a0c8">embeddings · pgvector</text><text x="720" y="182" text-anchor="middle" fill="#93a0c8">cosine search</text></g>
+          <g class="nd" id="n3"><rect x="800" y="10" width="170" height="50" rx="12" fill="#0a0d1f" stroke="#26305a"/><text x="885" y="40" text-anchor="middle" fill="#3dffa8">Knowledge base</text></g>
+          <g class="nd" id="n4"><rect x="460" y="235" width="180" height="50" rx="12" fill="#0a0d1f" stroke="#26305a"/><text x="550" y="265" text-anchor="middle" fill="#ff3ecf">Audit log · usage</text></g>
+          <text x="560" y="140" text-anchor="middle" fill="#93a0c8" font-size="11">MCP</text>
+        </g>
+      </svg>
     </div>
   </div>
 </section>
 
 <section id="work">
   <div class="wrap">
-    <div class="eyebrow"><span class="en">Selected work</span><span class="pt">Projetos em destaque</span></div>
-    <h2 class="en">Real systems, not tutorials</h2>
-    <h2 class="pt">Sistemas reais, não tutoriais</h2>
-    <p class="sub en">Some projects are client work, so I describe the problem and the solution without confidential details.</p>
-    <p class="sub pt">Alguns projetos são de clientes, então descrevo o problema e a solução sem detalhes confidenciais.</p>
-
-    <article class="case">
-      <div>
-        <div class="kicker">AI agent · RAG · MCP · A2A</div>
-        <h3 class="en">AI tax classification agent</h3>
-        <h3 class="pt">Agente de IA para classificação fiscal</h3>
-        <p class="en">An agent that suggests and audits the tax classification of products (Brazilian NCM code and tax treatment) from descriptions, invoices, spreadsheets and technical documents. Every answer is structured and traceable to its source, and the agent can block an invoice when the declared classification does not hold.</p>
-        <p class="pt">Agente que sugere e audita a classificação fiscal de produtos (NCM e tratamento tributário) a partir de descrições, notas, planilhas e documentos técnicos. Toda resposta é estruturada e rastreável até a fonte, e o agente pode bloquear uma nota quando a classificação declarada não se sustenta.</p>
-        <ul>
-          <li class="en">Two independent services: the agent API and a RAG API that owns the knowledge base</li>
-          <li class="pt">Dois serviços independentes: a API do agente e uma API de RAG dona da base de conhecimento</li>
-          <li class="en">Vector search with PostgreSQL + pgvector, accessed only through an MCP tool</li>
-          <li class="pt">Busca vetorial com PostgreSQL + pgvector, acessada só por uma ferramenta MCP</li>
-          <li class="en">Exposed to other agents and orchestrators through the A2A protocol</li>
-          <li class="pt">Exposto para outros agentes e orquestradores pelo protocolo A2A</li>
-        </ul>
-        <div class="chips"><span class="chip">.NET</span><span class="chip">Semantic Kernel</span><span class="chip">OpenAI</span><span class="chip">PostgreSQL</span><span class="chip">pgvector</span><span class="chip">MCP</span><span class="chip">A2A</span></div>
-        <p style="margin-top:18px"><a class="more" href="https://github.com/marcusolive/agente-classificacao-fiscal-produtos" target="_blank" rel="noopener"><span class="en">View code on GitHub</span><span class="pt">Ver código no GitHub</span> →</a></p>
-      </div>
-      <div class="diagram">
-        <div class="node"><b>Client / other agents</b><br>REST · A2A JSON-RPC</div>
-        <div class="arrow">↓</div>
-        <div class="node"><b>Agent API</b><br>orchestration · LLM · validation</div>
-        <div class="arrow">↓ MCP</div>
-        <div class="node"><b>RAG API</b><br>embeddings · pgvector · cosine search</div>
-      </div>
-    </article>
-
-    <article class="case">
-      <div>
-        <div class="kicker">AI agent · .NET 10 · A2A</div>
-        <h3 class="en">Cash-flow AI agent</h3>
-        <h3 class="pt">Agente de IA de fluxo de caixa</h3>
-        <p class="en">A financial agent that answers cash-flow questions over a demo company dataset and talks to an orchestrator through A2A. Built spec-first, with an automated test suite that runs without an OpenAI key and secrets kept out of the repository.</p>
-        <p class="pt">Agente financeiro que responde perguntas de fluxo de caixa sobre uma base demonstrativa e conversa com um orquestrador via A2A. Feito a partir de especificação, com suíte de testes automatizados que roda sem chave da OpenAI e segredos fora do repositório.</p>
-        <div class="chips"><span class="chip">.NET 10</span><span class="chip">C#</span><span class="chip">OpenAI</span><span class="chip">A2A</span><span class="chip">xUnit</span><span class="chip">Spec-driven</span></div>
-        <p style="margin-top:18px"><a class="more" href="https://github.com/marcusolive/AgenteFinanceira" target="_blank" rel="noopener"><span class="en">View code on GitHub</span><span class="pt">Ver código no GitHub</span> →</a></p>
-      </div>
-      <div class="diagram">
-        <div class="node"><b>Orchestrator / simulator</b></div>
-        <div class="arrow">↓ A2A</div>
-        <div class="node"><b>Agent API</b><br>tools · cash-flow rules · LLM</div>
-        <div class="arrow">↓</div>
-        <div class="node"><b>Demo dataset</b><br>no database needed</div>
-      </div>
-    </article>
-
-    <article class="case">
-      <div>
-        <div class="kicker">React · TypeScript · Product</div>
-        <h3 class="en">SPECMP: technical spec generator</h3>
-        <h3 class="pt">SPECMP: gerador de especificações técnicas</h3>
-        <p class="en">A web app that turns vague task, bug or feature descriptions into clear technical specs (context, acceptance criteria, risks and tests), with more than 30 templates and export to Jira, Azure DevOps, GitHub Issues, Notion, ClickUp and others.</p>
-        <p class="pt">Aplicação web que transforma descrições vagas de tarefas, bugs ou features em especificações técnicas claras (contexto, critérios de aceite, riscos e testes), com mais de 30 modelos e exportação para Jira, Azure DevOps, GitHub Issues, Notion, ClickUp e outros.</p>
-        <div class="chips"><span class="chip">React 18</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span><span class="chip">Framer Motion</span><span class="chip">jsPDF</span></div>
-        <p style="margin-top:18px"><a class="more" href="https://github.com/marcusolive/specmp" target="_blank" rel="noopener"><span class="en">View code on GitHub</span><span class="pt">Ver código no GitHub</span> →</a></p>
-      </div>
-      <div class="diagram">
-        <div class="node"><b>Input</b><br>title · description · type · priority</div>
-        <div class="arrow">↓</div>
-        <div class="node"><b>Template engine</b><br>30+ templates</div>
-        <div class="arrow">↓</div>
-        <div class="node"><b>Export</b><br>Markdown · PDF · Jira · Azure DevOps</div>
-      </div>
-    </article>
-
-    <div class="grid g2">
-      <div class="card">
-        <div class="ico">◎</div>
-        <h3 class="en">IRIS Software (my own product)</h3><h3 class="pt">ÍRIS Software (produto próprio)</h3>
-        <p class="en">Static analysis for the software companies build in-house: spreadsheet macros, scripts, automations and AI-generated code. It flags security and data-privacy (LGPD) risks without running anything.</p>
+    <div class="eyebrow reveal"><span class="en">Selected work</span><span class="pt">Projetos em destaque</span></div>
+    <h2 class="reveal en">Real systems. Real code.</h2>
+    <h2 class="reveal pt">Sistemas reais. Código real.</h2>
+    <p class="sub reveal en">Client projects are described without confidential details. Open-source ones link straight to the code.</p>
+    <p class="sub reveal pt">Projetos de clientes aparecem sem detalhes confidenciais. Os de código aberto têm link direto para o código.</p>
+    <div class="proj">
+      <div class="pcard tilt reveal d1"><div class="in">
+        <div class="k">AI AGENT · RAG · MCP · A2A</div>
+        <h3 class="en">AI tax classification agent</h3><h3 class="pt">Agente de IA para classificação fiscal</h3>
+        <p class="en">Suggests and audits the tax classification of products (Brazilian NCM and tax treatment) from invoices, spreadsheets and technical documents, with a traceable source for every answer.</p>
+        <p class="pt">Sugere e audita a classificação fiscal de produtos (NCM e tratamento tributário) a partir de notas, planilhas e documentos técnicos, com fonte rastreável em cada resposta.</p>
+        <ul><li class="en">Agent API + RAG API, each owning its data</li><li class="pt">API do agente + API de RAG, cada uma dona dos seus dados</li>
+          <li class="en">PostgreSQL + pgvector behind an MCP tool</li><li class="pt">PostgreSQL + pgvector atrás de uma ferramenta MCP</li>
+          <li class="en">Talks to other agents through A2A</li><li class="pt">Conversa com outros agentes via A2A</li></ul>
+        <div class="chips"><span class="chip">.NET</span><span class="chip">Semantic Kernel</span><span class="chip">OpenAI</span><span class="chip">pgvector</span><span class="chip">MCP</span><span class="chip">A2A</span></div>
+        <a class="more" href="https://github.com/marcusolive/agente-classificacao-fiscal-produtos" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span> →</a>
+      </div></div>
+      <div class="pcard tilt reveal d2"><div class="in">
+        <div class="k">AI AGENT · .NET 10 · A2A</div>
+        <h3 class="en">Cash-flow AI agent</h3><h3 class="pt">Agente de IA de fluxo de caixa</h3>
+        <p class="en">A financial agent that answers cash-flow questions and talks to an orchestrator through A2A. Spec-first, with automated tests that run without an API key and secrets kept out of the repository.</p>
+        <p class="pt">Agente financeiro que responde perguntas de fluxo de caixa e conversa com um orquestrador via A2A. Feito a partir de especificação, com testes automatizados que rodam sem chave de API e segredos fora do repositório.</p>
+        <div class="chips"><span class="chip">.NET 10</span><span class="chip">C#</span><span class="chip">OpenAI</span><span class="chip">A2A</span><span class="chip">xUnit</span></div>
+        <a class="more" href="https://github.com/marcusolive/AgenteFinanceira" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span> →</a>
+      </div></div>
+      <div class="pcard tilt reveal d1"><div class="in">
+        <div class="k">REACT · TYPESCRIPT · PRODUCT</div>
+        <h3>SPECMP</h3>
+        <p class="en">Turns vague tasks, bugs and features into clear technical specs (context, acceptance criteria, risks and tests), with 30+ templates and export to Jira, Azure DevOps, GitHub Issues, Notion and more.</p>
+        <p class="pt">Transforma tarefas, bugs e features vagos em especificações técnicas claras (contexto, critérios de aceite, riscos e testes), com mais de 30 modelos e exportação para Jira, Azure DevOps, GitHub Issues, Notion e outros.</p>
+        <div class="chips"><span class="chip">React 18</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span><span class="chip">Framer Motion</span></div>
+        <a class="more" href="https://github.com/marcusolive/specmp" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span> →</a>
+      </div></div>
+      <div class="pcard tilt reveal d2"><div class="in">
+        <div class="k">OWN PRODUCT · SECURITY · LGPD</div>
+        <h3 class="en">IRIS Software</h3><h3 class="pt">ÍRIS Software</h3>
+        <p class="en">Static analysis for the software companies build in-house: spreadsheet macros, scripts, automations and AI-generated code. It flags security and data-privacy risks without running anything.</p>
         <p class="pt">Análise estática do software criado dentro das empresas: planilhas com macro, scripts, automações e código gerado por IA. Aponta riscos de segurança e LGPD sem executar nada.</p>
-        <div class="chips" style="margin-top:14px"><span class="chip">Static analysis</span><span class="chip">Security</span><span class="chip">LGPD</span></div>
-      </div>
-      <div class="card">
-        <div class="ico">⇄</div>
+        <div class="chips"><span class="chip">Static analysis</span><span class="chip">Security</span><span class="chip">LGPD</span></div>
+        <a class="more" href="https://irissoftware.com.br/" target="_blank" rel="noopener"><span class="en">Visit website</span><span class="pt">Visitar site</span> →</a>
+      </div></div>
+      <div class="pcard tilt reveal wide"><div class="in">
+        <div class="k">CLIENT PROJECT · FISCAL INTEGRATION</div>
         <h3 class="en">Electronic invoice capture API</h3><h3 class="pt">API de captura de notas fiscais</h3>
-        <p class="en">Client project. A service that captures NF-e and NFS-e from Brazilian government web services with A1 digital certificates, keeps them in sync and delivers them to an ERP through OAuth2 client credentials.</p>
-        <p class="pt">Projeto de cliente. Serviço que captura NF-e e NFS-e dos webservices do governo com certificado A1, mantém tudo sincronizado e entrega ao ERP via OAuth2 client credentials.</p>
-        <div class="chips" style="margin-top:14px"><span class="chip">.NET</span><span class="chip">SEFAZ</span><span class="chip">NFS-e</span><span class="chip">Azure Service Bus</span><span class="chip">OAuth2</span></div>
-      </div>
+        <p class="en">A service that captures NF-e and NFS-e from Brazilian government web services with A1 digital certificates, keeps them in sync and delivers them to an ERP through OAuth2 client credentials, with queues for resilience.</p>
+        <p class="pt">Serviço que captura NF-e e NFS-e dos webservices do governo com certificado A1, mantém tudo sincronizado e entrega ao ERP via OAuth2 client credentials, com filas para resiliência.</p>
+        <div class="chips"><span class="chip">.NET</span><span class="chip">SEFAZ</span><span class="chip">NFS-e</span><span class="chip">Azure Service Bus</span><span class="chip">OAuth2</span></div>
+      </div></div>
     </div>
   </div>
 </section>
 
-<section>
+<section id="trust">
   <div class="wrap">
-    <div class="eyebrow"><span class="en">Stack</span><span class="pt">Tecnologias</span></div>
-    <h2 class="en">Tools I use every day</h2>
-    <h2 class="pt">Ferramentas do dia a dia</h2>
-    <div class="stack" style="margin-top:30px">
-      <div><h4>Back-end</h4><div class="chips"><span class="chip">C#</span><span class="chip">.NET</span><span class="chip">ASP.NET Core</span><span class="chip">Python</span><span class="chip">REST</span><span class="chip">Microservices</span></div></div>
-      <div><h4>Front-end</h4><div class="chips"><span class="chip">React</span><span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">HTML/CSS</span><span class="chip">Tailwind</span></div></div>
-      <div><h4>AI</h4><div class="chips"><span class="chip">OpenAI</span><span class="chip">Claude</span><span class="chip">Semantic Kernel</span><span class="chip">RAG</span><span class="chip">MCP</span><span class="chip">A2A</span><span class="chip">n8n</span></div></div>
-      <div><h4>Data & DevOps</h4><div class="chips"><span class="chip">SQL Server</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">Azure</span><span class="chip">Docker</span><span class="chip">Kubernetes</span></div></div>
+    <div class="eyebrow reveal"><span class="en">Why clients trust me</span><span class="pt">Por que confiam em mim</span></div>
+    <h2 class="reveal en">Enterprise standards, freelancer speed.</h2>
+    <h2 class="reveal pt">Padrão de empresa grande, agilidade de freelancer.</h2>
+    <div class="trust">
+      <div class="tcard reveal d1"><div class="ico">⌁</div><b class="en">Scope in writing</b><b class="pt">Escopo por escrito</b><p class="en">What is in, what is out, price and deadline, before any line of code.</p><p class="pt">O que entra, o que fica de fora, preço e prazo, antes de qualquer linha de código.</p></div>
+      <div class="tcard reveal d2"><div class="ico">◈</div><b class="en">Pay by milestone</b><b class="pt">Pagamento por etapa</b><p class="en">You only release payment for deliveries you have tested and approved.</p><p class="pt">Você só libera pagamento das entregas que testou e aprovou.</p></div>
+      <div class="tcard reveal d3"><div class="ico">⛨</div><b class="en">Security first</b><b class="pt">Segurança primeiro</b><p class="en">Secrets never in the repo, least-privilege access, LGPD and data-privacy awareness, NDA welcome.</p><p class="pt">Segredos nunca no repositório, acesso mínimo necessário, cuidado com LGPD e NDA quando precisar.</p></div>
+      <div class="tcard reveal d4"><div class="ico">⇲</div><b class="en">The code is yours</b><b class="pt">O código é seu</b><p class="en">Full source, tests and documentation handed over at the end. No lock-in.</p><p class="pt">Código completo, testes e documentação entregues no fim. Sem dependência de mim.</p></div>
+    </div>
+    <div class="clients reveal">
+      <span>Eletrobras / Furnas</span><span>MXM Sistemas</span><span class="en">Hospital network</span><span class="pt">Rede hospitalar</span><span class="en">Investment banks</span><span class="pt">Bancos de investimento</span><span class="en">Tax consulting firms</span><span class="pt">Consultorias fiscais</span>
     </div>
   </div>
 </section>
 
 <section id="experience">
   <div class="wrap">
-    <div class="eyebrow"><span class="en">Experience</span><span class="pt">Experiência</span></div>
-    <h2 class="en">Where I have worked</h2>
-    <h2 class="pt">Onde já trabalhei</h2>
-    <div class="timeline" style="margin-top:28px">
-      <div class="job"><div class="when">2022 – <span class="en">now</span><span class="pt">hoje</span></div><div><h3>Tech Lead & Dev Lead (.NET)</h3>
-        <p class="en">Architecture, hands-on development, code review and mentoring. Generative AI inside enterprise systems.</p>
-        <p class="pt">Arquitetura, desenvolvimento, code review e mentoria. IA generativa dentro de sistemas corporativos.</p></div></div>
-      <div class="job"><div class="when">2021 – 2022</div><div><h3>Tech Lead · <span class="en">tax and accounting software</span><span class="pt">software fiscal e contábil</span></h3>
+    <div class="eyebrow reveal"><span class="en">Experience</span><span class="pt">Experiência</span></div>
+    <h2 class="reveal en">A decade shipping software.</h2>
+    <h2 class="reveal pt">Uma década entregando software.</h2>
+    <div class="tl" id="tl"><div class="fill" id="tlfill"></div>
+      <div class="job reveal"><div class="when">2022 → <span class="en">now</span><span class="pt">hoje</span></div><h3>Tech Lead & Dev Lead (.NET)</h3>
+        <p class="en">Architecture, hands-on development, code review and mentoring. Generative AI inside enterprise systems: LLMs, RAG, function calling and agents.</p>
+        <p class="pt">Arquitetura, desenvolvimento, code review e mentoria. IA generativa dentro de sistemas corporativos: LLMs, RAG, function calling e agentes.</p></div>
+      <div class="job reveal"><div class="when">2021 → 2022</div><h3>Tech Lead · <span class="en">tax and accounting software</span><span class="pt">software fiscal e contábil</span></h3>
         <p class="en">Tax diagnosis platform that cross-checks Brazilian tax filings (EFD, DCTF, NF-e, Reinf and others) to find inconsistencies.</p>
-        <p class="pt">Plataforma de diagnóstico fiscal que cruza obrigações acessórias (EFD, DCTF, NF-e, Reinf e outras) para achar inconsistências.</p></div></div>
-      <div class="job"><div class="when"><span class="en">Earlier</span><span class="pt">Antes</span></div><div><h3><span class="en">Systems Analyst & Developer</span><span class="pt">Analista de sistemas e desenvolvedor</span></h3>
-        <p class="en">Investment banking platforms and a video call product; contractor for Eletrobras / Furnas; ERP development in C# and Delphi at MXM; healthcare systems for a hospital network.</p>
-        <p class="pt">Plataformas para bancos de investimento e produto de videochamada; prestador de serviço para Eletrobras / Furnas; desenvolvimento de ERP em C# e Delphi na MXM; sistemas de saúde para rede hospitalar.</p></div></div>
+        <p class="pt">Plataforma de diagnóstico fiscal que cruza obrigações acessórias (EFD, DCTF, NF-e, Reinf e outras) para achar inconsistências.</p></div>
+      <div class="job reveal"><div class="when"><span class="en">Earlier</span><span class="pt">Antes</span></div><h3><span class="en">Systems Analyst & Developer</span><span class="pt">Analista de sistemas e desenvolvedor</span></h3>
+        <p class="en">Investment banking platforms and a video call product, contractor for Eletrobras / Furnas, ERP development in C# and Delphi at MXM, healthcare systems for a hospital network.</p>
+        <p class="pt">Plataformas para bancos de investimento e produto de videochamada, prestador de serviço para Eletrobras / Furnas, desenvolvimento de ERP em C# e Delphi na MXM, sistemas de saúde para rede hospitalar.</p></div>
+      <div class="job reveal"><div class="when">2016</div><h3><span class="en">Where it started</span><span class="pt">Onde começou</span></h3>
+        <p class="en">Apprentice computer operator at Globo, Brazil's largest TV network. Proof that you can learn fast.</p>
+        <p class="pt">Aprendiz de operador de computador na Rede Globo. Prova de que dá para aprender rápido.</p></div>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="eyebrow"><span class="en">How I work</span><span class="pt">Como trabalho</span></div>
-    <h2 class="en">Simple, predictable process</h2>
-    <h2 class="pt">Processo simples e previsível</h2>
-    <div class="steps" style="margin-top:30px">
-      <div class="step"><h3 class="en">Scope</h3><h3 class="pt">Escopo</h3><p class="en">I write what will be delivered, what is out, the price and the timeline.</p><p class="pt">Escrevo o que será entregue, o que fica de fora, o preço e o prazo.</p></div>
-      <div class="step"><h3 class="en">Milestones</h3><h3 class="pt">Etapas</h3><p class="en">Small deliveries you can test, instead of one big surprise at the end.</p><p class="pt">Entregas pequenas que você testa, em vez de uma surpresa grande no fim.</p></div>
-      <div class="step"><h3 class="en">Quality</h3><h3 class="pt">Qualidade</h3><p class="en">Clean code, automated tests and code review standards from enterprise teams.</p><p class="pt">Código limpo, testes automatizados e padrão de revisão de times corporativos.</p></div>
-      <div class="step"><h3 class="en">Handover</h3><h3 class="pt">Entrega</h3><p class="en">Documentation and a walkthrough, so the project is yours, not mine.</p><p class="pt">Documentação e apresentação final, para o projeto ser seu, não meu.</p></div>
+    <div class="eyebrow reveal"><span class="en">How I work</span><span class="pt">Como trabalho</span></div>
+    <h2 class="reveal en">Simple and predictable.</h2>
+    <h2 class="reveal pt">Simples e previsível.</h2>
+    <div class="steps" style="margin-top:36px">
+      <div class="step reveal d1"><h3 class="en">Scope</h3><h3 class="pt">Escopo</h3><p class="en">A short call or chat, then a written scope with price and timeline.</p><p class="pt">Uma conversa rápida e depois o escopo por escrito, com preço e prazo.</p></div>
+      <div class="step reveal d2"><h3 class="en">Build</h3><h3 class="pt">Construção</h3><p class="en">Small milestones you can test, with progress updates you can follow.</p><p class="pt">Entregas pequenas que você testa, com atualizações que dá para acompanhar.</p></div>
+      <div class="step reveal d3"><h3 class="en">Quality</h3><h3 class="pt">Qualidade</h3><p class="en">Clean code, automated tests and enterprise-level code review.</p><p class="pt">Código limpo, testes automatizados e revisão no padrão de empresa grande.</p></div>
+      <div class="step reveal d4"><h3 class="en">Handover</h3><h3 class="pt">Entrega</h3><p class="en">Documentation and a walkthrough, so the project is yours.</p><p class="pt">Documentação e apresentação final, para o projeto ser seu.</p></div>
     </div>
   </div>
 </section>
 
 <section id="contact" class="contact">
+  <div class="bigorb"></div>
   <div class="wrap">
-    <h2 class="en">Have a project, a bug or an idea with AI?</h2>
-    <h2 class="pt">Tem um projeto, um bug ou uma ideia com IA?</h2>
-    <p class="sub en">Send me a short description. I reply within one business day with questions or a proposal.</p>
-    <p class="sub pt">Me mande uma descrição curta. Respondo em até um dia útil com perguntas ou uma proposta.</p>
-    <div class="ctas">
-      <a class="btn primary" href="https://www.linkedin.com/in/marcus-paulo-oliveira" target="_blank" rel="noopener">LinkedIn →</a>
-      <a class="btn" href="https://www.upwork.com/freelancers/~011a03eec914c15aa8" target="_blank" rel="noopener">Upwork</a>
-      <a class="btn" href="https://www.workana.com/freelancer/4ee4d04f539e13555c70fedec86e7cb0" target="_blank" rel="noopener">Workana</a>
-      <a class="btn" href="https://github.com/marcusolive" target="_blank" rel="noopener">GitHub</a>
+    <div class="eyebrow reveal" style="justify-content:center"><span class="en">Contact</span><span class="pt">Contato</span></div>
+    <h2 class="reveal en">Let's build something that works.</h2>
+    <h2 class="reveal pt">Vamos construir algo que funciona.</h2>
+    <p class="sub reveal en">Send a short description of your project, bug or AI idea. I reply within one business day with questions or a proposal.</p>
+    <p class="sub reveal pt">Mande uma descrição curta do seu projeto, bug ou ideia com IA. Respondo em até um dia útil com perguntas ou uma proposta.</p>
+    <div class="ctas reveal">
+      <a class="btn primary mag" href="https://www.linkedin.com/in/marcus-paulo-oliveira" target="_blank" rel="noopener">LinkedIn →</a>
+      <a class="btn mag" href="https://www.upwork.com/freelancers/~011a03eec914c15aa8" target="_blank" rel="noopener">Upwork</a>
+      <a class="btn mag" href="https://www.workana.com/freelancer/4ee4d04f539e13555c70fedec86e7cb0" target="_blank" rel="noopener">Workana</a>
+      <a class="btn mag" href="https://github.com/marcusolive" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </section>
 
-<footer>© <span id="y"></span> Marcus Oliveira · Rio de Janeiro, Brazil · <span class="en">Working remotely worldwide</span><span class="pt">Atendo remoto no mundo todo</span></footer>
+<footer>© <span id="y"></span> Marcus Oliveira · Rio de Janeiro, Brazil · <span class="en">remote worldwide</span><span class="pt">remoto para o mundo todo</span></footer>
 
 <script>
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE = matchMedia('(hover:hover) and (pointer:fine)').matches;
+let LANG='en';
 function setLang(l){
+  LANG=l;
   document.body.classList.toggle('lang-pt', l==='pt');
   document.documentElement.lang = l==='pt' ? 'pt-BR' : 'en';
   document.getElementById('btn-en').classList.toggle('on', l==='en');
   document.getElementById('btn-pt').classList.toggle('on', l==='pt');
   try{localStorage.setItem('lang',l)}catch(e){}
+  if(window.Demo) Demo.caption();
+  if(RM){const t=document.getElementById('typed');if(t)t.textContent=l==='pt'?'> criando agentes de IA':'> building AI agents'}
 }
+
+/* boot sequence */
 (function(){
-  var l=null;
-  try{l=localStorage.getItem('lang')}catch(e){}
-  if(!l){l=(navigator.language||'').toLowerCase().startsWith('pt')?'pt':'en'}
+  const lines=['> booting marcus.dev ...','> loading modules: dotnet, react, angular, python','> connecting AI agents ......... ok','> ready.'];
+  const log=document.getElementById('bootlog'), bar=document.getElementById('bootbar'), boot=document.getElementById('boot');
+  if(RM){boot.classList.add('done');return}
+  let i=0; bar.style.width='0';
+  requestAnimationFrame(()=>bar.style.width='100%');
+  const t=setInterval(()=>{ if(i<lines.length){log.textContent+=lines[i++]+'\n'} else {clearInterval(t);setTimeout(()=>boot.classList.add('done'),250)} },230);
+  boot.addEventListener('click',()=>boot.classList.add('done'));
+})();
+
+/* neural network canvas */
+(function(){
+  if(RM) return;
+  const c=document.getElementById('net'), x=c.getContext('2d');
+  let w,h,pts=[],mouse={x:-1e4,y:-1e4};
+  function size(){w=c.width=innerWidth*devicePixelRatio;h=c.height=innerHeight*devicePixelRatio;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';
+    const n=Math.min(110,Math.floor(innerWidth*innerHeight/14000));
+    pts=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35*devicePixelRatio,vy:(Math.random()-.5)*.35*devicePixelRatio}))}
+  size(); addEventListener('resize',size);
+  addEventListener('mousemove',e=>{mouse.x=e.clientX*devicePixelRatio;mouse.y=e.clientY*devicePixelRatio});
+  const D=130*devicePixelRatio;
+  (function loop(){
+    x.clearRect(0,0,w,h);
+    for(const p of pts){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>w)p.vx*=-1; if(p.y<0||p.y>h)p.vy*=-1;
+      const dx=mouse.x-p.x,dy=mouse.y-p.y,dm=Math.hypot(dx,dy);
+      if(dm<200*devicePixelRatio){p.x+=dx*.006;p.y+=dy*.006}
+    }
+    for(let i=0;i<pts.length;i++){
+      const a=pts[i];
+      for(let j=i+1;j<pts.length;j++){
+        const b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<D){x.strokeStyle=`rgba(0,240,255,${(1-d/D)*.22})`;x.lineWidth=devicePixelRatio*.7;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}
+      }
+      const dm=Math.hypot(mouse.x-a.x,mouse.y-a.y);
+      if(dm<D*1.4){x.strokeStyle=`rgba(139,92,246,${(1-dm/(D*1.4))*.5})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(mouse.x,mouse.y);x.stroke()}
+      x.fillStyle='rgba(160,240,255,.8)';x.beginPath();x.arc(a.x,a.y,1.4*devicePixelRatio,0,7);x.fill();
+    }
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* cursor, glow, progress */
+(function(){
+  const cur=document.getElementById('cursor'),ring=document.getElementById('ring'),glow=document.getElementById('glow'),pr=document.getElementById('progress');
+  let rx=0,ry=0,mx=0,my=0;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';glow.style.left=mx+'px';glow.style.top=my+'px'});
+  if(FINE&&!RM)(function f(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(f)})();
+  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hover'));el.addEventListener('mouseleave',()=>ring.classList.remove('hover'))});
+  addEventListener('scroll',()=>{const s=scrollY/(document.body.scrollHeight-innerHeight);pr.style.width=(s*100)+'%';
+    const tl=document.getElementById('tl'),fill=document.getElementById('tlfill');const r=tl.getBoundingClientRect();
+    const p=Math.min(1,Math.max(0,(innerHeight*.7-r.top)/r.height));fill.style.height=(p*(r.height-12))+'px'},{passive:true});
+})();
+
+/* typed roles */
+(function(){
+  const el=document.getElementById('typed');
+  const words={en:['> building AI agents','> integrating APIs and ERPs','> shipping React and Angular apps','> rescuing legacy .NET systems','> automating with Python'],
+               pt:['> criando agentes de IA','> integrando APIs e ERPs','> entregando apps React e Angular','> resgatando sistemas .NET','> automatizando com Python']};
+  let wi=0,ci=0,del=false;
+  function tick(){
+    const list=words[LANG],wd=list[wi%list.length];
+    el.textContent=wd.slice(0,ci);
+    if(!del&&ci<wd.length){ci++;setTimeout(tick,55)}
+    else if(!del){del=true;setTimeout(tick,1500)}
+    else if(ci>0){ci--;setTimeout(tick,25)}
+    else{del=false;wi++;setTimeout(tick,300)}
+  }
+  if(RM) el.textContent=words.en[0]; else setTimeout(tick,1300);
+})();
+
+/* marquee */
+(function(){
+  const items=['C#','.NET 10','ASP.NET Core','React','Angular','TypeScript','Python','OpenAI','Claude','Semantic Kernel','RAG','pgvector','MCP','A2A','SQL Server','PostgreSQL','MongoDB','Redis','Azure','Docker','Kubernetes','n8n'];
+  const t=document.getElementById('track'); const html=items.map(i=>`<span>${i}</span>`).join('');
+  t.innerHTML=html+html;
+})();
+
+/* reveal + counters */
+(function(){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,to=+el.dataset.to;let v=0;
+    const st=()=>{v++;el.textContent=v;if(v<to)setTimeout(st,1100/to)};RM?el.textContent=to:st();co.unobserve(el)}),{threshold:.6});
+  document.querySelectorAll('.count').forEach(el=>co.observe(el));
+})();
+
+/* tilt + spotlight + magnetic */
+(function(){
+  if(!FINE||RM) return;
+  document.querySelectorAll('.tilt').forEach(el=>{
+    el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
+      el.style.transform=`perspective(900px) rotateX(${(.5-py)*7}deg) rotateY(${(px-.5)*7}deg)`;el.style.setProperty('--mx',px*100+'%');el.style.setProperty('--my',py*100+'%')});
+    el.addEventListener('mouseleave',()=>el.style.transform='');
+  });
+  document.querySelectorAll('.mag').forEach(el=>{
+    el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});
+    el.addEventListener('mouseleave',()=>el.style.transform='');
+  });
+})();
+
+/* architecture node lighting */
+(function(){
+  const ids=['n0','n1','n2','n3','n2','n1','n4']; let i=0;
+  setInterval(()=>{document.querySelectorAll('.nd').forEach(n=>n.classList.remove('lit'));document.getElementById(ids[i++%ids.length]).classList.add('lit')},900);
+})();
+
+/* video-like demos */
+window.Demo=(function(){
+  const stage=document.getElementById('stage'),fill=document.getElementById('pfill'),time=document.getElementById('ptime'),url=document.getElementById('durl'),cap=document.getElementById('dcap'),playBtn=document.getElementById('play');
+  const L=(t,c)=>`<div class="ln">${c?`<span class="${c}">`:''}${t}${c?'</span>':''}</div>`;
+  const demos=[
+    {url:'agent.api/v1/analysis',
+     cap:{en:'AI tax agent: reads an invoice item, searches legal evidence through MCP, ranks candidates and returns a traceable classification.',pt:'Agente fiscal com IA: lê o item da nota, busca evidências legais via MCP, ordena candidatos e devolve uma classificação rastreável.'},
+     build(){stage.innerHTML=[
+      L('$ POST /v1/analysis  invoice=NF-e 3524...0187  item=3','c-m'),
+      L('› item: "Silicone catheter, sterile, 14Fr, single use"'),
+      L('› extracting composition, function, presentation ......... <span class="c-g">ok</span>'),
+      L('› mcp.consultar_conhecimento(vigência=2026-11) ........... <span class="c-g">14 sources</span>'),
+      L('› ranking by source authority: law > ruling > confirmed case','c-v'),
+      L('› candidates: 9018.39.29 (0.91)  9018.90.99 (0.42)  3926.90.40 (0.11)','c-y'),
+      L('› llm.validate(candidates, evidence) ..................... <span class="c-g">consistent</span>'),
+      L('› declared NCM 3926.90.40 does not hold → <span class="c-p">invoice flagged</span>'),
+      L('{ "ncm": "9018.39.29", "confidence": 0.91, "sources": 3, "status": "released_for_use" }','c-c'),
+      L('✓ done in 2.4s · tokens 3.1k · audit id 7f3a-91c2','c-g')].join('')},
+     steps(){return [...stage.querySelectorAll('.ln')].map(el=>()=>el.classList.add('show'))}},
+    {url:'support.yourcompany.ai/chat',
+     cap:{en:'RAG chatbot: answers only from your own documents and always shows where the answer came from.',pt:'Chatbot RAG: responde só com base nos seus documentos e sempre mostra de onde veio a resposta.'},
+     build(){stage.innerHTML=`<div class="chat">
+      <div class="msg u">What is the refund deadline for annual plans?</div>
+      <div class="msg b" data-t="Annual plans can be refunded within 30 days of purchase. After that, you can cancel renewal at any time and keep access until the end of the period."><span class="tx"></span><span class="src">source: refund-policy.pdf · page 2</span></div>
+      <div class="msg u">And do you store my card data?</div>
+      <div class="msg b" data-t="No. Card data is handled by the payment provider and never touches our servers."><span class="tx"></span><span class="src">source: security-faq.md · section 4</span></div></div>`},
+     steps(){const s=[];stage.querySelectorAll('.msg').forEach(m=>{s.push(()=>m.classList.add('show'));if(m.dataset.t){const tx=m.querySelector('.tx'),src=m.querySelector('.src');src.style.opacity=0;const w=m.dataset.t.split(' ');
+        for(let i=1;i<=w.length;i+=3)s.push(()=>tx.textContent=w.slice(0,i+2).join(' '));s.push(()=>src.style.opacity=1)}});return s}},
+    {url:'specmp.app/new',
+     cap:{en:'SPECMP: a vague request becomes a clear spec with acceptance criteria, risks and tests, ready to export to your board.',pt:'SPECMP: um pedido vago vira uma especificação clara com critérios de aceite, riscos e testes, pronta para exportar para o seu quadro.'},
+     build(){stage.innerHTML=`<div class="spec"><div class="f">
+       <label>TITLE</label><div class="in" id="s1"></div>
+       <label>DESCRIPTION</label><div class="in" id="s2" style="min-height:70px"></div>
+       <label>TYPE · PRIORITY</label><div class="in" id="s3"></div>
+       <div class="genbtn" id="sbtn">Generate spec</div></div>
+       <div class="gen"><div><h4>📌 CONTEXT</h4>Users cannot reset their password from the mobile app; the email link opens the web login.</div>
+       <div><h4>✅ ACCEPTANCE CRITERIA</h4>• Link opens the app reset screen<br>• Token expires in 30 min<br>• Works on iOS and Android</div>
+       <div><h4>⚠ RISKS</h4>Deep link not configured on older app versions.</div>
+       <div><h4>🧪 TESTS</h4>Expired token · invalid token · app not installed.</div>
+       <div class="exp"><span>Jira</span><span>Azure DevOps</span><span>GitHub</span><span>Notion</span><span>Markdown</span></div></div></div>`},
+     steps(){const s=[],type=(id,t)=>{for(let i=1;i<=t.length;i+=2)s.push(()=>document.getElementById(id).textContent=t.slice(0,i+1))};
+       type('s1','Password reset broken on mobile');type('s2','users say the reset email does not work on the phone');type('s3','Bug · High');
+       s.push(()=>document.getElementById('sbtn').classList.add('press'));s.push(()=>document.getElementById('sbtn').classList.remove('press'));
+       stage.querySelectorAll('.gen > div').forEach(d=>s.push(()=>d.classList.add('show')));
+       s.push(()=>stage.querySelector('.exp span').classList.add('hit'));s.push(()=>{});return s}},
+    {url:'finance.agent/dashboard',
+     cap:{en:'Cash-flow agent: reads the numbers, draws the picture and explains what needs attention, in plain words.',pt:'Agente de fluxo de caixa: lê os números, monta o gráfico e explica em palavras simples o que precisa de atenção.'},
+     build(){const v=[62,48,75,-30,58,82,40,-18,66,90,72,85];
+      stage.innerHTML=`<div class="dash"><div class="kpi"><small>CASH IN</small><b class="c-g" id="k1">$0</b></div><div class="kpi"><small>CASH OUT</small><b class="c-p" id="k2">$0</b></div><div class="kpi"><small>BALANCE</small><b class="c-c" id="k3">$0</b></div>
+      <div class="chart">${v.map(x=>`<div class="bar ${x<0?'neg':''}" data-h="${Math.abs(x)}"></div>`).join('')}</div>
+      <div class="agentbox" id="ab">🤖 <b>Agent:</b> balance is positive, but April and August had negative weeks driven by supplier payments. Suggest moving 2 payments by 10 days.</div></div>`},
+     steps(){const s=[],cnt=(id,to)=>{for(let i=1;i<=10;i++)s.push(()=>document.getElementById(id).textContent='$'+Math.round(to*i/10).toLocaleString('en-US'))};
+       cnt('k1',482300);cnt('k2',351900);cnt('k3',130400);
+       stage.querySelectorAll('.bar').forEach(b=>s.push(()=>b.style.height=b.dataset.h*1.8+'px'));
+       s.push(()=>document.getElementById('ab').classList.add('show'));for(let i=0;i<6;i++)s.push(()=>{});return s}}
+  ];
+  let cur=0,queue=[],idx=0,timer=null,next=null,playing=true,T=0;
+  function caption(){cap.textContent=demos[cur].cap[LANG]}
+  function load(n){cur=n;clearInterval(timer);clearTimeout(next);url.textContent=demos[n].url;demos[n].build();queue=demos[n].steps();idx=0;T=0;caption();fill.style.width='0';
+    document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',+b.dataset.d===n));if(playing)run()}
+  function run(){clearInterval(timer);timer=setInterval(()=>{
+    if(idx<queue.length){queue[idx++]();T+=.11;fill.style.width=(idx/queue.length*100)+'%';const s=Math.floor(T);time.textContent='00:'+String(s).padStart(2,'0')+' / LIVE'}
+    else{clearInterval(timer);clearTimeout(next);next=setTimeout(()=>{if(playing)load((cur+1)%demos.length)},5000)}
+  },cur===0?520:150)}
+  playBtn.onclick=()=>{playing=!playing;playBtn.textContent=playing?'❚❚':'▶';if(playing){idx<queue.length?run():load((cur+1)%demos.length)}else{clearInterval(timer);clearTimeout(next)}};
+  document.getElementById('restart').onclick=()=>load(cur);
+  document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>load(+b.dataset.d));
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&!started){started=true;load(0)}})},{threshold:.3});let started=false;
+  io.observe(document.getElementById('stage'));
+  return {caption};
+})();
+
+(function(){
+  let l=null;try{l=localStorage.getItem('lang')}catch(e){}
+  if(!l)l=(navigator.language||'').toLowerCase().startsWith('pt')?'pt':'en';
   if(location.hash==='#pt')l='pt';
   setLang(l);
   document.getElementById('y').textContent=new Date().getFullYear();
