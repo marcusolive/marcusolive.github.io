@@ -580,9 +580,9 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
         <a class="more" href="https://irissoftware.com.br/" target="_blank" rel="noopener"><span class="en">Visit website</span><span class="pt">Visitar site</span><span class="es">Visitar sitio</span> →</a>
       </div></div>
       <div class="pcard tilt reveal d1"><div class="in">
-        <div class="k">E-COMMERCE · DEMO</div>
-        <h3 class="en">Nord Roasters online store</h3><h3 class="pt">Loja virtual Nord Roasters</h3><h3 class="es">Tienda online Nord Roasters</h3>
-        <p class="en">A complete storefront: category filters, cart drawer, quantities, free-shipping rule and checkout with card, PIX or PayPal. Fully interactive.</p><p class="pt">Uma vitrine completa: filtro por categoria, carrinho lateral, quantidades, regra de frete grátis e checkout com cartão, PIX ou PayPal. Totalmente interativa.</p><p class="es">Una tienda completa: filtros por categoría, carrito lateral, cantidades, regla de envío gratis y checkout con tarjeta, PIX o PayPal. Totalmente interactiva.</p>
+        <div class="k">MARKETPLACE · E-COMMERCE · DEMO</div>
+        <h3 class="en">Vendora marketplace</h3><h3 class="pt">Marketplace Vendora</h3><h3 class="es">Marketplace Vendora</h3>
+        <p class="en">A big-marketplace style store: search with live suggestions, departments, hero carousel, today's deals with countdown, filters by rating, price and free delivery, product page with buy box, cart with free-shipping progress and 3-step checkout with card, PIX or PayPal.</p><p class="pt">Uma loja no estilo dos grandes marketplaces: busca com sugestões, departamentos, carrossel de ofertas, ofertas do dia com cronômetro, filtros por avaliação, preço e frete grátis, página de produto, carrinho com barra de frete grátis e checkout em 3 etapas com cartão, PIX ou PayPal.</p><p class="es">Una tienda al estilo de los grandes marketplaces: búsqueda con sugerencias, departamentos, carrusel de ofertas, ofertas del día con cuenta regresiva, filtros por valoración, precio y envío gratis, página de producto, carrito con barra de envío gratis y checkout en 3 pasos con tarjeta, PIX o PayPal.</p>
         <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Checkout UX</span></div>
         <a class="more" href="samples/store/" target="_blank" rel="noopener"><span class="en">Open live demo</span><span class="pt">Abrir demo ao vivo</span><span class="es">Abrir demo en vivo</span> →</a>
       </div></div>
@@ -996,10 +996,10 @@ window.Demo=(function(){
        cnt('k1',482300);cnt('k2',351900);cnt('k3',130400);
        stage.querySelectorAll('.bar').forEach(b=>s.push(()=>b.style.height=b.dataset.h*1.8+'px'));
        s.push(()=>document.getElementById('ab').classList.add('show'));for(let i=0;i<6;i++)s.push(()=>{});return s}},
-    {url:'nordroasters.shop',
+    {url:'vendora.shop',
      cap:{en:'Online store: browse, add to cart, pay with PIX and get the order confirmed, the same flow your customers will use.',pt:'Loja virtual: navegar, colocar no carrinho, pagar com PIX e receber a confirmação do pedido, o mesmo fluxo que seus clientes vão usar.',es:'Tienda online: navegar, agregar al carrito, pagar con PIX y recibir la confirmación del pedido, el mismo flujo que usarán tus clientes.'},
-     build(){const items=[['Ethiopia','$18','#e9b48f'],['Brazil','$15','#f3d9a4'],['Colombia','$17','#f4c6c0'],['Espresso','$16','#d8c8f0']];
-      stage.innerHTML=`<div class="shopd"><div class="shoph"><b>Nord.Roasters</b><span class="cartd">🛒 <i id="cc">0</i></span></div>
+     build(){const items=[['Headphones','$89','#ff7a00'],['Smartwatch','$129','#3fb6ff'],['Speaker','$34','#e02434'],['Air fryer','$79','#8b5cf6']];
+      stage.innerHTML=`<div class="shopd"><div class="shoph"><b>vendora</b><span class="cartd">🛒 <i id="cc">0</i></span></div>
       <div class="prods">${items.map((x,i)=>`<div class="pd" id="pd${i}"><div class="pimg" style="background:${x[2]}"></div><b>${x[0]}</b><span>${x[1]}</span><em>Add</em></div>`).join('')}</div>
       <div class="chk" id="chk"><b>Checkout</b><div class="pm"><span>Card</span><span class="sel">PIX</span><span>PayPal</span></div><div class="qr" id="qr"></div><div class="paid" id="paid">✓ Payment approved · order #4821</div></div></div>`},
      steps(){const s=[];let n=0;[0,2,1].forEach(i=>{s.push(()=>document.getElementById('pd'+i).classList.add('hit'));s.push(()=>{document.getElementById('cc').textContent=++n;document.getElementById('pd'+i).classList.remove('hit')});s.push(()=>{})});
