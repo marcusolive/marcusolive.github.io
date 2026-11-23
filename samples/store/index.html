@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nord Roasters | E-commerce demo</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f1ea;--ink:#1d1a16;--muted:#6f665c;--card:#fff;--brand:#b4552d;--brand2:#2f4a3a;--line:#e6ddd1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.demo{background:var(--ink);color:#f6f1ea;text-align:center;font-size:13px;padding:8px 16px}
+.demo a{text-decoration:underline}
+header{position:sticky;top:0;z-index:20;background:rgba(246,241,234,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1160px;margin:0 auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font:700 22px Fraunces,serif;letter-spacing:-.02em}
+.logo span{color:var(--brand)}
+.nav{display:flex;gap:26px;font-size:14.5px;color:var(--muted)}
+.cartbtn{position:relative;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:600;font-size:14px}
+.cartbtn b{position:absolute;top:-6px;right:-6px;background:var(--brand);color:#fff;font-size:11px;min-width:20px;height:20px;border-radius:10px;display:grid;place-items:center;transition:transform .3s}
+.cartbtn b.pop{transform:scale(1.4)}
+.hero{max-width:1160px;margin:0 auto;padding:60px 20px 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font:700 clamp(38px,5.6vw,64px)/1.05 Fraunces,serif;letter-spacing:-.02em}
+.hero p{color:var(--muted);font-size:18px;margin:18px 0 28px;max-width:520px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;border:0;border-radius:12px;padding:14px 24px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.heroimg{aspect-ratio:1;border-radius:28px;background:radial-gradient(circle at 30% 30%,#e9b48f,#b4552d 55%,#6d2f17);position:relative;overflow:hidden;box-shadow:0 40px 80px -40px rgba(109,47,23,.6)}
+.heroimg svg{position:absolute;inset:12%;width:76%;height:76%}
+.perks{max-width:1160px;margin:0 auto;padding:0 20px 30px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.perk{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-size:14.5px}
+.perk b{display:block}
+.shop{max-width:1160px;margin:0 auto;padding:30px 20px 80px}
+.shop h2{font:700 34px Fraunces,serif;margin-bottom:6px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 24px}
+.filters button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font-size:14px}
+.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.p{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.p:hover{transform:translateY(-4px);box-shadow:0 20px 40px -24px rgba(0,0,0,.35)}
+.p .img{aspect-ratio:1;display:grid;place-items:center}
+.p .img svg{width:58%;height:58%}
+.p .in{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.p small{color:var(--muted);font-size:12.5px}
+.p h3{font-size:16px}
+.p .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px}
+.p .price{font-weight:700;font-size:18px}
+.p .price s{color:var(--muted);font-weight:400;font-size:13px;margin-left:6px}
+.add{background:var(--brand2);color:#fff;border:0;border-radius:10px;padding:9px 14px;font-weight:600;font-size:13.5px}
+.tagsale{position:absolute;margin:12px;background:var(--brand);color:#fff;font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#fff;z-index:50;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(0,0,0,.2)}
+.drawer.open{transform:none}
+.shade{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:40;opacity:0;pointer-events:none;transition:.3s}
+.shade.open{opacity:1;pointer-events:auto}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid var(--line)}
+.dh h3{font:700 22px Fraunces,serif}
+.x{background:none;border:0;font-size:24px}
+.items{flex:1;overflow:auto;padding:12px 20px}
+.it{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.it .th{width:56px;height:56px;border-radius:12px;display:grid;place-items:center}
+.it .th svg{width:60%;height:60%}
+.qty{display:flex;align-items:center;gap:8px;margin-top:4px}
+.qty button{width:26px;height:26px;border-radius:8px;border:1px solid var(--line);background:#fff}
+.foot{padding:20px;border-top:1px solid var(--line);display:grid;gap:12px}
+.line{display:flex;justify-content:space-between;color:var(--muted);font-size:14.5px}
+.line.t{color:var(--ink);font-weight:700;font-size:18px}
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pay button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px;font-size:13px;font-weight:600}
+.pay button.on{border-color:var(--brand2);background:#eef4f0}
+.checkout{width:100%;justify-content:center}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+.ok{position:fixed;inset:0;z-index:60;display:grid;place-items:center;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:.3s}
+.ok.open{opacity:1;pointer-events:auto}
+.ok .box{background:#fff;border-radius:24px;padding:34px;text-align:center;max-width:380px}
+.ok .check{width:64px;height:64px;border-radius:50%;background:var(--brand2);color:#fff;display:grid;place-items:center;font-size:30px;margin:0 auto 14px}
+footer{border-top:1px solid var(--line);padding:30px 20px;text-align:center;color:var(--muted);font-size:14px}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.nav{display:none}.perks{grid-template-columns:1fr}}
+@media (max-width:480px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="demo">Demo project built by <a href="../../">Marcus Oliveira</a>. Not a real store: no payments are processed.</div>
+<header><div class="bar">
+  <a class="logo" href="#">Nord<span>.</span>Roasters</a>
+  <nav class="nav"><a href="#shop">Shop</a><a href="#shop">Subscriptions</a><a href="#shop">Gifts</a><a href="#shop">About</a></nav>
+  <button class="cartbtn" id="cartbtn">Cart <b id="count">0</b></button>
+</div></header>
+
+<section class="hero">
+  <div>
+    <h1>Fresh roasted coffee, delivered weekly.</h1>
+    <p>Small-batch beans roasted to order and shipped within 48 hours. Pick your roast, grind and frequency.</p>
+    <a class="btn" href="#shop">Shop coffee →</a> <a class="btn ghost" href="#shop">Build a subscription</a>
+  </div>
+  <div class="heroimg"><svg viewBox="0 0 200 200"><ellipse cx="100" cy="150" rx="70" ry="14" fill="rgba(0,0,0,.18)"/><path d="M45 70h110l-10 80a20 20 0 0 1-20 18H75a20 20 0 0 1-20-18z" fill="#f6f1ea"/><path d="M155 85h12a18 18 0 0 1 0 36h-16" fill="none" stroke="#f6f1ea" stroke-width="10"/><ellipse cx="100" cy="72" rx="55" ry="10" fill="#4a2414"/><path d="M85 40c-8-10 8-16 0-28M105 42c-8-10 8-16 0-28M125 40c-8-10 8-16 0-28" stroke="#fff" stroke-width="4" fill="none" opacity=".7" stroke-linecap="round"/></svg></div>
+</section>
+
+<div class="perks">
+  <div class="perk"><b>Free shipping</b>On orders over $40</div>
+  <div class="perk"><b>Pay with card, PIX or PayPal</b>Secure checkout</div>
+  <div class="perk"><b>Roasted to order</b>Shipped within 48 hours</div>
+</div>
+
+<section class="shop" id="shop">
+  <h2>Shop</h2>
+  <p style="color:var(--muted)">Filter by category and add to cart. The cart and checkout are fully interactive.</p>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<footer>© Nord Roasters (demo) · Built with HTML, CSS and JavaScript by <a href="../../" style="text-decoration:underline">Marcus Oliveira</a></footer>
+
+<div class="shade" id="shade"></div>
+<aside class="drawer" id="drawer" aria-label="Cart">
+  <div class="dh"><h3>Your cart</h3><button class="x" id="close" aria-label="Close">×</button></div>
+  <div class="items" id="items"></div>
+  <div class="foot">
+    <div class="line"><span>Subtotal</span><span id="sub">$0.00</span></div>
+    <div class="line"><span>Shipping</span><span id="ship">$0.00</span></div>
+    <div class="line t"><span>Total</span><span id="tot">$0.00</span></div>
+    <div class="pay" id="pay"><button class="on">Card</button><button>PIX</button><button>PayPal</button></div>
+    <button class="btn checkout" id="checkout">Checkout</button>
+  </div>
+</aside>
+<div class="ok" id="ok"><div class="box"><div class="check">✓</div><h3 style="font:700 24px Fraunces,serif">Order confirmed</h3><p style="color:var(--muted);margin:8px 0 18px">This is a demo, so no payment was made. In a real store this step connects to Stripe, Mercado Pago or PIX.</p><button class="btn" id="okc">Back to shop</button></div></div>
+
+<script>
+const C=['#e9b48f','#cfe0d3','#f3d9a4','#d8c8f0','#f4c6c0','#cde3f2'];
+const bag=c=>`<svg viewBox="0 0 100 100"><path d="M25 30h50l6 60H19z" fill="${c}" stroke="#1d1a16" stroke-width="3"/><path d="M38 30v-6a12 12 0 0 1 24 0v6" fill="none" stroke="#1d1a16" stroke-width="3"/><circle cx="50" cy="60" r="11" fill="#1d1a16"/><path d="M50 50c-4 6-4 14 0 20" stroke="${c}" stroke-width="2.5" fill="none"/></svg>`;
+const mug=c=>`<svg viewBox="0 0 100 100"><path d="M22 32h48l-5 50a8 8 0 0 1-8 7H35a8 8 0 0 1-8-7z" fill="${c}" stroke="#1d1a16" stroke-width="3"/><path d="M70 42h8a10 10 0 0 1 0 20h-10" fill="none" stroke="#1d1a16" stroke-width="3"/></svg>`;
+const P=[
+ {id:1,n:'Ethiopia Yirgacheffe',c:'Coffee',p:18,o:null,d:'Light roast · floral, citrus',i:bag,col:0},
+ {id:2,n:'Brazil Cerrado',c:'Coffee',p:15,o:19,d:'Medium roast · chocolate, nuts',i:bag,col:2},
+ {id:3,n:'Colombia Huila',c:'Coffee',p:17,o:null,d:'Medium roast · caramel, red fruit',i:bag,col:4},
+ {id:4,n:'Espresso Blend',c:'Coffee',p:16,o:null,d:'Dark roast · cocoa, molasses',i:bag,col:3},
+ {id:5,n:'Monthly Subscription',c:'Subscriptions',p:29,o:36,d:'2 bags per month · free shipping',i:bag,col:1},
+ {id:6,n:'Weekly Subscription',c:'Subscriptions',p:59,o:null,d:'1 bag per week · pause anytime',i:bag,col:5},
+ {id:7,n:'Stoneware Mug',c:'Gear',p:22,o:null,d:'350 ml · handmade',i:mug,col:1},
+ {id:8,n:'Gift Box',c:'Gifts',p:45,o:52,d:'3 coffees + mug + card',i:mug,col:4}];
+let cart={},cat='All',payMethod='Card';
+const $=id=>document.getElementById(id),money=v=>'$'+v.toFixed(2);
+function renderFilters(){const cats=['All',...new Set(P.map(p=>p.c))];$('filters').innerHTML=cats.map(c=>`<button class="${c===cat?'on':''}" data-c="${c}">${c}</button>`).join('');
+  $('filters').querySelectorAll('button').forEach(b=>b.onclick=()=>{cat=b.dataset.c;renderFilters();renderGrid()})}
+function renderGrid(){$('grid').innerHTML=P.filter(p=>cat==='All'||p.c===cat).map(p=>`<article class="p">${p.o?'<span class="tagsale">SALE</span>':''}<div class="img" style="background:${C[p.col]}55">${p.i(C[p.col])}</div><div class="in"><small>${p.c}</small><h3>${p.n}</h3><small>${p.d}</small><div class="row"><span class="price">${money(p.p)}${p.o?`<s>${money(p.o)}</s>`:''}</span><button class="add" data-id="${p.id}">Add</button></div></div></article>`).join('');
+  $('grid').querySelectorAll('.add').forEach(b=>b.onclick=()=>{add(+b.dataset.id);b.textContent='Added ✓';setTimeout(()=>b.textContent='Add',1200)})}
+function add(id){cart[id]=(cart[id]||0)+1;renderCart();const c=$('count');c.classList.add('pop');setTimeout(()=>c.classList.remove('pop'),300)}
+function renderCart(){const ids=Object.keys(cart).filter(k=>cart[k]>0);$('count').textContent=ids.reduce((a,k)=>a+cart[k],0);
+  if(!ids.length){$('items').innerHTML='<p class="empty">Your cart is empty.</p>'}
+  else $('items').innerHTML=ids.map(k=>{const p=P.find(x=>x.id==k);return `<div class="it"><div class="th" style="background:${C[p.col]}55">${p.i(C[p.col])}</div><div><b style="font-size:14.5px">${p.n}</b><div class="qty"><button data-a="-" data-id="${k}">−</button>${cart[k]}<button data-a="+" data-id="${k}">+</button></div></div><b>${money(p.p*cart[k])}</b></div>`}).join('');
+  $('items').querySelectorAll('.qty button').forEach(b=>b.onclick=()=>{cart[b.dataset.id]+=b.dataset.a==='+'?1:-1;renderCart()});
+  const sub=ids.reduce((a,k)=>a+P.find(x=>x.id==k).p*cart[k],0),ship=sub===0||sub>=40?0:6.9;
+  $('sub').textContent=money(sub);$('ship').textContent=ship?money(ship):'Free';$('tot').textContent=money(sub+ship)}
+function open(v){$('drawer').classList.toggle('open',v);$('shade').classList.toggle('open',v)}
+$('cartbtn').onclick=()=>open(true);$('close').onclick=$('shade').onclick=()=>open(false);
+$('pay').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('pay').querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');payMethod=b.textContent});
+$('checkout').onclick=()=>{if(!Object.values(cart).some(v=>v>0))return;open(false);$('ok').classList.add('open');cart={};renderCart()};
+$('okc').onclick=()=>$('ok').classList.remove('open');
+renderFilters();renderGrid();renderCart();
+</script>
+</body>
+</html>

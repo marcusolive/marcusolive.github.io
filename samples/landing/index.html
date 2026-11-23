@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumen Dental | Landing page demo</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f1b2d;--muted:#5b6b82;--brand:#1e7bf0;--brand2:#12c2a3;--bg:#ffffff;--soft:#f2f7ff;--line:#e3ebf6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:16px/1.65 "Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:inherit;text-decoration:none}
+.demo{background:var(--ink);color:#fff;text-align:center;font-size:13px;padding:8px 16px}
+.demo a{text-decoration:underline}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{font-weight:800;font-size:21px;display:flex;align-items:center;gap:8px}
+.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:inline-block}
+nav{display:flex;gap:26px;font-size:15px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;border-radius:12px;padding:14px 22px;font-weight:700;border:0;cursor:pointer;font:inherit;font-weight:700;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -12px var(--brand)}
+.btn.wa{background:#25d366}
+.hero{background:linear-gradient(180deg,var(--soft),#fff);padding:70px 0 60px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.pill{display:inline-block;background:#e4f9f5;color:#0a8d76;font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;margin-bottom:18px}
+h1{font-size:clamp(38px,5.4vw,60px);line-height:1.05;font-weight:800;letter-spacing:-.03em}
+h1 span{color:var(--brand)}
+.hero p{color:var(--muted);font-size:18px;margin:18px 0 28px;max-width:540px}
+.rating{display:flex;align-items:center;gap:10px;margin-top:22px;color:var(--muted);font-size:14px}
+.rating b{color:#f5a623;letter-spacing:2px}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 30px 60px -30px rgba(15,27,45,.25)}
+.card h3{font-size:20px;margin-bottom:4px}
+.card p{color:var(--muted);font-size:14px;margin-bottom:16px}
+.card label{font-size:13px;font-weight:600;display:block;margin:12px 0 6px}
+.card input,.card select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:15px;background:#fbfdff}
+.card .btn{width:100%;justify-content:center;margin-top:18px}
+.sent{display:none;text-align:center;padding:30px 0}
+.sent .c{width:60px;height:60px;border-radius:50%;background:var(--brand2);color:#fff;display:grid;place-items:center;font-size:28px;margin:0 auto 12px}
+section{padding:80px 0}
+h2{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:12px;text-align:center}
+.lead{color:var(--muted);text-align:center;max-width:620px;margin:0 auto 44px}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.s{border:1px solid var(--line);border-radius:20px;padding:26px;transition:transform .25s,box-shadow .25s}
+.s:hover{transform:translateY(-4px);box-shadow:0 20px 40px -24px rgba(30,123,240,.5)}
+.s .ic{width:48px;height:48px;border-radius:14px;background:var(--soft);display:grid;place-items:center;color:var(--brand);font-size:22px;font-weight:800}
+.s h3{margin:14px 0 6px;font-size:18px}
+.s p{color:var(--muted);font-size:15px}
+.nums{background:var(--ink);color:#fff;border-radius:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:36px;text-align:center}
+.nums b{display:block;font-size:36px;font-weight:800;background:linear-gradient(90deg,#7cc4ff,var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nums span{color:#b8c6dc;font-size:14px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.st{counter-increment:s;background:var(--soft);border-radius:20px;padding:26px}
+.st:before{content:counter(s);width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;display:grid;place-items:center;margin-bottom:12px}
+.st h3{font-size:18px;margin-bottom:6px}.st p{color:var(--muted);font-size:15px}
+.faq{max-width:760px;margin:0 auto;display:grid;gap:10px}
+details{border:1px solid var(--line);border-radius:14px;padding:0 20px}
+summary{cursor:pointer;font-weight:700;padding:18px 0;list-style:none}
+details p{color:var(--muted);padding-bottom:18px}
+.cta{background:linear-gradient(135deg,var(--brand),#5b4bff);color:#fff;border-radius:28px;padding:50px;text-align:center}
+.cta h2{color:#fff}
+.cta p{opacity:.85;margin-bottom:24px}
+.cta .btn{background:#fff;color:var(--brand)}
+footer{padding:30px 0;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid var(--line)}
+.float{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:26px;box-shadow:0 10px 30px rgba(37,211,102,.5);animation:b 2.4s infinite}
+@keyframes b{50%{transform:scale(1.08)}}
+.rv{opacity:0;transform:translateY(24px);transition:.7s}.rv.in{opacity:1;transform:none}
+@media (max-width:900px){.hero .wrap,.svc,.steps{grid-template-columns:1fr}.nums{grid-template-columns:1fr 1fr}nav{display:none}}
+</style>
+</head>
+<body>
+<div class="demo">Demo landing page built by <a href="../../">Marcus Oliveira</a>. Lumen Dental is a fictional clinic.</div>
+<header><div class="wrap"><a class="logo" href="#"><i></i>Lumen Dental</a><nav><a href="#services">Treatments</a><a href="#how">How it works</a><a href="#faq">FAQ</a></nav><a class="btn" href="#book">Book a visit</a></div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="pill">New patients: first evaluation free</span>
+    <h1>A brighter smile, <span>without the fear</span> of the dentist.</h1>
+    <p>Modern treatments, digital scans and a team that explains every step. Book online in 30 seconds and get a confirmation on WhatsApp.</p>
+    <a class="btn" href="#book">Book my free evaluation →</a>
+    <div class="rating"><b>★★★★★</b> Sample rating block for the demo</div>
+  </div>
+  <div class="card" id="book">
+    <form id="form">
+      <h3>Book your visit</h3><p>We reply on WhatsApp in a few minutes.</p>
+      <label for="n">Name</label><input id="n" required placeholder="Your full name">
+      <label for="p">WhatsApp</label><input id="p" required placeholder="+1 555 000 0000">
+      <label for="t">Treatment</label><select id="t"><option>Evaluation</option><option>Cleaning</option><option>Whitening</option><option>Aligners</option><option>Implants</option></select>
+      <button class="btn" type="submit">Confirm booking</button>
+    </form>
+    <div class="sent" id="sent"><div class="c">✓</div><h3>Booking received</h3><p>Demo only: nothing was sent. In a real site this form goes to WhatsApp, email or a CRM.</p></div>
+  </div>
+</div></section>
+
+<section id="services"><div class="wrap">
+  <h2 class="rv">Treatments</h2><p class="lead rv">Everything in one place, with clear prices before we start.</p>
+  <div class="svc">
+    <div class="s rv"><div class="ic">✦</div><h3>Whitening</h3><p>In-office and at-home options, results in one session.</p></div>
+    <div class="s rv"><div class="ic">◐</div><h3>Clear aligners</h3><p>Digital scan and a 3D plan of your new smile.</p></div>
+    <div class="s rv"><div class="ic">⬡</div><h3>Implants</h3><p>Guided surgery with fast, comfortable recovery.</p></div>
+    <div class="s rv"><div class="ic">❂</div><h3>Cleaning</h3><p>Prevention and check-ups for the whole family.</p></div>
+    <div class="s rv"><div class="ic">◇</div><h3>Veneers</h3><p>Natural-looking porcelain and resin veneers.</p></div>
+    <div class="s rv"><div class="ic">✚</div><h3>Emergency care</h3><p>Same-day appointments for pain and accidents.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><div class="nums rv">
+  <div><b data-to="12">0</b><span>years of care</span></div><div><b data-to="9">0</b><span>specialists</span></div><div><b data-to="30">0</b><span>seconds to book</span></div><div><b data-to="7">0</b><span>days a week</span></div>
+</div></div></section>
+
+<section id="how" style="background:#fafcff"><div class="wrap">
+  <h2 class="rv">How it works</h2><p class="lead rv">Three simple steps.</p>
+  <div class="steps">
+    <div class="st rv"><h3>Book online</h3><p>Pick a time that works for you, from your phone.</p></div>
+    <div class="st rv"><h3>Free evaluation</h3><p>Digital scan and a clear plan with prices.</p></div>
+    <div class="st rv"><h3>Treatment</h3><p>Comfortable sessions and follow-up on WhatsApp.</p></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2 class="rv">Questions</h2><p class="lead rv">Answers before you even need to ask.</p>
+  <div class="faq">
+    <details class="rv"><summary>Is the first evaluation really free?</summary><p>Yes, for new patients. You leave with a full plan and prices.</p></details>
+    <details class="rv"><summary>Do you accept insurance?</summary><p>We work with the main plans and offer payment in installments.</p></details>
+    <details class="rv"><summary>Can I reschedule online?</summary><p>Yes, by the link in your confirmation message.</p></details>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><div class="cta rv"><h2>Ready to smile again?</h2><p>Book your free evaluation today.</p><a class="btn" href="#book">Book now</a></div></div></section>
+
+<footer>© Lumen Dental (fictional) · Landing page demo by <a href="../../" style="text-decoration:underline">Marcus Oliveira</a></footer>
+<a class="float" href="#book" aria-label="WhatsApp">✆</a>
+
+<script>
+document.getElementById('form').onsubmit=e=>{e.preventDefault();e.target.style.display='none';document.getElementById('sent').style.display='block'};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);
+  e.target.querySelectorAll('[data-to]').forEach(b=>{let v=0;const to=+b.dataset.to,t=setInterval(()=>{b.textContent=++v;if(v>=to)clearInterval(t)},40)})}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
