@@ -25,9 +25,7 @@ a{color:inherit;text-decoration:none}
 button{font:inherit}
 h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.1;letter-spacing:-.02em}
 .wrap{max-width:1140px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
-.pt{display:none}
-body.lang-pt .en{display:none}
-body.lang-pt .pt{display:revert}
+body:not(.lang-pt) .pt,body:not(.lang-es) .es,body.lang-pt .en,body.lang-es .en{display:none!important}
 ::selection{background:var(--cyan);color:#000}
 
 /* boot */
@@ -66,7 +64,11 @@ nav.solid{background:rgba(5,6,15,.82);backdrop-filter:blur(12px);height:62px;bor
 .navr{display:flex;gap:22px;align-items:center}
 .lang{display:flex;align-items:center;gap:6px;font:500 12px var(--mono);color:var(--muted)}
 .lang button{background:none;border:0;color:var(--muted);padding:4px 2px;cursor:pointer;font:inherit;border-bottom:1px solid transparent}
-.lang button.on{color:var(--cyan);border-bottom-color:var(--cyan)}
+.lang button{display:inline-flex;align-items:center;gap:6px;opacity:.55;transition:opacity .2s}
+.lang button:hover{opacity:.9}
+.lang button.on{color:var(--cyan);border-bottom-color:var(--cyan);opacity:1}
+.lang svg{width:20px;height:14px;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.15)}
+@media (max-width:600px){.lang button{font-size:0;gap:0}.lang{gap:8px}}
 .hire{font:500 13px var(--mono);padding:10px 18px;border-radius:6px;border:1px solid var(--cyan);color:var(--cyan);transition:background .25s,color .25s}
 .hire:hover{background:rgba(0,240,255,.1)}
 .burger{display:none;background:none;border:0;width:34px;height:34px;cursor:pointer;position:relative}
@@ -359,39 +361,41 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
 <nav>
   <a class="logo" href="#top" aria-label="Marcus Oliveira"><span class="br">&lt;</span><span class="nm">marcus.oliveira</span><span class="br">/&gt;</span></a>
   <div class="links" id="links">
-    <a href="#services"><span class="en">Services</span><span class="pt">Serviços</span></a>
-    <a href="#demos"><span class="en">Demos</span><span class="pt">Demos</span></a>
-    <a href="#work"><span class="en">Work</span><span class="pt">Projetos</span></a>
-    <a href="#industries"><span class="en">Industries</span><span class="pt">Setores</span></a>
-    <a href="#about"><span class="en">About</span><span class="pt">Sobre</span></a>
-    <a href="#pricing"><span class="en">Pricing</span><span class="pt">Preços</span></a>
+    <a href="#services"><span class="en">Services</span><span class="pt">Serviços</span><span class="es">Servicios</span></a>
+    <a href="#demos"><span class="en">Demos</span><span class="pt">Demos</span><span class="es">Demos</span></a>
+    <a href="#work"><span class="en">Work</span><span class="pt">Projetos</span><span class="es">Proyectos</span></a>
+    <a href="#industries"><span class="en">Industries</span><span class="pt">Setores</span><span class="es">Sectores</span></a>
+    <a href="#about"><span class="en">About</span><span class="pt">Sobre</span><span class="es">Sobre mí</span></a>
+    <a href="#pricing"><span class="en">Pricing</span><span class="pt">Preços</span><span class="es">Precios</span></a>
   </div>
   <div class="navr">
     <div class="lang" role="group" aria-label="Language">
-      <button id="btn-en" class="on" onclick="setLang('en')">EN</button><span>/</span><button id="btn-pt" onclick="setLang('pt')">PT</button>
+      <button id="btn-en" class="on" onclick="setLang('en')" title="English" aria-label="English"><svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#b22234"/><g fill="#fff"><rect y="1.54" width="30" height="1.54"/><rect y="4.62" width="30" height="1.54"/><rect y="7.69" width="30" height="1.54"/><rect y="10.77" width="30" height="1.54"/><rect y="13.85" width="30" height="1.54"/><rect y="16.92" width="30" height="1.54"/></g><rect width="12" height="10.77" fill="#3c3b6e"/></svg>EN</button>
+      <button id="btn-pt" onclick="setLang('pt')" title="Português" aria-label="Português"><svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#009c3b"/><path d="M15 2.5 27 10 15 17.5 3 10z" fill="#ffdf00"/><circle cx="15" cy="10" r="4.4" fill="#002776"/></svg>PT</button>
+      <button id="btn-es" onclick="setLang('es')" title="Español" aria-label="Español"><svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#aa151b"/><rect y="5" width="30" height="10" fill="#f1bf00"/></svg>ES</button>
     </div>
-    <a class="hire" href="#contact"><span class="en">Let's talk</span><span class="pt">Vamos conversar</span></a>
+    <a class="hire" href="#contact"><span class="en">Let's talk</span><span class="pt">Vamos conversar</span><span class="es">Hablemos</span></a>
     <button class="burger" id="burger" aria-label="Menu"><i></i></button>
   </div>
 </nav>
 
 <header id="top">
   <div class="wrap hero">
-    <div class="status"><i></i><span class="en">Available for new projects</span><span class="pt">Disponível para novos projetos</span></div>
+    <div class="status"><i></i><span class="en">Available for new projects</span><span class="pt">Disponível para novos projetos</span><span class="es">Disponible para nuevos proyectos</span></div>
     <h1 class="en">I build, fix and ship software. <span class="grad">With AI inside.</span></h1>
-    <h1 class="pt">Eu crio, corrijo e entrego software. <span class="grad">Com IA dentro.</span></h1>
+    <h1 class="pt">Eu crio, corrijo e entrego software. <span class="grad">Com IA dentro.</span></h1><h1 class="es">Creo, corrijo y entrego software. <span class="grad">Con IA dentro.</span></h1>
     <div class="typed" id="typed"></div>
     <p class="lead en">Full-stack developer and Tech Lead with about 10 years in software. C# .NET, React, Angular and Python, plus LLMs, RAG and AI agents running in production for healthcare, tax and finance companies.</p>
-    <p class="lead pt">Desenvolvedor full-stack e Tech Lead, com cerca de 10 anos em software. C# .NET, React, Angular e Python, além de LLMs, RAG e agentes de IA rodando em produção para empresas de saúde, fiscal e finanças.</p>
+    <p class="lead pt">Desenvolvedor full-stack e Tech Lead, com cerca de 10 anos em software. C# .NET, React, Angular e Python, além de LLMs, RAG e agentes de IA rodando em produção para empresas de saúde, fiscal e finanças.</p><p class="lead es">Desarrollador full-stack y Tech Lead, con cerca de 10 años en software. C# .NET, React, Angular y Python, además de LLMs, RAG y agentes de IA en producción para empresas de salud, fiscal y finanzas.</p>
     <div class="ctas">
-      <a class="btn primary mag" href="#contact"><span class="en">Start a project</span><span class="pt">Começar um projeto</span> →</a>
-      <a class="btn mag" href="#demos">▶ <span class="en">Watch live demos</span><span class="pt">Ver demos ao vivo</span></a>
+      <a class="btn primary mag" href="#contact"><span class="en">Start a project</span><span class="pt">Começar um projeto</span><span class="es">Empezar un proyecto</span> →</a>
+      <a class="btn mag" href="#demos">▶ <span class="en">Watch live demos</span><span class="pt">Ver demos ao vivo</span><span class="es">Ver demos en vivo</span></a>
     </div>
     <div class="stats">
-      <div class="stat"><b><span class="count" data-to="10">0</span>+</b><span class="en">years in software</span><span class="pt">anos em software</span></div>
-      <div class="stat"><b><span class="count" data-to="7">0</span></b><span class="en">companies and teams</span><span class="pt">empresas e times</span></div>
-      <div class="stat"><b><span class="count" data-to="8">0</span></b><span class="en">industries delivered for</span><span class="pt">setores onde já entreguei</span></div>
-      <div class="stat"><b>24h</b><span class="en">reply time on business days</span><span class="pt">para responder em dias úteis</span></div>
+      <div class="stat"><b><span class="count" data-to="10">0</span>+</b><span class="en">years in software</span><span class="pt">anos em software</span><span class="es">años en software</span></div>
+      <div class="stat"><b><span class="count" data-to="7">0</span></b><span class="en">companies and teams</span><span class="pt">empresas e times</span><span class="es">empresas y equipos</span></div>
+      <div class="stat"><b><span class="count" data-to="8">0</span></b><span class="en">industries delivered for</span><span class="pt">setores onde já entreguei</span><span class="es">sectores donde ya entregué</span></div>
+      <div class="stat"><b>24h</b><span class="en">reply time on business days</span><span class="pt">para responder em dias úteis</span><span class="es">para responder en días hábiles</span></div>
     </div>
   </div>
   <div class="hero-side" aria-hidden="true">
@@ -408,46 +412,46 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
 
 <section id="services">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="en">Services</span><span class="pt">Serviços</span></div>
+    <div class="eyebrow reveal"><span class="en">Services</span><span class="pt">Serviços</span><span class="es">Servicios</span></div>
     <h2 class="reveal en">One developer. The whole stack.</h2>
-    <h2 class="reveal pt">Um desenvolvedor. A stack inteira.</h2>
+    <h2 class="reveal pt">Um desenvolvedor. A stack inteira.</h2><h2 class="reveal es">Un desarrollador. Todo el stack.</h2>
     <p class="sub reveal en">From a single bug to a full product. Clear scope before starting, small milestones you can test, and documentation in every delivery.</p>
-    <p class="sub reveal pt">De um bug isolado a um produto completo. Escopo claro antes de começar, entregas pequenas que você testa e documentação em toda entrega.</p>
+    <p class="sub reveal pt">De um bug isolado a um produto completo. Escopo claro antes de começar, entregas pequenas que você testa e documentação em toda entrega.</p><p class="sub reveal es">De un bug aislado a un producto completo. Alcance claro antes de empezar, entregas pequeñas que puedes probar y documentación en cada entrega.</p>
     <div class="grid g3">
-      <div class="card tilt reveal d1"><div class="ico">✦</div><h3 class="en">AI & automation</h3><h3 class="pt">IA e automação</h3>
+      <div class="card tilt reveal d1"><div class="ico">✦</div><h3 class="en">AI & automation</h3><h3 class="pt">IA e automação</h3><h3 class="es">IA y automatización</h3>
         <p class="en">Chatbots trained on your data, PDF and invoice reading, classification and summaries, AI agents, OpenAI and Claude integrations, Python and n8n automations.</p>
-        <p class="pt">Chatbot com os dados da sua empresa, leitura de PDF e notas, classificação e resumo, agentes de IA, integração com OpenAI e Claude, automações em Python e n8n.</p></div>
-      <div class="card tilt reveal d2"><div class="ico">⌘</div><h3 class="en">Back-end & APIs</h3><h3 class="pt">Back-end e APIs</h3>
+        <p class="pt">Chatbot com os dados da sua empresa, leitura de PDF e notas, classificação e resumo, agentes de IA, integração com OpenAI e Claude, automações em Python e n8n.</p><p class="es">Chatbots entrenados con tus datos, lectura de PDF y facturas, clasificación y resúmenes, agentes de IA, integraciones con OpenAI y Claude, automatizaciones en Python y n8n.</p></div>
+      <div class="card tilt reveal d2"><div class="ico">⌘</div><h3 class="en">Back-end & APIs</h3><h3 class="pt">Back-end e APIs</h3><h3 class="es">Back-end y APIs</h3>
         <p class="en">C# .NET, ASP.NET Core and Python. REST APIs and integrations with ERPs, payment providers, government services and any third-party API.</p>
-        <p class="pt">C# .NET, ASP.NET Core e Python. APIs REST e integrações com ERP, meios de pagamento, serviços do governo e qualquer API de terceiros.</p></div>
-      <div class="card tilt reveal d3"><div class="ico">◧</div><h3 class="en">Front-end</h3><h3 class="pt">Front-end</h3>
+        <p class="pt">C# .NET, ASP.NET Core e Python. APIs REST e integrações com ERP, meios de pagamento, serviços do governo e qualquer API de terceiros.</p><p class="es">C# .NET, ASP.NET Core y Python. APIs REST e integraciones con ERP, pasarelas de pago, servicios de gobierno y cualquier API de terceros.</p></div>
+      <div class="card tilt reveal d3"><div class="ico">◧</div><h3 class="en">Front-end</h3><h3 class="pt">Front-end</h3><h3 class="es">Front-end</h3>
         <p class="en">React, Angular and TypeScript. Dashboards, admin panels, web apps and landing pages, responsive, fast and clean.</p>
-        <p class="pt">React, Angular e TypeScript. Painéis, sistemas administrativos, aplicações web e landing pages, responsivos, rápidos e limpos.</p></div>
-      <div class="card tilt reveal d1"><div class="ico">⛁</div><h3 class="en">Data & cloud</h3><h3 class="pt">Dados e nuvem</h3>
+        <p class="pt">React, Angular e TypeScript. Painéis, sistemas administrativos, aplicações web e landing pages, responsivos, rápidos e limpos.</p><p class="es">React, Angular y TypeScript. Paneles, sistemas administrativos, aplicaciones web y landing pages, responsivos, rápidos y limpios.</p></div>
+      <div class="card tilt reveal d1"><div class="ico">⛁</div><h3 class="en">Data & cloud</h3><h3 class="pt">Dados e nuvem</h3><h3 class="es">Datos y nube</h3>
         <p class="en">SQL Server, PostgreSQL (pgvector), MongoDB, Redis, Azure, Docker, messaging and CI/CD pipelines.</p>
-        <p class="pt">SQL Server, PostgreSQL (pgvector), MongoDB, Redis, Azure, Docker, mensageria e pipelines de CI/CD.</p></div>
-      <div class="card tilt reveal d2"><div class="ico">⚑</div><h3 class="en">Rescue & upgrades</h3><h3 class="pt">Resgate e evolução</h3>
+        <p class="pt">SQL Server, PostgreSQL (pgvector), MongoDB, Redis, Azure, Docker, mensageria e pipelines de CI/CD.</p><p class="es">SQL Server, PostgreSQL (pgvector), MongoDB, Redis, Azure, Docker, mensajería y pipelines de CI/CD.</p></div>
+      <div class="card tilt reveal d2"><div class="ico">⚑</div><h3 class="en">Rescue & upgrades</h3><h3 class="pt">Resgate e evolução</h3><h3 class="es">Rescate y evolución</h3>
         <p class="en">Production bugs, slow systems, projects left by another developer and upgrades to modern .NET and Angular.</p>
-        <p class="pt">Bugs em produção, sistemas lentos, projetos largados por outro dev e migração para .NET e Angular atuais.</p></div>
-      <div class="card tilt reveal d3"><div class="ico">▤</div><h3 class="en">Technical documentation</h3><h3 class="pt">Documentação técnica</h3>
+        <p class="pt">Bugs em produção, sistemas lentos, projetos largados por outro dev e migração para .NET e Angular atuais.</p><p class="es">Bugs en producción, sistemas lentos, proyectos abandonados por otro desarrollador y migración a .NET y Angular actuales.</p></div>
+      <div class="card tilt reveal d3"><div class="ico">▤</div><h3 class="en">Technical documentation</h3><h3 class="pt">Documentação técnica</h3><h3 class="es">Documentación técnica</h3>
         <p class="en">Architecture, API docs, README, functional specs and project handover, so your team can keep going without me.</p>
-        <p class="pt">Arquitetura, documentação de API, README, especificação funcional e passagem de projeto, para o seu time seguir sem depender de mim.</p></div>
+        <p class="pt">Arquitetura, documentação de API, README, especificação funcional e passagem de projeto, para o seu time seguir sem depender de mim.</p><p class="es">Arquitectura, documentación de API, README, especificación funcional y traspaso del proyecto, para que tu equipo siga sin depender de mí.</p></div>
     </div>
   </div>
 </section>
 
 <section id="demos">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="en">Live demos</span><span class="pt">Demos ao vivo</span></div>
+    <div class="eyebrow reveal"><span class="en">Live demos</span><span class="pt">Demos ao vivo</span><span class="es">Demos en vivo</span></div>
     <h2 class="reveal en">See it running, not just described.</h2>
-    <h2 class="reveal pt">Veja rodando, não só descrito.</h2>
+    <h2 class="reveal pt">Veja rodando, não só descrito.</h2><h2 class="reveal es">Míralo funcionando, no solo descrito.</h2>
     <p class="sub reveal en">Recreated walkthroughs of systems I have built. Press play, pause or switch between them.</p>
-    <p class="sub reveal pt">Reconstituições de sistemas que eu construí. Dê play, pause ou troque entre eles.</p>
+    <p class="sub reveal pt">Reconstituições de sistemas que eu construí. Dê play, pause ou troque entre eles.</p><p class="sub reveal es">Recreaciones de sistemas que construí. Dale play, pausa o cambia entre ellos.</p>
     <div class="demo-tabs reveal" id="tabs">
-      <button class="on" data-d="0"><span class="en">AI tax agent</span><span class="pt">Agente fiscal IA</span></button>
-      <button data-d="1"><span class="en">RAG chatbot</span><span class="pt">Chatbot RAG</span></button>
-      <button data-d="2"><span class="en">Spec generator</span><span class="pt">Gerador de specs</span></button>
-      <button data-d="3"><span class="en">Cash-flow agent</span><span class="pt">Agente financeiro</span></button>
+      <button class="on" data-d="0"><span class="en">AI tax agent</span><span class="pt">Agente fiscal IA</span><span class="es">Agente fiscal IA</span></button>
+      <button data-d="1"><span class="en">RAG chatbot</span><span class="pt">Chatbot RAG</span><span class="es">Chatbot RAG</span></button>
+      <button data-d="2"><span class="en">Spec generator</span><span class="pt">Gerador de specs</span><span class="es">Generador de specs</span></button>
+      <button data-d="3"><span class="en">Cash-flow agent</span><span class="pt">Agente financeiro</span><span class="es">Agente financiero</span></button>
     </div>
     <div class="screen reveal">
       <div class="top"><i></i><i></i><i></i><div class="url" id="durl">agent.api/v1/analysis</div><div class="live">LIVE</div></div>
@@ -461,11 +465,11 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
 
 <section>
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="en">Architecture</span><span class="pt">Arquitetura</span></div>
+    <div class="eyebrow reveal"><span class="en">Architecture</span><span class="pt">Arquitetura</span><span class="es">Arquitectura</span></div>
     <h2 class="reveal en">Built to be reliable, not just to demo.</h2>
-    <h2 class="reveal pt">Feito para ser confiável, não só para demo.</h2>
+    <h2 class="reveal pt">Feito para ser confiável, não só para demo.</h2><h2 class="reveal es">Hecho para ser confiable, no solo para demo.</h2>
     <p class="sub reveal en">How the AI tax agent is wired: each service owns its data, every call is traceable and nothing reaches the model without validation.</p>
-    <p class="sub reveal pt">Como o agente fiscal com IA é montado: cada serviço é dono dos seus dados, toda chamada é rastreável e nada chega ao modelo sem validação.</p>
+    <p class="sub reveal pt">Como o agente fiscal com IA é montado: cada serviço é dono dos seus dados, toda chamada é rastreável e nada chega ao modelo sem validação.</p><p class="sub reveal es">Cómo está armado el agente fiscal con IA: cada servicio es dueño de sus datos, cada llamada es rastreable y nada llega al modelo sin validación.</p>
     <div class="arch reveal">
       <svg viewBox="0 0 1000 300" role="img" aria-label="Architecture diagram">
         <defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#00f0ff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
@@ -487,62 +491,62 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
 
 <section id="work">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="en">Selected work</span><span class="pt">Projetos em destaque</span></div>
+    <div class="eyebrow reveal"><span class="en">Selected work</span><span class="pt">Projetos em destaque</span><span class="es">Proyectos destacados</span></div>
     <h2 class="reveal en">Real systems. Real code.</h2>
-    <h2 class="reveal pt">Sistemas reais. Código real.</h2>
+    <h2 class="reveal pt">Sistemas reais. Código real.</h2><h2 class="reveal es">Sistemas reales. Código real.</h2>
     <p class="sub reveal en">Client projects are described without confidential details. Open-source ones link straight to the code.</p>
-    <p class="sub reveal pt">Projetos de clientes aparecem sem detalhes confidenciais. Os de código aberto têm link direto para o código.</p>
+    <p class="sub reveal pt">Projetos de clientes aparecem sem detalhes confidenciais. Os de código aberto têm link direto para o código.</p><p class="sub reveal es">Los proyectos de clientes aparecen sin detalles confidenciales. Los de código abierto enlazan directo al código.</p>
     <div class="proj">
       <div class="pcard tilt reveal d1"><div class="in">
         <div class="k">AI AGENT · RAG · MCP · A2A</div>
-        <h3 class="en">AI tax classification agent</h3><h3 class="pt">Agente de IA para classificação fiscal</h3>
+        <h3 class="en">AI tax classification agent</h3><h3 class="pt">Agente de IA para classificação fiscal</h3><h3 class="es">Agente de IA para clasificación fiscal</h3>
         <p class="en">Suggests and audits the tax classification of products (Brazilian NCM and tax treatment) from invoices, spreadsheets and technical documents, with a traceable source for every answer.</p>
-        <p class="pt">Sugere e audita a classificação fiscal de produtos (NCM e tratamento tributário) a partir de notas, planilhas e documentos técnicos, com fonte rastreável em cada resposta.</p>
+        <p class="pt">Sugere e audita a classificação fiscal de produtos (NCM e tratamento tributário) a partir de notas, planilhas e documentos técnicos, com fonte rastreável em cada resposta.</p><p class="es">Sugiere y audita la clasificación fiscal de productos (NCM brasileño y tratamiento tributario) a partir de facturas, planillas y documentos técnicos, con una fuente rastreable en cada respuesta.</p>
         <div class="csr">
-          <div class="c"><b class="en">Challenge</b><b class="pt">Desafio</b><span class="en">Classifying products by hand is slow, error-prone and a wrong code means tax risk.</span><span class="pt">Classificar produtos à mão é lento, sujeito a erro, e um código errado vira risco fiscal.</span></div>
-          <div class="s"><b class="en">Solution</b><b class="pt">Solução</b><span class="en">Agent API + RAG API (PostgreSQL + pgvector behind an MCP tool), exposed to other agents through A2A.</span><span class="pt">API do agente + API de RAG (PostgreSQL + pgvector atrás de uma ferramenta MCP), exposta a outros agentes via A2A.</span></div>
-          <div class="r"><b class="en">Result</b><b class="pt">Resultado</b><span class="en">Structured answers with the legal source of every suggestion, and invoices flagged when the declared code does not hold.</span><span class="pt">Respostas estruturadas com a fonte legal de cada sugestão, e notas sinalizadas quando o código declarado não se sustenta.</span></div>
+          <div class="c"><b class="en">Challenge</b><b class="pt">Desafio</b><b class="es">Desafío</b><span class="en">Classifying products by hand is slow, error-prone and a wrong code means tax risk.</span><span class="pt">Classificar produtos à mão é lento, sujeito a erro, e um código errado vira risco fiscal.</span><span class="es">Clasificar productos a mano es lento, propenso a errores, y un código equivocado se convierte en riesgo fiscal.</span></div>
+          <div class="s"><b class="en">Solution</b><b class="pt">Solução</b><b class="es">Solución</b><span class="en">Agent API + RAG API (PostgreSQL + pgvector behind an MCP tool), exposed to other agents through A2A.</span><span class="pt">API do agente + API de RAG (PostgreSQL + pgvector atrás de uma ferramenta MCP), exposta a outros agentes via A2A.</span><span class="es">API del agente + API de RAG (PostgreSQL + pgvector detrás de una herramienta MCP), expuesta a otros agentes vía A2A.</span></div>
+          <div class="r"><b class="en">Result</b><b class="pt">Resultado</b><b class="es">Resultado</b><span class="en">Structured answers with the legal source of every suggestion, and invoices flagged when the declared code does not hold.</span><span class="pt">Respostas estruturadas com a fonte legal de cada sugestão, e notas sinalizadas quando o código declarado não se sustenta.</span><span class="es">Respuestas estructuradas con la fuente legal de cada sugerencia, y facturas señaladas cuando el código declarado no se sostiene.</span></div>
         </div>
         <div class="chips"><span class="chip">.NET</span><span class="chip">Semantic Kernel</span><span class="chip">OpenAI</span><span class="chip">pgvector</span><span class="chip">MCP</span><span class="chip">A2A</span></div>
-        <a class="more" href="https://github.com/marcusolive/agente-classificacao-fiscal-produtos" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span> →</a>
+        <a class="more" href="https://github.com/marcusolive/agente-classificacao-fiscal-produtos" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span><span class="es">Ver código</span> →</a>
       </div></div>
       <div class="pcard tilt reveal d2"><div class="in">
         <div class="k">AI AGENT · .NET 10 · A2A</div>
-        <h3 class="en">Cash-flow AI agent</h3><h3 class="pt">Agente de IA de fluxo de caixa</h3>
+        <h3 class="en">Cash-flow AI agent</h3><h3 class="pt">Agente de IA de fluxo de caixa</h3><h3 class="es">Agente de IA de flujo de caja</h3>
         <p class="en">A financial agent that answers cash-flow questions and talks to an orchestrator through A2A. Spec-first, with automated tests that run without an API key and secrets kept out of the repository.</p>
-        <p class="pt">Agente financeiro que responde perguntas de fluxo de caixa e conversa com um orquestrador via A2A. Feito a partir de especificação, com testes automatizados que rodam sem chave de API e segredos fora do repositório.</p>
+        <p class="pt">Agente financeiro que responde perguntas de fluxo de caixa e conversa com um orquestrador via A2A. Feito a partir de especificação, com testes automatizados que rodam sem chave de API e segredos fora do repositório.</p><p class="es">Un agente financiero que responde preguntas de flujo de caja y se comunica con un orquestador vía A2A. Hecho a partir de especificación, con pruebas automatizadas que corren sin clave de API y secretos fuera del repositorio.</p>
         <div class="csr">
-          <div class="c"><b class="en">Challenge</b><b class="pt">Desafio</b><span class="en">Finance teams lose hours answering the same cash-flow questions from spreadsheets.</span><span class="pt">Times financeiros perdem horas respondendo as mesmas perguntas de fluxo de caixa a partir de planilhas.</span></div>
-          <div class="r"><b class="en">Result</b><b class="pt">Resultado</b><span class="en">An agent any orchestrator can call, with tests that prove the numbers before the AI ever talks.</span><span class="pt">Um agente que qualquer orquestrador consegue chamar, com testes que validam os números antes de a IA falar.</span></div>
+          <div class="c"><b class="en">Challenge</b><b class="pt">Desafio</b><b class="es">Desafío</b><span class="en">Finance teams lose hours answering the same cash-flow questions from spreadsheets.</span><span class="pt">Times financeiros perdem horas respondendo as mesmas perguntas de fluxo de caixa a partir de planilhas.</span><span class="es">Los equipos de finanzas pierden horas respondiendo las mismas preguntas de flujo de caja desde planillas.</span></div>
+          <div class="r"><b class="en">Result</b><b class="pt">Resultado</b><b class="es">Resultado</b><span class="en">An agent any orchestrator can call, with tests that prove the numbers before the AI ever talks.</span><span class="pt">Um agente que qualquer orquestrador consegue chamar, com testes que validam os números antes de a IA falar.</span><span class="es">Un agente que cualquier orquestador puede llamar, con pruebas que validan los números antes de que la IA hable.</span></div>
         </div>
         <div class="chips"><span class="chip">.NET 10</span><span class="chip">C#</span><span class="chip">OpenAI</span><span class="chip">A2A</span><span class="chip">xUnit</span></div>
-        <a class="more" href="https://github.com/marcusolive/AgenteFinanceira" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span> →</a>
+        <a class="more" href="https://github.com/marcusolive/AgenteFinanceira" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span><span class="es">Ver código</span> →</a>
       </div></div>
       <div class="pcard tilt reveal d1"><div class="in">
         <div class="k">REACT · TYPESCRIPT · PRODUCT</div>
         <h3>SPECMP</h3>
         <p class="en">Turns vague tasks, bugs and features into clear technical specs (context, acceptance criteria, risks and tests), with 30+ templates and export to Jira, Azure DevOps, GitHub Issues, Notion and more.</p>
-        <p class="pt">Transforma tarefas, bugs e features vagos em especificações técnicas claras (contexto, critérios de aceite, riscos e testes), com mais de 30 modelos e exportação para Jira, Azure DevOps, GitHub Issues, Notion e outros.</p>
+        <p class="pt">Transforma tarefas, bugs e features vagos em especificações técnicas claras (contexto, critérios de aceite, riscos e testes), com mais de 30 modelos e exportação para Jira, Azure DevOps, GitHub Issues, Notion e outros.</p><p class="es">Convierte tareas, bugs y features vagos en especificaciones técnicas claras (contexto, criterios de aceptación, riesgos y pruebas), con más de 30 plantillas y exportación a Jira, Azure DevOps, GitHub Issues, Notion y más.</p>
         <div class="csr">
-          <div class="c"><b class="en">Challenge</b><b class="pt">Desafio</b><span class="en">Vague tickets cause rework: developers build the wrong thing and QA has nothing to test against.</span><span class="pt">Tickets vagos geram retrabalho: o dev constrói a coisa errada e o QA não tem contra o que testar.</span></div>
-          <div class="r"><b class="en">Result</b><b class="pt">Resultado</b><span class="en">A standard spec in seconds, ready to paste into the team's board.</span><span class="pt">Uma especificação padronizada em segundos, pronta para colar no quadro do time.</span></div>
+          <div class="c"><b class="en">Challenge</b><b class="pt">Desafio</b><b class="es">Desafío</b><span class="en">Vague tickets cause rework: developers build the wrong thing and QA has nothing to test against.</span><span class="pt">Tickets vagos geram retrabalho: o dev constrói a coisa errada e o QA não tem contra o que testar.</span><span class="es">Los tickets vagos generan retrabajo: el desarrollador construye lo equivocado y QA no tiene contra qué probar.</span></div>
+          <div class="r"><b class="en">Result</b><b class="pt">Resultado</b><b class="es">Resultado</b><span class="en">A standard spec in seconds, ready to paste into the team's board.</span><span class="pt">Uma especificação padronizada em segundos, pronta para colar no quadro do time.</span><span class="es">Una especificación estandarizada en segundos, lista para pegar en el tablero del equipo.</span></div>
         </div>
         <div class="chips"><span class="chip">React 18</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span><span class="chip">Framer Motion</span></div>
-        <a class="more" href="https://github.com/marcusolive/specmp" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span> →</a>
+        <a class="more" href="https://github.com/marcusolive/specmp" target="_blank" rel="noopener"><span class="en">View code</span><span class="pt">Ver código</span><span class="es">Ver código</span> →</a>
       </div></div>
       <div class="pcard tilt reveal d2"><div class="in">
         <div class="k">OWN PRODUCT · SECURITY · LGPD</div>
-        <h3 class="en">IRIS Software</h3><h3 class="pt">ÍRIS Software</h3>
+        <h3 class="en">IRIS Software</h3><h3 class="pt">ÍRIS Software</h3><h3 class="es">IRIS Software</h3>
         <p class="en">Static analysis for the software companies build in-house: spreadsheet macros, scripts, automations and AI-generated code. It flags security and data-privacy risks without running anything.</p>
-        <p class="pt">Análise estática do software criado dentro das empresas: planilhas com macro, scripts, automações e código gerado por IA. Aponta riscos de segurança e LGPD sem executar nada.</p>
+        <p class="pt">Análise estática do software criado dentro das empresas: planilhas com macro, scripts, automações e código gerado por IA. Aponta riscos de segurança e LGPD sem executar nada.</p><p class="es">Análisis estático del software que las empresas crean internamente: planillas con macros, scripts, automatizaciones y código generado por IA. Señala riesgos de seguridad y privacidad de datos sin ejecutar nada.</p>
         <div class="chips"><span class="chip">Static analysis</span><span class="chip">Security</span><span class="chip">LGPD</span></div>
-        <a class="more" href="https://irissoftware.com.br/" target="_blank" rel="noopener"><span class="en">Visit website</span><span class="pt">Visitar site</span> →</a>
+        <a class="more" href="https://irissoftware.com.br/" target="_blank" rel="noopener"><span class="en">Visit website</span><span class="pt">Visitar site</span><span class="es">Visitar sitio</span> →</a>
       </div></div>
       <div class="pcard tilt reveal wide"><div class="in">
         <div class="k">CLIENT PROJECT · FISCAL INTEGRATION</div>
-        <h3 class="en">Electronic invoice capture API</h3><h3 class="pt">API de captura de notas fiscais</h3>
+        <h3 class="en">Electronic invoice capture API</h3><h3 class="pt">API de captura de notas fiscais</h3><h3 class="es">API de captura de facturas electrónicas</h3>
         <p class="en">A service that captures NF-e and NFS-e from Brazilian government web services with A1 digital certificates, keeps them in sync and delivers them to an ERP through OAuth2 client credentials, with queues for resilience.</p>
-        <p class="pt">Serviço que captura NF-e e NFS-e dos webservices do governo com certificado A1, mantém tudo sincronizado e entrega ao ERP via OAuth2 client credentials, com filas para resiliência.</p>
+        <p class="pt">Serviço que captura NF-e e NFS-e dos webservices do governo com certificado A1, mantém tudo sincronizado e entrega ao ERP via OAuth2 client credentials, com filas para resiliência.</p><p class="es">Un servicio que captura NF-e y NFS-e de los servicios web del gobierno brasileño con certificado digital A1, las mantiene sincronizadas y las entrega al ERP vía OAuth2 client credentials, con colas para resiliencia.</p>
         <div class="chips"><span class="chip">.NET</span><span class="chip">SEFAZ</span><span class="chip">NFS-e</span><span class="chip">Azure Service Bus</span><span class="chip">OAuth2</span></div>
       </div></div>
     </div>
@@ -551,33 +555,33 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
 
 <section id="industries">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="en">Industries</span><span class="pt">Setores</span></div>
+    <div class="eyebrow reveal"><span class="en">Industries</span><span class="pt">Setores</span><span class="es">Sectores</span></div>
     <h2 class="reveal en">Software for the sectors that run the world.</h2>
-    <h2 class="reveal pt">Software para os setores que movem o mundo.</h2>
+    <h2 class="reveal pt">Software para os setores que movem o mundo.</h2><h2 class="reveal es">Software para los sectores que mueven el mundo.</h2>
     <p class="sub reveal en">Regulated, high-stakes environments are where I have spent my career. The same standards apply to any industry you are in.</p>
-    <p class="sub reveal pt">Ambientes regulados e de alto risco são onde passei minha carreira. O mesmo padrão vale para qualquer setor em que você esteja.</p>
-    <div class="legend reveal"><span><b>● <span class="en">EXPERIENCE</span><span class="pt">EXPERIÊNCIA</span></b> <span class="en">= sectors I have already delivered for</span><span class="pt">= setores onde já entreguei</span></span></div>
+    <p class="sub reveal pt">Ambientes regulados e de alto risco são onde passei minha carreira. O mesmo padrão vale para qualquer setor em que você esteja.</p><p class="sub reveal es">Los entornos regulados y de alto riesgo son donde pasé mi carrera. El mismo estándar aplica a cualquier sector en el que estés.</p>
+    <div class="legend reveal"><span><b>● <span class="en">EXPERIENCE</span><span class="pt">EXPERIÊNCIA</span><span class="es">EXPERIENCIA</span></b> <span class="en">= sectors I have already delivered for</span><span class="pt">= setores onde já entreguei</span><span class="es">= sectores donde ya entregué</span></span></div>
     <div class="ind" id="ind"></div>
   </div>
 </section>
 
 <section id="about">
   <div class="wrap about">
-    <div class="photo reveal"><img src="https://github.com/marcusolive.png?size=600" alt="Marcus Oliveira" loading="lazy" width="600" height="600"><div class="badge"><span class="en">Open to projects</span><span class="pt">Aberto a projetos</span></div></div>
+    <div class="photo reveal"><img src="https://github.com/marcusolive.png?size=600" alt="Marcus Oliveira" loading="lazy" width="600" height="600"><div class="badge"><span class="en">Open to projects</span><span class="pt">Aberto a projetos</span><span class="es">Abierto a proyectos</span></div></div>
     <div>
-      <div class="eyebrow reveal"><span class="en">About me</span><span class="pt">Sobre mim</span></div>
+      <div class="eyebrow reveal"><span class="en">About me</span><span class="pt">Sobre mim</span><span class="es">Sobre mí</span></div>
       <h2 class="reveal en">Hi, I'm Marcus.</h2>
-      <h2 class="reveal pt">Oi, eu sou o Marcus.</h2>
+      <h2 class="reveal pt">Oi, eu sou o Marcus.</h2><h2 class="reveal es">Hola, soy Marcus.</h2>
       <p class="reveal en">I'm a <strong>Tech Lead and Dev Lead</strong> who still writes code every day. For about 10 years I have built systems where mistakes are expensive: <strong>hospitals, tax compliance and investment banks</strong>.</p>
-      <p class="reveal pt">Sou <strong>Tech Lead e Dev Lead</strong> e continuo programando todo dia. Há cerca de 10 anos construo sistemas onde erro custa caro: <strong>hospitais, compliance fiscal e bancos de investimento</strong>.</p>
+      <p class="reveal pt">Sou <strong>Tech Lead e Dev Lead</strong> e continuo programando todo dia. Há cerca de 10 anos construo sistemas onde erro custa caro: <strong>hospitais, compliance fiscal e bancos de investimento</strong>.</p><p class="reveal es">Soy <strong>Tech Lead y Dev Lead</strong> y sigo programando todos los días. Hace cerca de 10 años construyo sistemas donde un error cuesta caro: <strong>hospitales, cumplimiento fiscal y bancos de inversión</strong>.</p>
       <p class="reveal en">That is why I work the way I do: clear scope, small deliveries, tests and documentation. Lately my focus is putting <strong>AI into real products</strong>, with attention to cost, security and what happens when the model is wrong.</p>
-      <p class="reveal pt">Por isso trabalho do jeito que trabalho: escopo claro, entregas pequenas, testes e documentação. Hoje meu foco é colocar <strong>IA em produtos reais</strong>, com atenção a custo, segurança e ao que acontece quando o modelo erra.</p>
+      <p class="reveal pt">Por isso trabalho do jeito que trabalho: escopo claro, entregas pequenas, testes e documentação. Hoje meu foco é colocar <strong>IA em produtos reais</strong>, com atenção a custo, segurança e ao que acontece quando o modelo erra.</p><p class="reveal es">Por eso trabajo como trabajo: alcance claro, entregas pequeñas, pruebas y documentación. Hoy mi foco es llevar <strong>la IA a productos reales</strong>, cuidando el costo, la seguridad y lo que pasa cuando el modelo se equivoca.</p>
       <p class="reveal en">I also founded <strong>IRIS Software</strong>, so I know the product side too: you need something that works, not just code.</p>
-      <p class="reveal pt">Também fundei o <strong>ÍRIS Software</strong>, então conheço o lado do produto: você precisa de algo que funcione, não só de código.</p>
+      <p class="reveal pt">Também fundei o <strong>ÍRIS Software</strong>, então conheço o lado do produto: você precisa de algo que funcione, não só de código.</p><p class="reveal es">También fundé <strong>IRIS Software</strong>, así que conozco el lado del producto: necesitas algo que funcione, no solo código.</p>
       <div class="facts reveal">
-        <div><small><span class="en">Based in</span><span class="pt">Base</span></small><b>Rio de Janeiro, Brazil</b></div>
-        <div><small><span class="en">Time zone</span><span class="pt">Fuso</span></small><b>UTC−3 · <span class="en">overlaps US & EU</span><span class="pt">encaixa EUA e Europa</span></b></div>
-        <div><small><span class="en">Languages</span><span class="pt">Idiomas</span></small><b>PT · ES · EN <span class="en">(written)</span><span class="pt">(escrito)</span></b></div>
+        <div><small><span class="en">Based in</span><span class="pt">Base</span><span class="es">Base</span></small><b>Rio de Janeiro, Brazil</b></div>
+        <div><small><span class="en">Time zone</span><span class="pt">Fuso</span><span class="es">Zona horaria</span></small><b>UTC−3 · <span class="en">overlaps US & EU</span><span class="pt">encaixa EUA e Europa</span><span class="es">coincide con EE. UU. y Europa</span></b></div>
+        <div><small><span class="en">Languages</span><span class="pt">Idiomas</span><span class="es">Idiomas</span></small><b>PT · ES · EN <span class="en">(written)</span><span class="pt">(escrito)</span><span class="es">(escrito)</span></b></div>
       </div>
     </div>
   </div>
@@ -585,84 +589,84 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
 
 <section id="trust">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="en">Why clients trust me</span><span class="pt">Por que confiam em mim</span></div>
+    <div class="eyebrow reveal"><span class="en">Why clients trust me</span><span class="pt">Por que confiam em mim</span><span class="es">Por qué confían en mí</span></div>
     <h2 class="reveal en">Enterprise standards, freelancer speed.</h2>
-    <h2 class="reveal pt">Padrão de empresa grande, agilidade de freelancer.</h2>
+    <h2 class="reveal pt">Padrão de empresa grande, agilidade de freelancer.</h2><h2 class="reveal es">Estándar de gran empresa, agilidad de freelancer.</h2>
     <div class="trust">
-      <div class="tcard reveal d1"><div class="ico">⌁</div><b class="en">Scope in writing</b><b class="pt">Escopo por escrito</b><p class="en">What is in, what is out, price and deadline, before any line of code.</p><p class="pt">O que entra, o que fica de fora, preço e prazo, antes de qualquer linha de código.</p></div>
-      <div class="tcard reveal d2"><div class="ico">◈</div><b class="en">Pay by milestone</b><b class="pt">Pagamento por etapa</b><p class="en">You only release payment for deliveries you have tested and approved.</p><p class="pt">Você só libera pagamento das entregas que testou e aprovou.</p></div>
-      <div class="tcard reveal d3"><div class="ico">⛨</div><b class="en">Security first</b><b class="pt">Segurança primeiro</b><p class="en">Secrets never in the repo, least-privilege access, LGPD and data-privacy awareness, NDA welcome.</p><p class="pt">Segredos nunca no repositório, acesso mínimo necessário, cuidado com LGPD e NDA quando precisar.</p></div>
-      <div class="tcard reveal d4"><div class="ico">⇲</div><b class="en">The code is yours</b><b class="pt">O código é seu</b><p class="en">Full source, tests and documentation handed over at the end. No lock-in.</p><p class="pt">Código completo, testes e documentação entregues no fim. Sem dependência de mim.</p></div>
+      <div class="tcard reveal d1"><div class="ico">⌁</div><b class="en">Scope in writing</b><b class="pt">Escopo por escrito</b><b class="es">Alcance por escrito</b><p class="en">What is in, what is out, price and deadline, before any line of code.</p><p class="pt">O que entra, o que fica de fora, preço e prazo, antes de qualquer linha de código.</p><p class="es">Qué entra, qué queda fuera, precio y plazo, antes de cualquier línea de código.</p></div>
+      <div class="tcard reveal d2"><div class="ico">◈</div><b class="en">Pay by milestone</b><b class="pt">Pagamento por etapa</b><b class="es">Pago por etapa</b><p class="en">You only release payment for deliveries you have tested and approved.</p><p class="pt">Você só libera pagamento das entregas que testou e aprovou.</p><p class="es">Solo liberas el pago de las entregas que probaste y aprobaste.</p></div>
+      <div class="tcard reveal d3"><div class="ico">⛨</div><b class="en">Security first</b><b class="pt">Segurança primeiro</b><b class="es">Seguridad primero</b><p class="en">Secrets never in the repo, least-privilege access, LGPD and data-privacy awareness, NDA welcome.</p><p class="pt">Segredos nunca no repositório, acesso mínimo necessário, cuidado com LGPD e NDA quando precisar.</p><p class="es">Secretos nunca en el repositorio, acceso mínimo necesario, cuidado con la privacidad de datos y NDA cuando haga falta.</p></div>
+      <div class="tcard reveal d4"><div class="ico">⇲</div><b class="en">The code is yours</b><b class="pt">O código é seu</b><b class="es">El código es tuyo</b><p class="en">Full source, tests and documentation handed over at the end. No lock-in.</p><p class="pt">Código completo, testes e documentação entregues no fim. Sem dependência de mim.</p><p class="es">Código completo, pruebas y documentación entregados al final. Sin dependencia de mí.</p></div>
     </div>
     <div class="clients reveal">
-      <span>Eletrobras / Furnas</span><span>MXM Sistemas</span><span class="en">Hospital network</span><span class="pt">Rede hospitalar</span><span class="en">Investment banks</span><span class="pt">Bancos de investimento</span><span class="en">Tax consulting firms</span><span class="pt">Consultorias fiscais</span>
+      <span>Eletrobras / Furnas</span><span>MXM Sistemas</span><span class="en">Hospital network</span><span class="pt">Rede hospitalar</span><span class="es">Red hospitalaria</span><span class="en">Investment banks</span><span class="pt">Bancos de investimento</span><span class="es">Bancos de inversión</span><span class="en">Tax consulting firms</span><span class="pt">Consultorias fiscais</span><span class="es">Consultoras fiscales</span>
     </div>
   </div>
 </section>
 
 <section id="experience">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="en">Experience</span><span class="pt">Experiência</span></div>
+    <div class="eyebrow reveal"><span class="en">Experience</span><span class="pt">Experiência</span><span class="es">Experiencia</span></div>
     <h2 class="reveal en">A decade shipping software.</h2>
-    <h2 class="reveal pt">Uma década entregando software.</h2>
+    <h2 class="reveal pt">Uma década entregando software.</h2><h2 class="reveal es">Una década entregando software.</h2>
     <div class="tl" id="tl"><div class="fill" id="tlfill"></div>
-      <div class="job reveal"><div class="when">2022 → <span class="en">now</span><span class="pt">hoje</span></div><h3>Tech Lead & Dev Lead (.NET)</h3>
+      <div class="job reveal"><div class="when">2022 → <span class="en">now</span><span class="pt">hoje</span><span class="es">hoy</span></div><h3>Tech Lead & Dev Lead (.NET)</h3>
         <p class="en">Architecture, hands-on development, code review and mentoring. Generative AI inside enterprise systems: LLMs, RAG, function calling and agents.</p>
-        <p class="pt">Arquitetura, desenvolvimento, code review e mentoria. IA generativa dentro de sistemas corporativos: LLMs, RAG, function calling e agentes.</p></div>
-      <div class="job reveal"><div class="when">2021 → 2022</div><h3>Tech Lead · <span class="en">tax and accounting software</span><span class="pt">software fiscal e contábil</span></h3>
+        <p class="pt">Arquitetura, desenvolvimento, code review e mentoria. IA generativa dentro de sistemas corporativos: LLMs, RAG, function calling e agentes.</p><p class="es">Arquitectura, desarrollo, code review y mentoría. IA generativa dentro de sistemas corporativos: LLMs, RAG, function calling y agentes.</p></div>
+      <div class="job reveal"><div class="when">2021 → 2022</div><h3>Tech Lead · <span class="en">tax and accounting software</span><span class="pt">software fiscal e contábil</span><span class="es">software fiscal y contable</span></h3>
         <p class="en">Tax diagnosis platform that cross-checks Brazilian tax filings (EFD, DCTF, NF-e, Reinf and others) to find inconsistencies.</p>
-        <p class="pt">Plataforma de diagnóstico fiscal que cruza obrigações acessórias (EFD, DCTF, NF-e, Reinf e outras) para achar inconsistências.</p></div>
-      <div class="job reveal"><div class="when"><span class="en">Earlier</span><span class="pt">Antes</span></div><h3><span class="en">Systems Analyst & Developer</span><span class="pt">Analista de sistemas e desenvolvedor</span></h3>
+        <p class="pt">Plataforma de diagnóstico fiscal que cruza obrigações acessórias (EFD, DCTF, NF-e, Reinf e outras) para achar inconsistências.</p><p class="es">Plataforma de diagnóstico fiscal que cruza las declaraciones fiscales brasileñas (EFD, DCTF, NF-e, Reinf y otras) para encontrar inconsistencias.</p></div>
+      <div class="job reveal"><div class="when"><span class="en">Earlier</span><span class="pt">Antes</span><span class="es">Antes</span></div><h3><span class="en">Systems Analyst & Developer</span><span class="pt">Analista de sistemas e desenvolvedor</span><span class="es">Analista de sistemas y desarrollador</span></h3>
         <p class="en">Investment banking platforms and a video call product, contractor for Eletrobras / Furnas, ERP development in C# and Delphi at MXM, healthcare systems for a hospital network.</p>
-        <p class="pt">Plataformas para bancos de investimento e produto de videochamada, prestador de serviço para Eletrobras / Furnas, desenvolvimento de ERP em C# e Delphi na MXM, sistemas de saúde para rede hospitalar.</p></div>
-      <div class="job reveal"><div class="when">2016</div><h3><span class="en">Where it started</span><span class="pt">Onde começou</span></h3>
+        <p class="pt">Plataformas para bancos de investimento e produto de videochamada, prestador de serviço para Eletrobras / Furnas, desenvolvimento de ERP em C# e Delphi na MXM, sistemas de saúde para rede hospitalar.</p><p class="es">Plataformas para bancos de inversión y un producto de videollamadas, proveedor para Eletrobras / Furnas, desarrollo de ERP en C# y Delphi en MXM, sistemas de salud para una red hospitalaria.</p></div>
+      <div class="job reveal"><div class="when">2016</div><h3><span class="en">Where it started</span><span class="pt">Onde começou</span><span class="es">Donde empezó</span></h3>
         <p class="en">Apprentice computer operator at Globo, Brazil's largest TV network. Proof that you can learn fast.</p>
-        <p class="pt">Aprendiz de operador de computador na Rede Globo. Prova de que dá para aprender rápido.</p></div>
+        <p class="pt">Aprendiz de operador de computador na Rede Globo. Prova de que dá para aprender rápido.</p><p class="es">Aprendiz de operador de computadoras en Globo, la mayor cadena de TV de Brasil. Prueba de que se puede aprender rápido.</p></div>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="en">How I work</span><span class="pt">Como trabalho</span></div>
+    <div class="eyebrow reveal"><span class="en">How I work</span><span class="pt">Como trabalho</span><span class="es">Cómo trabajo</span></div>
     <h2 class="reveal en">Simple and predictable.</h2>
-    <h2 class="reveal pt">Simples e previsível.</h2>
+    <h2 class="reveal pt">Simples e previsível.</h2><h2 class="reveal es">Simple y predecible.</h2>
     <div class="steps" style="margin-top:36px">
-      <div class="step reveal d1"><h3 class="en">Scope</h3><h3 class="pt">Escopo</h3><p class="en">A short call or chat, then a written scope with price and timeline.</p><p class="pt">Uma conversa rápida e depois o escopo por escrito, com preço e prazo.</p></div>
-      <div class="step reveal d2"><h3 class="en">Build</h3><h3 class="pt">Construção</h3><p class="en">Small milestones you can test, with progress updates you can follow.</p><p class="pt">Entregas pequenas que você testa, com atualizações que dá para acompanhar.</p></div>
-      <div class="step reveal d3"><h3 class="en">Quality</h3><h3 class="pt">Qualidade</h3><p class="en">Clean code, automated tests and enterprise-level code review.</p><p class="pt">Código limpo, testes automatizados e revisão no padrão de empresa grande.</p></div>
-      <div class="step reveal d4"><h3 class="en">Handover</h3><h3 class="pt">Entrega</h3><p class="en">Documentation and a walkthrough, so the project is yours.</p><p class="pt">Documentação e apresentação final, para o projeto ser seu.</p></div>
+      <div class="step reveal d1"><h3 class="en">Scope</h3><h3 class="pt">Escopo</h3><h3 class="es">Alcance</h3><p class="en">A short call or chat, then a written scope with price and timeline.</p><p class="pt">Uma conversa rápida e depois o escopo por escrito, com preço e prazo.</p><p class="es">Una llamada o chat corto y luego el alcance por escrito, con precio y plazo.</p></div>
+      <div class="step reveal d2"><h3 class="en">Build</h3><h3 class="pt">Construção</h3><h3 class="es">Construcción</h3><p class="en">Small milestones you can test, with progress updates you can follow.</p><p class="pt">Entregas pequenas que você testa, com atualizações que dá para acompanhar.</p><p class="es">Entregas pequeñas que puedes probar, con avances que puedes seguir.</p></div>
+      <div class="step reveal d3"><h3 class="en">Quality</h3><h3 class="pt">Qualidade</h3><h3 class="es">Calidad</h3><p class="en">Clean code, automated tests and enterprise-level code review.</p><p class="pt">Código limpo, testes automatizados e revisão no padrão de empresa grande.</p><p class="es">Código limpio, pruebas automatizadas y code review de nivel corporativo.</p></div>
+      <div class="step reveal d4"><h3 class="en">Handover</h3><h3 class="pt">Entrega</h3><h3 class="es">Entrega</h3><p class="en">Documentation and a walkthrough, so the project is yours.</p><p class="pt">Documentação e apresentação final, para o projeto ser seu.</p><p class="es">Documentación y una presentación final, para que el proyecto sea tuyo.</p></div>
     </div>
   </div>
 </section>
 
 <section id="pricing">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="en">Ways to work together</span><span class="pt">Formas de trabalhar juntos</span></div>
+    <div class="eyebrow reveal"><span class="en">Ways to work together</span><span class="pt">Formas de trabalhar juntos</span><span class="es">Formas de trabajar juntos</span></div>
     <h2 class="reveal en">Clear prices. No surprises.</h2>
-    <h2 class="reveal pt">Preço claro. Sem surpresa.</h2>
+    <h2 class="reveal pt">Preço claro. Sem surpresa.</h2><h2 class="reveal es">Precios claros. Sin sorpresas.</h2>
     <p class="sub reveal en">Starting prices for the most common requests. Every project gets a fixed written quote before any work starts.</p>
-    <p class="sub reveal pt">Valores iniciais dos pedidos mais comuns. Todo projeto recebe um orçamento fechado por escrito antes de começar.</p>
+    <p class="sub reveal pt">Valores iniciais dos pedidos mais comuns. Todo projeto recebe um orçamento fechado por escrito antes de começar.</p><p class="sub reveal es">Precios iniciales de los pedidos más comunes. Cada proyecto recibe un presupuesto cerrado por escrito antes de empezar.</p>
     <div class="pk">
-      <div class="pkc reveal d1"><h3 class="en">Quick fix</h3><h3 class="pt">Correção rápida</h3>
-        <div class="price"><small class="en">from</small><small class="pt">a partir de</small>US$ 120</div>
-        <ul><li class="en">Diagnosis of the problem</li><li class="pt">Diagnóstico do problema</li><li class="en">Fix of 1 bug or slow query</li><li class="pt">Correção de 1 bug ou lentidão</li><li class="en">Short report of what changed</li><li class="pt">Relatório curto do que mudou</li></ul>
-        <a class="btn" href="#contact"><span class="en">Get a fix</span><span class="pt">Pedir correção</span></a></div>
-      <div class="pkc hot reveal d2"><span class="tag2"><span class="en">Most requested</span><span class="pt">Mais pedido</span></span><h3 class="en">AI chatbot & automation</h3><h3 class="pt">Chatbot e automação com IA</h3>
-        <div class="price"><small class="en">from</small><small class="pt">a partir de</small>US$ 250</div>
-        <ul><li class="en">Chatbot trained on your documents</li><li class="pt">Chatbot treinado com seus documentos</li><li class="en">Website, WhatsApp or internal system</li><li class="pt">Site, WhatsApp ou sistema interno</li><li class="en">Monthly AI cost estimate up front</li><li class="pt">Estimativa do custo mensal da IA antes</li></ul>
-        <a class="btn primary" href="#contact"><span class="en">Start with AI</span><span class="pt">Começar com IA</span></a></div>
-      <div class="pkc reveal d3"><h3 class="en">Custom system or API</h3><h3 class="pt">Sistema ou API sob medida</h3>
-        <div class="price"><small class="en">fixed quote</small><small class="pt">orçamento fechado</small><span class="en">By scope</span><span class="pt">Por escopo</span></div>
-        <ul><li class="en">Web app, dashboard or integration</li><li class="pt">App web, painel ou integração</li><li class="en">Milestones with payment per delivery</li><li class="pt">Etapas com pagamento por entrega</li><li class="en">Source code, tests and docs are yours</li><li class="pt">Código, testes e docs são seus</li></ul>
-        <a class="btn" href="#contact"><span class="en">Get a quote</span><span class="pt">Pedir orçamento</span></a></div>
-      <div class="pkc reveal d4"><h3 class="en">Ongoing support</h3><h3 class="pt">Suporte contínuo</h3>
-        <div class="price"><small class="en">from</small><small class="pt">a partir de</small>US$ 30<small>/h</small></div>
-        <ul><li class="en">Monthly hours for your team</li><li class="pt">Horas mensais para o seu time</li><li class="en">New features and maintenance</li><li class="pt">Novas funcionalidades e manutenção</li><li class="en">Code review and mentoring</li><li class="pt">Code review e mentoria</li></ul>
-        <a class="btn" href="#contact"><span class="en">Talk about it</span><span class="pt">Conversar</span></a></div>
+      <div class="pkc reveal d1"><h3 class="en">Quick fix</h3><h3 class="pt">Correção rápida</h3><h3 class="es">Corrección rápida</h3>
+        <div class="price"><small class="en">from</small><small class="pt">a partir de</small><small class="es">desde</small>US$ 120</div>
+        <ul><li class="en">Diagnosis of the problem</li><li class="pt">Diagnóstico do problema</li><li class="es">Diagnóstico del problema</li><li class="en">Fix of 1 bug or slow query</li><li class="pt">Correção de 1 bug ou lentidão</li><li class="es">Corrección de 1 bug o lentitud</li><li class="en">Short report of what changed</li><li class="pt">Relatório curto do que mudou</li><li class="es">Informe corto de lo que cambió</li></ul>
+        <a class="btn" href="#contact"><span class="en">Get a fix</span><span class="pt">Pedir correção</span><span class="es">Pedir corrección</span></a></div>
+      <div class="pkc hot reveal d2"><span class="tag2"><span class="en">Most requested</span><span class="pt">Mais pedido</span><span class="es">Más pedido</span></span><h3 class="en">AI chatbot & automation</h3><h3 class="pt">Chatbot e automação com IA</h3><h3 class="es">Chatbot y automatización con IA</h3>
+        <div class="price"><small class="en">from</small><small class="pt">a partir de</small><small class="es">desde</small>US$ 250</div>
+        <ul><li class="en">Chatbot trained on your documents</li><li class="pt">Chatbot treinado com seus documentos</li><li class="es">Chatbot entrenado con tus documentos</li><li class="en">Website, WhatsApp or internal system</li><li class="pt">Site, WhatsApp ou sistema interno</li><li class="es">Sitio web, WhatsApp o sistema interno</li><li class="en">Monthly AI cost estimate up front</li><li class="pt">Estimativa do custo mensal da IA antes</li><li class="es">Estimación del costo mensual de la IA por adelantado</li></ul>
+        <a class="btn primary" href="#contact"><span class="en">Start with AI</span><span class="pt">Começar com IA</span><span class="es">Empezar con IA</span></a></div>
+      <div class="pkc reveal d3"><h3 class="en">Custom system or API</h3><h3 class="pt">Sistema ou API sob medida</h3><h3 class="es">Sistema o API a medida</h3>
+        <div class="price"><small class="en">fixed quote</small><small class="pt">orçamento fechado</small><small class="es">presupuesto cerrado</small><span class="en">By scope</span><span class="pt">Por escopo</span><span class="es">Según alcance</span></div>
+        <ul><li class="en">Web app, dashboard or integration</li><li class="pt">App web, painel ou integração</li><li class="es">App web, panel o integración</li><li class="en">Milestones with payment per delivery</li><li class="pt">Etapas com pagamento por entrega</li><li class="es">Etapas con pago por entrega</li><li class="en">Source code, tests and docs are yours</li><li class="pt">Código, testes e docs são seus</li><li class="es">Código, pruebas y docs son tuyos</li></ul>
+        <a class="btn" href="#contact"><span class="en">Get a quote</span><span class="pt">Pedir orçamento</span><span class="es">Pedir presupuesto</span></a></div>
+      <div class="pkc reveal d4"><h3 class="en">Ongoing support</h3><h3 class="pt">Suporte contínuo</h3><h3 class="es">Soporte continuo</h3>
+        <div class="price"><small class="en">from</small><small class="pt">a partir de</small><small class="es">desde</small>US$ 30<small>/h</small></div>
+        <ul><li class="en">Monthly hours for your team</li><li class="pt">Horas mensais para o seu time</li><li class="es">Horas mensuales para tu equipo</li><li class="en">New features and maintenance</li><li class="pt">Novas funcionalidades e manutenção</li><li class="es">Nuevas funcionalidades y mantenimiento</li><li class="en">Code review and mentoring</li><li class="pt">Code review e mentoria</li><li class="es">Code review y mentoría</li></ul>
+        <a class="btn" href="#contact"><span class="en">Talk about it</span><span class="pt">Conversar</span><span class="es">Conversemos</span></a></div>
     </div>
     <p class="note reveal en">Prices in US dollars. Clients in Brazil can pay in reais with an invoice (nota fiscal).</p>
-    <p class="note reveal pt">Valores em dólar. Clientes no Brasil pagam em reais, com nota fiscal.</p>
+    <p class="note reveal pt">Valores em dólar. Clientes no Brasil pagam em reais, com nota fiscal.</p><p class="note reveal es">Precios en dólares. Clientes en Brasil pueden pagar en reales con factura.</p>
   </div>
 </section>
 
@@ -670,26 +674,26 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
   <div class="wrap">
     <div class="eyebrow reveal">FAQ</div>
     <h2 class="reveal en">Questions clients usually ask.</h2>
-    <h2 class="reveal pt">Perguntas que os clientes costumam fazer.</h2>
+    <h2 class="reveal pt">Perguntas que os clientes costumam fazer.</h2><h2 class="reveal es">Preguntas que los clientes suelen hacer.</h2>
     <div class="faq" style="margin-top:30px">
-      <details class="reveal"><summary><span class="en">How do we start?</span><span class="pt">Como começamos?</span></summary>
+      <details class="reveal"><summary><span class="en">How do we start?</span><span class="pt">Como começamos?</span><span class="es">¿Cómo empezamos?</span></summary>
         <p class="en">Send me a short description. I reply within one business day with questions or a written proposal: scope, price, milestones and deadline. Work starts only after you approve it.</p>
-        <p class="pt">Me mande uma descrição curta. Respondo em até um dia útil com perguntas ou uma proposta por escrito: escopo, preço, etapas e prazo. O trabalho só começa depois da sua aprovação.</p></details>
-      <details class="reveal"><summary><span class="en">How does payment work?</span><span class="pt">Como funciona o pagamento?</span></summary>
+        <p class="pt">Me mande uma descrição curta. Respondo em até um dia útil com perguntas ou uma proposta por escrito: escopo, preço, etapas e prazo. O trabalho só começa depois da sua aprovação.</p><p class="es">Envíame una descripción corta. Respondo en un día hábil con preguntas o una propuesta por escrito: alcance, precio, etapas y plazo. El trabajo empieza solo después de tu aprobación.</p></details>
+      <details class="reveal"><summary><span class="en">How does payment work?</span><span class="pt">Como funciona o pagamento?</span><span class="es">¿Cómo funciona el pago?</span></summary>
         <p class="en">By milestone. You test each delivery and release payment for what you approved. Through Upwork, Workana or directly with an invoice, whichever you prefer.</p>
-        <p class="pt">Por etapa. Você testa cada entrega e libera o pagamento do que aprovou. Pelo Upwork, pela Workana ou direto com nota fiscal, como preferir.</p></details>
-      <details class="reveal"><summary><span class="en">Is my data and code safe?</span><span class="pt">Meus dados e meu código ficam seguros?</span></summary>
+        <p class="pt">Por etapa. Você testa cada entrega e libera o pagamento do que aprovou. Pelo Upwork, pela Workana ou direto com nota fiscal, como preferir.</p><p class="es">Por etapa. Pruebas cada entrega y liberas el pago de lo que aprobaste. Por Upwork, Workana o directo con factura, como prefieras.</p></details>
+      <details class="reveal"><summary><span class="en">Is my data and code safe?</span><span class="pt">Meus dados e meu código ficam seguros?</span><span class="es">¿Mis datos y mi código están seguros?</span></summary>
         <p class="en">Yes. I sign NDAs, use least-privilege access, never commit secrets and follow LGPD and data-privacy practices. With AI, I make sure your data is not used to train third-party models.</p>
-        <p class="pt">Sim. Assino NDA, uso o acesso mínimo necessário, nunca coloco segredos no repositório e sigo boas práticas de LGPD. Com IA, garanto que seus dados não são usados para treinar modelos de terceiros.</p></details>
-      <details class="reveal"><summary><span class="en">Can you work with my existing code and team?</span><span class="pt">Você trabalha com o código e o time que eu já tenho?</span></summary>
+        <p class="pt">Sim. Assino NDA, uso o acesso mínimo necessário, nunca coloco segredos no repositório e sigo boas práticas de LGPD. Com IA, garanto que seus dados não são usados para treinar modelos de terceiros.</p><p class="es">Sí. Firmo NDA, uso el acceso mínimo necesario, nunca subo secretos al repositorio y sigo buenas prácticas de privacidad de datos. Con IA, me aseguro de que tus datos no se usen para entrenar modelos de terceros.</p></details>
+      <details class="reveal"><summary><span class="en">Can you work with my existing code and team?</span><span class="pt">Você trabalha com o código e o time que eu já tenho?</span><span class="es">¿Trabajas con mi código y mi equipo actuales?</span></summary>
         <p class="en">Yes. Most of my work is on systems that already exist. I adapt to your stack, Git flow and tools (Jira, Azure DevOps, GitHub, Slack, Teams).</p>
-        <p class="pt">Sim. Boa parte do meu trabalho é em sistemas que já existem. Eu me adapto à sua stack, ao seu fluxo de Git e às suas ferramentas (Jira, Azure DevOps, GitHub, Slack, Teams).</p></details>
-      <details class="reveal"><summary><span class="en">How do we communicate?</span><span class="pt">Como vamos nos comunicar?</span></summary>
+        <p class="pt">Sim. Boa parte do meu trabalho é em sistemas que já existem. Eu me adapto à sua stack, ao seu fluxo de Git e às suas ferramentas (Jira, Azure DevOps, GitHub, Slack, Teams).</p><p class="es">Sí. Gran parte de mi trabajo es en sistemas que ya existen. Me adapto a tu stack, tu flujo de Git y tus herramientas (Jira, Azure DevOps, GitHub, Slack, Teams).</p></details>
+      <details class="reveal"><summary><span class="en">How do we communicate?</span><span class="pt">Como vamos nos comunicar?</span><span class="es">¿Cómo nos comunicamos?</span></summary>
         <p class="en">Mostly in writing (chat and email) with short async video updates. Calls in Portuguese or Spanish. I am in UTC−3, which overlaps with US and European business hours.</p>
-        <p class="pt">Principalmente por escrito (chat e e-mail), com atualizações curtas em vídeo. Chamadas em português ou espanhol. Estou no fuso UTC−3, que encaixa com o horário comercial dos EUA e da Europa.</p></details>
-      <details class="reveal"><summary><span class="en">What happens after delivery?</span><span class="pt">E depois da entrega?</span></summary>
+        <p class="pt">Principalmente por escrito (chat e e-mail), com atualizações curtas em vídeo. Chamadas em português ou espanhol. Estou no fuso UTC−3, que encaixa com o horário comercial dos EUA e da Europa.</p><p class="es">Principalmente por escrito (chat y correo) con videos cortos de avance. Llamadas en español o portugués. Estoy en UTC−3, que coincide con el horario laboral de EE. UU. y Europa.</p></details>
+      <details class="reveal"><summary><span class="en">What happens after delivery?</span><span class="pt">E depois da entrega?</span><span class="es">¿Y después de la entrega?</span></summary>
         <p class="en">You get the full source code, tests and documentation. Bugs in what I delivered are fixed at no cost for 30 days, and ongoing support is available by the hour.</p>
-        <p class="pt">Você recebe o código completo, os testes e a documentação. Bugs no que eu entreguei são corrigidos sem custo por 30 dias, e há suporte contínuo por hora se precisar.</p></details>
+        <p class="pt">Você recebe o código completo, os testes e a documentação. Bugs no que eu entreguei são corrigidos sem custo por 30 dias, e há suporte contínuo por hora se precisar.</p><p class="es">Recibes el código completo, las pruebas y la documentación. Los bugs en lo que entregué se corrigen sin costo durante 30 días, y hay soporte continuo por hora si lo necesitas.</p></details>
     </div>
   </div>
 </section>
@@ -697,22 +701,22 @@ footer{padding:30px 0;color:var(--muted);font:13px var(--mono);text-align:center
 <section id="contact" class="contact">
   <div class="bigorb"></div>
   <div class="wrap">
-    <div class="eyebrow reveal" style="justify-content:center"><span class="en">Contact</span><span class="pt">Contato</span></div>
+    <div class="eyebrow reveal" style="justify-content:center"><span class="en">Contact</span><span class="pt">Contato</span><span class="es">Contacto</span></div>
     <h2 class="reveal en">Let's build something that works.</h2>
-    <h2 class="reveal pt">Vamos construir algo que funciona.</h2>
+    <h2 class="reveal pt">Vamos construir algo que funciona.</h2><h2 class="reveal es">Construyamos algo que funcione.</h2>
     <p class="sub reveal en">Send a short description of your project, bug or AI idea. I reply within one business day with questions or a proposal.</p>
-    <p class="sub reveal pt">Mande uma descrição curta do seu projeto, bug ou ideia com IA. Respondo em até um dia útil com perguntas ou uma proposta.</p>
+    <p class="sub reveal pt">Mande uma descrição curta do seu projeto, bug ou ideia com IA. Respondo em até um dia útil com perguntas ou uma proposta.</p><p class="sub reveal es">Envía una descripción corta de tu proyecto, bug o idea con IA. Respondo en un día hábil con preguntas o una propuesta.</p>
     <div class="ctas reveal">
       <a class="btn primary mag" href="https://www.linkedin.com/in/marcus-paulo-oliveira" target="_blank" rel="noopener">LinkedIn →</a>
       <a class="btn mag" href="https://www.upwork.com/freelancers/~011a03eec914c15aa8" target="_blank" rel="noopener">Upwork</a>
       <a class="btn mag" href="https://www.workana.com/freelancer/4ee4d04f539e13555c70fedec86e7cb0" target="_blank" rel="noopener">Workana</a>
       <a class="btn mag" href="https://github.com/marcusolive" target="_blank" rel="noopener">GitHub</a>
     </div>
-    <div class="avail reveal"><i></i><span class="en">Limited availability: I take a few projects at a time to keep quality high.</span><span class="pt">Agenda limitada: pego poucos projetos por vez para manter a qualidade.</span></div>
+    <div class="avail reveal"><i></i><span class="en">Limited availability: I take a few projects at a time to keep quality high.</span><span class="pt">Agenda limitada: pego poucos projetos por vez para manter a qualidade.</span><span class="es">Agenda limitada: tomo pocos proyectos a la vez para mantener la calidad.</span></div>
   </div>
 </section>
 
-<footer>© <span id="y"></span> Marcus Oliveira · Rio de Janeiro, Brazil · <span class="en">remote worldwide</span><span class="pt">remoto para o mundo todo</span></footer>
+<footer>© <span id="y"></span> Marcus Oliveira · Rio de Janeiro, Brazil · <span class="en">remote worldwide</span><span class="pt">remoto para o mundo todo</span><span class="es">remoto para todo el mundo</span></footer>
 
 <script>
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -721,12 +725,12 @@ let LANG='en';
 function setLang(l){
   LANG=l;
   document.body.classList.toggle('lang-pt', l==='pt');
-  document.documentElement.lang = l==='pt' ? 'pt-BR' : 'en';
-  document.getElementById('btn-en').classList.toggle('on', l==='en');
-  document.getElementById('btn-pt').classList.toggle('on', l==='pt');
+  document.body.classList.toggle('lang-es', l==='es');
+  document.documentElement.lang = {pt:'pt-BR',es:'es'}[l]||'en';
+  ['en','pt','es'].forEach(k=>{const b=document.getElementById('btn-'+k);b.classList.toggle('on',k===l);b.setAttribute('aria-pressed',k===l)});
   try{localStorage.setItem('lang',l)}catch(e){}
   if(window.Demo) Demo.caption();
-  if(RM){const t=document.getElementById('typed');if(t)t.textContent=l==='pt'?'> criando agentes de IA':'> building AI agents'}
+  if(RM){const t=document.getElementById('typed');if(t)t.textContent={pt:'> criando agentes de IA',es:'> creando agentes de IA'}[l]||'> building AI agents'}
 }
 
 /* boot sequence */
@@ -788,28 +792,28 @@ function setLang(l){
 /* industries grid */
 (function(){
   const I=[
-    ['✚',1,'Healthcare & hospitals','Saúde e hospitais','Patient apps back-ends, AI assistants on internal systems, scheduling and records.','Back-end de apps de pacientes, assistentes com IA em sistemas internos, agendamento e prontuário.'],
-    ['$',1,'Banking & investments','Bancos e investimentos','Investment platforms, risk dashboards, reconciliation and secure APIs.','Plataformas de investimento, painéis de risco, conciliação e APIs seguras.'],
-    ['§',1,'Tax & accounting','Fiscal e contábil','E-invoices (NF-e, NFS-e), tax cross-checks, ERP integration and AI classification.','Notas fiscais (NF-e, NFS-e), cruzamento fiscal, integração com ERP e classificação com IA.'],
-    ['⚖',1,'Law firms & legal','Advocacia e jurídico','Legal-accounting portals, contract reading with AI, deadline and case tracking.','Portais contábeis para advogados, leitura de contratos com IA, controle de prazos e processos.'],
-    ['ϟ',1,'Energy & utilities','Energia e utilities','Systems built for Eletrobras / Furnas: availability, quality and agile delivery.','Sistemas feitos para Eletrobras / Furnas: disponibilidade, qualidade e entrega ágil.'],
-    ['⚙',1,'ERP & industry','ERP e indústria','ERP modules in C# and Delphi, integrations, reports and data modeling.','Módulos de ERP em C# e Delphi, integrações, relatórios e modelagem de dados.'],
-    ['☷',1,'HR & payroll','RH e folha','Labor and payroll compliance, government filings and data validation.','Conformidade trabalhista e de folha, obrigações ao governo e validação de dados.'],
-    ['▶',1,'Video & communication','Vídeo e comunicação','Online video call platform and real-time communication features.','Plataforma de videochamada online e recursos de comunicação em tempo real.'],
-    ['✈',0,'Aviation','Aviação','Maintenance tracking, crew and fleet dashboards, document AI for manuals.','Controle de manutenção, painéis de frota e tripulação, IA para ler manuais.'],
-    ['⛟',0,'Railways & logistics','Ferrovias e logística','Fleet and asset tracking, maintenance planning, route and cargo dashboards.','Rastreio de frota e ativos, plano de manutenção, painéis de rota e carga.'],
-    ['⛨',0,'Insurance','Seguros','Claims automation, policy document reading and fraud signals with AI.','Automação de sinistros, leitura de apólices e sinais de fraude com IA.'],
-    ['◫',0,'Retail & e-commerce','Varejo e e-commerce','Stores, payment and ERP integrations, catalog AI and sales dashboards.','Lojas, integrações de pagamento e ERP, IA para catálogo e painéis de vendas.'],
-    ['✎',0,'Education','Educação','Learning platforms, student portals and AI tutors trained on course content.','Plataformas de ensino, portais do aluno e tutores com IA treinados no conteúdo.'],
-    ['⌂',0,'Real estate & construction','Imobiliário e construção','Property portals, project tracking, contracts and budget dashboards.','Portais de imóveis, acompanhamento de obras, contratos e painéis de orçamento.'],
-    ['❦',0,'Agribusiness','Agronegócio','Farm management, IoT data, harvest and logistics dashboards.','Gestão rural, dados de IoT, painéis de safra e logística.'],
-    ['⌬',0,'Pharma & labs','Farmacêutico e laboratórios','Lab systems, traceability, regulatory documents and quality control.','Sistemas de laboratório, rastreabilidade, documentos regulatórios e controle de qualidade.'],
-    ['☎',0,'Telecom','Telecom','Customer portals, billing integrations and support chatbots.','Portais do cliente, integrações de faturamento e chatbots de suporte.'],
-    ['⛫',0,'Government & public sector','Governo e setor público','Integrations with government web services, open data and citizen portals.','Integrações com webservices do governo, dados abertos e portais ao cidadão.'],
-    ['⚑',0,'Tourism & hospitality','Turismo e hotelaria','Booking systems, channel integrations and guest service chatbots.','Sistemas de reserva, integrações com canais e chatbots de atendimento.'],
-    ['✦',0,'Startups & SaaS','Startups e SaaS','MVPs, admin panels, subscriptions and AI features that ship fast.','MVPs, painéis administrativos, assinaturas e funcionalidades com IA entregues rápido.']
+    ['✚',1,'Healthcare & hospitals','Saúde e hospitais','Patient apps back-ends, AI assistants on internal systems, scheduling and records.','Back-end de apps de pacientes, assistentes com IA em sistemas internos, agendamento e prontuário.','Salud y hospitales','Back-end de apps de pacientes, asistentes con IA en sistemas internos, agendas e historia clínica.'],
+    ['$',1,'Banking & investments','Bancos e investimentos','Investment platforms, risk dashboards, reconciliation and secure APIs.','Plataformas de investimento, painéis de risco, conciliação e APIs seguras.','Bancos e inversiones','Plataformas de inversión, paneles de riesgo, conciliación y APIs seguras.'],
+    ['§',1,'Tax & accounting','Fiscal e contábil','E-invoices (NF-e, NFS-e), tax cross-checks, ERP integration and AI classification.','Notas fiscais (NF-e, NFS-e), cruzamento fiscal, integração com ERP e classificação com IA.','Fiscal y contable','Facturas electrónicas (NF-e, NFS-e), cruces fiscales, integración con ERP y clasificación con IA.'],
+    ['⚖',1,'Law firms & legal','Advocacia e jurídico','Legal-accounting portals, contract reading with AI, deadline and case tracking.','Portais contábeis para advogados, leitura de contratos com IA, controle de prazos e processos.','Abogacía y legal','Portales contables para abogados, lectura de contratos con IA, control de plazos y causas.'],
+    ['ϟ',1,'Energy & utilities','Energia e utilities','Systems built for Eletrobras / Furnas: availability, quality and agile delivery.','Sistemas feitos para Eletrobras / Furnas: disponibilidade, qualidade e entrega ágil.','Energía y utilities','Sistemas para Eletrobras / Furnas: disponibilidad, calidad y entrega ágil.'],
+    ['⚙',1,'ERP & industry','ERP e indústria','ERP modules in C# and Delphi, integrations, reports and data modeling.','Módulos de ERP em C# e Delphi, integrações, relatórios e modelagem de dados.','ERP e industria','Módulos de ERP en C# y Delphi, integraciones, reportes y modelado de datos.'],
+    ['☷',1,'HR & payroll','RH e folha','Labor and payroll compliance, government filings and data validation.','Conformidade trabalhista e de folha, obrigações ao governo e validação de dados.','RR. HH. y nómina','Cumplimiento laboral y de nómina, declaraciones al gobierno y validación de datos.'],
+    ['▶',1,'Video & communication','Vídeo e comunicação','Online video call platform and real-time communication features.','Plataforma de videochamada online e recursos de comunicação em tempo real.','Video y comunicación','Plataforma de videollamadas online y funciones de comunicación en tiempo real.'],
+    ['✈',0,'Aviation','Aviação','Maintenance tracking, crew and fleet dashboards, document AI for manuals.','Controle de manutenção, painéis de frota e tripulação, IA para ler manuais.','Aviación','Control de mantenimiento, paneles de flota y tripulación, IA para leer manuales.'],
+    ['⛟',0,'Railways & logistics','Ferrovias e logística','Fleet and asset tracking, maintenance planning, route and cargo dashboards.','Rastreio de frota e ativos, plano de manutenção, painéis de rota e carga.','Ferrocarriles y logística','Rastreo de flota y activos, plan de mantenimiento, paneles de rutas y carga.'],
+    ['⛨',0,'Insurance','Seguros','Claims automation, policy document reading and fraud signals with AI.','Automação de sinistros, leitura de apólices e sinais de fraude com IA.','Seguros','Automatización de siniestros, lectura de pólizas y señales de fraude con IA.'],
+    ['◫',0,'Retail & e-commerce','Varejo e e-commerce','Stores, payment and ERP integrations, catalog AI and sales dashboards.','Lojas, integrações de pagamento e ERP, IA para catálogo e painéis de vendas.','Retail y e-commerce','Tiendas, integraciones de pago y ERP, IA para catálogo y paneles de ventas.'],
+    ['✎',0,'Education','Educação','Learning platforms, student portals and AI tutors trained on course content.','Plataformas de ensino, portais do aluno e tutores com IA treinados no conteúdo.','Educación','Plataformas de enseñanza, portales del alumno y tutores con IA entrenados con el contenido.'],
+    ['⌂',0,'Real estate & construction','Imobiliário e construção','Property portals, project tracking, contracts and budget dashboards.','Portais de imóveis, acompanhamento de obras, contratos e painéis de orçamento.','Inmobiliario y construcción','Portales de inmuebles, seguimiento de obras, contratos y paneles de presupuesto.'],
+    ['❦',0,'Agribusiness','Agronegócio','Farm management, IoT data, harvest and logistics dashboards.','Gestão rural, dados de IoT, painéis de safra e logística.','Agronegocio','Gestión agrícola, datos de IoT, paneles de cosecha y logística.'],
+    ['⌬',0,'Pharma & labs','Farmacêutico e laboratórios','Lab systems, traceability, regulatory documents and quality control.','Sistemas de laboratório, rastreabilidade, documentos regulatórios e controle de qualidade.','Farmacéutico y laboratorios','Sistemas de laboratorio, trazabilidad, documentos regulatorios y control de calidad.'],
+    ['☎',0,'Telecom','Telecom','Customer portals, billing integrations and support chatbots.','Portais do cliente, integrações de faturamento e chatbots de suporte.','Telecomunicaciones','Portales del cliente, integraciones de facturación y chatbots de soporte.'],
+    ['⛫',0,'Government & public sector','Governo e setor público','Integrations with government web services, open data and citizen portals.','Integrações com webservices do governo, dados abertos e portais ao cidadão.','Gobierno y sector público','Integraciones con servicios del gobierno, datos abiertos y portales ciudadanos.'],
+    ['⚑',0,'Tourism & hospitality','Turismo e hotelaria','Booking systems, channel integrations and guest service chatbots.','Sistemas de reserva, integrações com canais e chatbots de atendimento.','Turismo y hotelería','Sistemas de reservas, integraciones con canales y chatbots de atención.'],
+    ['✦',0,'Startups & SaaS','Startups e SaaS','MVPs, admin panels, subscriptions and AI features that ship fast.','MVPs, painéis administrativos, assinaturas e funcionalidades com IA entregues rápido.','Startups y SaaS','MVPs, paneles administrativos, suscripciones y funciones con IA entregadas rápido.']
   ];
-  document.getElementById('ind').innerHTML=I.map((x,i)=>`<div class="it reveal d${i%4+1}">${x[1]?'<span class="xp"><span class="en">EXPERIENCE</span><span class="pt">EXPERIÊNCIA</span></span>':''}<div class="gl">${x[0]}</div><h3><span class="en">${x[2]}</span><span class="pt">${x[3]}</span></h3><p><span class="en">${x[4]}</span><span class="pt">${x[5]}</span></p></div>`).join('');
+  document.getElementById('ind').innerHTML=I.map((x,i)=>`<div class="it reveal d${i%4+1}">${x[1]?'<span class="xp"><span class="en">EXPERIENCE</span><span class="pt">EXPERIÊNCIA</span><span class="es">EXPERIENCIA</span></span>':''}<div class="gl">${x[0]}</div><h3><span class="en">${x[2]}</span><span class="pt">${x[3]}</span><span class="es">${x[6]}</span></h3><p><span class="en">${x[4]}</span><span class="pt">${x[5]}</span><span class="es">${x[7]}</span></p></div>`).join('');
 })();
 
 /* nav behaviour */
@@ -828,7 +832,8 @@ function setLang(l){
 (function(){
   const el=document.getElementById('typed');
   const words={en:['> building AI agents','> integrating APIs and ERPs','> shipping React and Angular apps','> rescuing legacy .NET systems','> automating with Python'],
-               pt:['> criando agentes de IA','> integrando APIs e ERPs','> entregando apps React e Angular','> resgatando sistemas .NET','> automatizando com Python']};
+               pt:['> criando agentes de IA','> integrando APIs e ERPs','> entregando apps React e Angular','> resgatando sistemas .NET','> automatizando com Python'],
+               es:['> creando agentes de IA','> integrando APIs y ERPs','> entregando apps React y Angular','> rescatando sistemas .NET','> automatizando con Python']};
   let wi=0,ci=0,del=false;
   function tick(){
     const list=words[LANG],wd=list[wi%list.length];
@@ -883,7 +888,7 @@ window.Demo=(function(){
   const L=(t,c)=>`<div class="ln">${c?`<span class="${c}">`:''}${t}${c?'</span>':''}</div>`;
   const demos=[
     {url:'agent.api/v1/analysis',
-     cap:{en:'AI tax agent: reads an invoice item, searches legal evidence through MCP, ranks candidates and returns a traceable classification.',pt:'Agente fiscal com IA: lê o item da nota, busca evidências legais via MCP, ordena candidatos e devolve uma classificação rastreável.'},
+     cap:{en:'AI tax agent: reads an invoice item, searches legal evidence through MCP, ranks candidates and returns a traceable classification.',pt:'Agente fiscal com IA: lê o item da nota, busca evidências legais via MCP, ordena candidatos e devolve uma classificação rastreável.',es:'Agente fiscal con IA: lee el ítem de la factura, busca evidencia legal vía MCP, ordena candidatos y devuelve una clasificación rastreable.'},
      build(){stage.innerHTML=[
       L('$ POST /v1/analysis  invoice=NF-e 3524...0187  item=3','c-m'),
       L('› item: "Silicone catheter, sterile, 14Fr, single use"'),
@@ -897,7 +902,7 @@ window.Demo=(function(){
       L('✓ done in 2.4s · tokens 3.1k · audit id 7f3a-91c2','c-g')].join('')},
      steps(){return [...stage.querySelectorAll('.ln')].map(el=>()=>el.classList.add('show'))}},
     {url:'support.yourcompany.ai/chat',
-     cap:{en:'RAG chatbot: answers only from your own documents and always shows where the answer came from.',pt:'Chatbot RAG: responde só com base nos seus documentos e sempre mostra de onde veio a resposta.'},
+     cap:{en:'RAG chatbot: answers only from your own documents and always shows where the answer came from.',pt:'Chatbot RAG: responde só com base nos seus documentos e sempre mostra de onde veio a resposta.',es:'Chatbot RAG: responde solo con tus propios documentos y siempre muestra de dónde salió la respuesta.'},
      build(){stage.innerHTML=`<div class="chat">
       <div class="msg u">What is the refund deadline for annual plans?</div>
       <div class="msg b" data-t="Annual plans can be refunded within 30 days of purchase. After that, you can cancel renewal at any time and keep access until the end of the period."><span class="tx"></span><span class="src">source: refund-policy.pdf · page 2</span></div>
@@ -906,7 +911,7 @@ window.Demo=(function(){
      steps(){const s=[];stage.querySelectorAll('.msg').forEach(m=>{s.push(()=>m.classList.add('show'));if(m.dataset.t){const tx=m.querySelector('.tx'),src=m.querySelector('.src');src.style.opacity=0;const w=m.dataset.t.split(' ');
         for(let i=1;i<=w.length;i+=3)s.push(()=>tx.textContent=w.slice(0,i+2).join(' '));s.push(()=>src.style.opacity=1)}});return s}},
     {url:'specmp.app/new',
-     cap:{en:'SPECMP: a vague request becomes a clear spec with acceptance criteria, risks and tests, ready to export to your board.',pt:'SPECMP: um pedido vago vira uma especificação clara com critérios de aceite, riscos e testes, pronta para exportar para o seu quadro.'},
+     cap:{en:'SPECMP: a vague request becomes a clear spec with acceptance criteria, risks and tests, ready to export to your board.',pt:'SPECMP: um pedido vago vira uma especificação clara com critérios de aceite, riscos e testes, pronta para exportar para o seu quadro.',es:'SPECMP: un pedido vago se convierte en una especificación clara con criterios de aceptación, riesgos y pruebas, lista para exportar a tu tablero.'},
      build(){stage.innerHTML=`<div class="spec"><div class="f">
        <label>TITLE</label><div class="in" id="s1"></div>
        <label>DESCRIPTION</label><div class="in" id="s2" style="min-height:70px"></div>
@@ -923,7 +928,7 @@ window.Demo=(function(){
        stage.querySelectorAll('.gen > div').forEach(d=>s.push(()=>d.classList.add('show')));
        s.push(()=>stage.querySelector('.exp span').classList.add('hit'));s.push(()=>{});return s}},
     {url:'finance.agent/dashboard',
-     cap:{en:'Cash-flow agent: reads the numbers, draws the picture and explains what needs attention, in plain words.',pt:'Agente de fluxo de caixa: lê os números, monta o gráfico e explica em palavras simples o que precisa de atenção.'},
+     cap:{en:'Cash-flow agent: reads the numbers, draws the picture and explains what needs attention, in plain words.',pt:'Agente de fluxo de caixa: lê os números, monta o gráfico e explica em palavras simples o que precisa de atenção.',es:'Agente de flujo de caja: lee los números, arma el gráfico y explica en palabras simples lo que necesita atención.'},
      build(){const v=[62,48,75,-30,58,82,40,-18,66,90,72,85];
       stage.innerHTML=`<div class="dash"><div class="kpi"><small>CASH IN</small><b class="c-g" id="k1">$0</b></div><div class="kpi"><small>CASH OUT</small><b class="c-p" id="k2">$0</b></div><div class="kpi"><small>BALANCE</small><b class="c-c" id="k3">$0</b></div>
       <div class="chart">${v.map(x=>`<div class="bar ${x<0?'neg':''}" data-h="${Math.abs(x)}"></div>`).join('')}</div>
@@ -951,7 +956,8 @@ window.Demo=(function(){
 
 (function(){
   let l=null;try{l=localStorage.getItem('lang')}catch(e){}
-  if(!l)l=(navigator.language||'').toLowerCase().startsWith('pt')?'pt':'en';
+  if(!l){const n=(navigator.language||'').toLowerCase();l=n.startsWith('pt')?'pt':n.startsWith('es')?'es':'en'}
+  if(location.hash==='#es')l='es';
   if(location.hash==='#pt')l='pt';
   setLang(l);
   document.getElementById('y').textContent=new Date().getFullYear();
